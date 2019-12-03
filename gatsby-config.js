@@ -1,12 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: `Novela by Narative`,
-    name: `Narative`,
-    siteUrl: `https://novela.narative.co`,
-    description: `This is my description that will be used in the meta tags and important for search results`,
-    hero: {
-      heading: `Welcome to Novela, the simplest way to start publishing with Gatsby.`,
-      maxWidth: 652,
+      title: `Algebra & Fire`,
+      name: `Hao Chen`,
+      siteUrl: `https://stan-haochen.github.io`,
+      description: `Notes and Thoughts on Vision and Learning, by Hao Chen`,
+      hero: {
+          heading: `Notes and Thoughts on Vision and Learning, by Hao Chen`,
+          maxWidth: 652,
     },
     social: [
       {
@@ -45,6 +45,11 @@ module.exports = {
         },
       },
     },
+      // {
+      //     resolve: 'gatsby-plugin-disqus',
+      //     options: {
+      //         short_name: 'stan-haochen'
+      //     }},
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
