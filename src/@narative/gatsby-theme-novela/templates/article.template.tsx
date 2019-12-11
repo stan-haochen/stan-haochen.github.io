@@ -21,6 +21,7 @@ import ArticleShare from "@narative/gatsby-theme-novela/src/sections/article/Art
 
 import { Template } from "@types";
 import { DiscussionEmbed } from "disqus-react";
+import "katex/dist/katex.min.css";
 
 const siteQuery = graphql`
   {

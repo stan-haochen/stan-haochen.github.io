@@ -14,7 +14,10 @@
         "gatsby": "^2.13.41",
         "gatsby-plugin-manifest": "^2.2.4",
         "react": "^16.8.6",
-        "react-dom": "^16.8.6",
+        "react-dom": "^16.8.6"
+    },
+    "devDependencies": {
+        "gh-pages": "^2.1.1",
         "typescript": "^3.7.2"
     }
 }
