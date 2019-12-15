@@ -51,6 +51,14 @@ Another solution to the two problems is to consider them as one and solve them i
 $$
 \nabla_\alpha \mathbb E_{p_\alpha(h)}[f(h)]\approx\nabla_\alpha f(\sigma(\alpha))
 $$
-where $\sigma$ is softmax activation. This is of course biased, but reasonable considering the popular [Lottery Ticket Hypothesis](https://arxiv.org/abs/1803.03635). (I will comeback to this part later.) However, I consider the connection learning part to be ad hoc, simply selecting the highest two activations, to follow the cell-based search space in [[Zoph and Le]((https://arxiv.org/abs/1611.01578))].
+where $\sigma$ is softmax activation. Although biased, This is reasonable considering the popular [Lottery Ticket Hypothesis](https://arxiv.org/abs/1803.03635). (I will comeback to this part later.) However, I consider the connection learning part to be ad hoc, simply selecting the highest two activations, to follow the cell-based search space in [[Zoph and Le]((https://arxiv.org/abs/1611.01578))].
 
-There are still a lot of unanswered questions. Is this approximation error bounded? How can we avoid overfitting? Probably because this 
+There are still a lot of unanswered questions. Is this approximation error bounded? How can we avoid overfitting? We don't even bother developing more accurate gradient computation including inverse Hessian for the second-order optimization, probably because of the accurate gradient does not leads to better result because of this bias.
+
+This challenging questions require better understanding of the optimization process, e.g. how to early stop? how does training affect generalization?
+
+Another possible fix to this biased estimation is discrete latent structure learning. [[Xie et al.](https://openreview.net/forum?id=rylqooRqK7)] uses Gumbel-softmax trick to reduce this bias.
+$$
+\nabla_\alpha \mathbb E_{p_\alpha(h)}[f(h)]\approx \mathbb E_{p(u)}\nabla_\alpha f(\sigma(z/t));\quad z:=\log\frac{\alpha}{1-\alpha} + \log\frac{u}{1-u};\quad u\sim\operatorname{Uniform}(0, 1).
+$$
+A problem with this trick is that the variance goes to infinity as bias gets closer to $0$, which is controlled by the temperature $t$. I am interested to see someone combine this trick with control variates, such as in [relax](https://github.com/duvenaud/relax).
