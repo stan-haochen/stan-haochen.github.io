@@ -124,8 +124,8 @@ const NavigationHeader: React.FC<{}> = () => {
           <Hidden>Navigate back to the homepage</Hidden>
         </LogoLink>
         <NavControls>
-          <NavItemLink to="/projects">Projects</NavItemLink>
-          <NavItemLink to="/about-me">About</NavItemLink>
+          {/* <NavItemLink to="/projects">Projects</NavItemLink>
+          <NavItemLink to="/about-me">About</NavItemLink> */}
           {showBackArrow ? (
             <button
               onClick={() => navigate(previousPath)}
