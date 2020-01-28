@@ -84,4 +84,10 @@ Similar to  Mask R-CNN, we use RoIPooler to locate instances and extract feature
 
 Another advantage of BlendMask is that it can produce higher quality masks, since our output resolution is not restricted by the top-level sampling. Increasing the RoIPooler resolution of Mask R-CNN will introduce the following problem. The head computation increases quadratically with respect to the RoI size. Larger RoIs requires deeper head structures. Different from dense pixel predictions, RoI foreground predictor has to be aware  of  whole  instance-level information to distinguish foreground from other over-lapping instances. Thus, the larger the feature sizes are, the deeper sub-networks is needed.
 
+Here is a demo video with BlendMask.
+
+<div className="Image__Small">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/E-gXL-eIPCw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
 For more results, please see our paper.
