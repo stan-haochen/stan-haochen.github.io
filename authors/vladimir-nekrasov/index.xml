@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vladimir Nekrasov | Algebra &amp; Fire</title>
+    <link>/authors/vladimir-nekrasov/</link>
+      <atom:link href="/authors/vladimir-nekrasov/index.xml" rel="self" type="application/rss+xml" />
+    <description>Vladimir Nekrasov</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 01 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>img/map[gravatar:%!s(bool=false) shape:circle]</url>
+      <title>Vladimir Nekrasov</title>
+      <link>/authors/vladimir-nekrasov/</link>
+    </image>
+    
+    <item>
+      <title>Architecture Search of Dynamic Cells for Semantic Video Segmentation</title>
+      <link>/publication/nekrasov-2019-architecture/</link>
+      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/nekrasov-2019-architecture/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Fast neural architecture search of compact semantic segmentation models via auxiliary cells</title>
+      <link>/publication/nekrasov-2019-fast/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
+      <guid>/publication/nekrasov-2019-fast/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -28,10 +28,10 @@
   
     
   
-  <meta name="description" content="PhD in Computer Science">
+  <meta name="description" content="**Contributed equally with the second author.** In this work, we achieve improved mask prediction by effectively combining instance-level information with semantic information with lower-level fine-granularity. Our main contribution is a blender module which draws inspiration from both top-down and bottom-up instance segmentation approaches. The proposed BlendMask can effectively predict dense per-pixel position-sensitive instance features with very few channels, and learn attention maps for each instance with merely one convolution layer, thus being fast in inference. BlendMask can be easily incorporated with the state-of-the-art one-stage detection frameworks and outperforms Mask R-CNN under the same training schedule while being 20% faster.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/404.html">
+  <link rel="alternate" hreflang="en-us" href="/publication/chen-2020-blendmask/">
 
   
 
@@ -218,7 +218,7 @@
   <link rel="icon" type="image/png" href="/images/icon_huff46a34809cf36f98ff565ff8b0a5f91_4201_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_huff46a34809cf36f98ff565ff8b0a5f91_4201_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="/404.html">
+  <link rel="canonical" href="/publication/chen-2020-blendmask/">
 
   
   
@@ -226,24 +226,70 @@
   
   
     
-    
   
   
-  <meta property="twitter:card" content="summary">
+  <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="Algebra &amp; Fire">
-  <meta property="og:url" content="/404.html">
-  <meta property="og:title" content="404 Page not found | Algebra &amp; Fire">
-  <meta property="og:description" content="PhD in Computer Science"><meta property="og:image" content="img/map[gravatar:%!s(bool=false) shape:circle]">
-  <meta property="twitter:image" content="img/map[gravatar:%!s(bool=false) shape:circle]"><meta property="og:locale" content="en-us">
+  <meta property="og:url" content="/publication/chen-2020-blendmask/">
+  <meta property="og:title" content="BlendMask: Top-Down Meets Bottom-Up for Instance Segmentation | Algebra &amp; Fire">
+  <meta property="og:description" content="**Contributed equally with the second author.** In this work, we achieve improved mask prediction by effectively combining instance-level information with semantic information with lower-level fine-granularity. Our main contribution is a blender module which draws inspiration from both top-down and bottom-up instance segmentation approaches. The proposed BlendMask can effectively predict dense per-pixel position-sensitive instance features with very few channels, and learn attention maps for each instance with merely one convolution layer, thus being fast in inference. BlendMask can be easily incorporated with the state-of-the-art one-stage detection frameworks and outperforms Mask R-CNN under the same training schedule while being 20% faster."><meta property="og:image" content="/publication/chen-2020-blendmask/featured.png">
+  <meta property="twitter:image" content="/publication/chen-2020-blendmask/featured.png"><meta property="og:locale" content="en-us">
   
     
+      <meta property="article:published_time" content="2020-02-27T10:23:06&#43;00:00">
+    
+    <meta property="article:modified_time" content="2020-01-01T00:00:00&#43;00:00">
   
 
   
 
 
+    
 
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/publication/chen-2020-blendmask/"
+  },
+  "headline": "BlendMask: Top-Down Meets Bottom-Up for Instance Segmentation",
+  
+  "image": [
+    "/publication/chen-2020-blendmask/featured.png"
+  ],
+  
+  "datePublished": "2020-02-27T10:23:06Z",
+  "dateModified": "2020-01-01T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Hao Chen"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Algebra \u0026 Fire",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_huff46a34809cf36f98ff565ff8b0a5f91_4201_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "**Contributed equally with the second author.** In this work, we achieve improved mask prediction by effectively combining instance-level information with semantic information with lower-level fine-granularity. Our main contribution is a blender module which draws inspiration from both top-down and bottom-up instance segmentation approaches. The proposed BlendMask can effectively predict dense per-pixel position-sensitive instance features with very few channels, and learn attention maps for each instance with merely one convolution layer, thus being fast in inference. BlendMask can be easily incorporated with the state-of-the-art one-stage detection frameworks and outperforms Mask R-CNN under the same training schedule while being 20% faster."
+}
+</script>
+
+  
 
   
 
@@ -251,10 +297,13 @@
   
 
 
+  
 
 
 
-  <title>404 Page not found | Algebra &amp; Fire</title>
+
+
+  <title>BlendMask: Top-Down Meets Bottom-Up for Instance Segmentation | Algebra &amp; Fire</title>
 
 </head>
 
@@ -502,50 +551,375 @@
 </nav>
 
 
-  <div class="universal-wrapper pt-3">
-
-  <h1>Page not found</h1>
-
-  
-  
-  <form class="d-flex align-items-center mb-3">
-    <input name="q" type="search" class="form-control" placeholder="Search..." autocomplete="off">
-  </form>
-  
+  <div class="pub">
 
   
 
-  <p>Perhaps you were looking for one of these?</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+<div class="article-container pt-3">
+  <h1>BlendMask: Top-Down Meets Bottom-Up for Instance Segmentation</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
 
   
   
   
-  <h2>Latest</h2>
-  <ul>
+  
+  <div>
     
-      <li><a href="/project/adet/">AdelaiDet</a></li>
+
+
+
+  
+  <span><a href="/authors/hao-chen/">Hao Chen</a></span>, <span><a href="/authors/kunyang-sun/">Kunyang Sun</a></span>, <span><a href="/authors/zhi-tian/">Zhi Tian</a></span>, <span><a href="/authors/chunhua-shen/">Chunhua Shen</a></span>, <span><a href="/authors/yongming-huang/">Yongming Huang</a></span>, <span><a href="/authors/youliang-yan/">Youliang Yan</a></span>
+
+  </div>
+  
+  
+
+  
+  <span class="article-date">
     
-      <li><a href="/post/2020-01-04-faster-and-finer-instance-segmentation-with-blendmask/">Faster and Finer Instance Segmentation With Blendmask</a></li>
     
-      <li><a href="/publication/le-2020-deep/">Deep Learning for Source Code Modeling and Generation: Models, Applications and Challenges</a></li>
+      
     
-      <li><a href="/publication/chen-2020-blendmask/">BlendMask: Top-Down Meets Bottom-Up for Instance Segmentation</a></li>
+    January 2020
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/publication/chen-2020-blendmask/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+<div class="btn-links mb-3">
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<button type="button" class="btn btn-outline-primary my-1 mr-1 js-cite-modal"
+        data-filename="/publication/chen-2020-blendmask/cite.bib">
+  Cite
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 257px;">
+  <div style="position: relative">
+    <img src="/publication/chen-2020-blendmask/featured_hu68041cfe96ebbf6818d76db885bf375c_576774_720x0_resize_lanczos_2.png" alt="" class="featured-image">
     
-      <li><a href="/post/2019-12-04-nas-where-are-we-now/">NAS - Where Are We Now</a></li>
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
     
-      <li><a href="/project/becon/">ABCNet</a></li>
+    <h3>Abstract</h3>
+    <p class="pub-abstract"><strong>Contributed equally with the second author.</strong> In this work, we achieve improved mask prediction by effectively combining instance-level information with semantic information with lower-level fine-granularity. Our main contribution is a blender module which draws inspiration from both top-down and bottom-up instance segmentation approaches. The proposed BlendMask can effectively predict dense per-pixel position-sensitive instance features with very few channels, and learn attention maps for each instance with merely one convolution layer, thus being fast in inference. BlendMask can be easily incorporated with the state-of-the-art one-stage detection frameworks and outperforms Mask R-CNN under the same training schedule while being 20% faster.</p>
     
-      <li><a href="/publication/zhang-2019-ir/">Memory-Efficient Hierarchical Neural Architecture Search for Image Denoising</a></li>
+
     
-      <li><a href="/publication/wang-2019-fcos/">NAS-FCOS: Fast neural architecture search for object detection</a></li>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-12 col-md-3 pub-row-heading">Type</div>
+          <div class="col-12 col-md-9">
+            
+            
+            <a href="/publication/#1">
+              Conference paper
+            </a>
+            
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+    <div class="d-md-none space-below"></div>
     
-      <li><a href="/project/nas-fcos/">NAS-FCOS</a></li>
+
     
-      <li><a href="/publication/nekrasov-2019-architecture/">Architecture Search of Dynamic Cells for Semantic Video Segmentation</a></li>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-12 col-md-3 pub-row-heading">Publication</div>
+          <div class="col-12 col-md-9"><em>Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition</em></div>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+    <div class="d-md-none space-below"></div>
+    
+
+    <div class="space-below"></div>
+
+    <div class="article-style"></div>
+
+    
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/publication/chen-2020-blendmask/&amp;text=BlendMask:%20Top-Down%20Meets%20Bottom-Up%20for%20Instance%20Segmentation" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/publication/chen-2020-blendmask/&amp;t=BlendMask:%20Top-Down%20Meets%20Bottom-Up%20for%20Instance%20Segmentation" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=BlendMask:%20Top-Down%20Meets%20Bottom-Up%20for%20Instance%20Segmentation&amp;body=/publication/chen-2020-blendmask/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/publication/chen-2020-blendmask/&amp;title=BlendMask:%20Top-Down%20Meets%20Bottom-Up%20for%20Instance%20Segmentation" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=BlendMask:%20Top-Down%20Meets%20Bottom-Up%20for%20Instance%20Segmentation%20/publication/chen-2020-blendmask/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/publication/chen-2020-blendmask/&amp;title=BlendMask:%20Top-Down%20Meets%20Bottom-Up%20for%20Instance%20Segmentation" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
     
   </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
   
 
+
+
+
+
+
+  
+  
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="/authors/hao-chen/"></a></h5>
+      
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "stan-haochen" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+
+
+
+  
+  
+
+
+
+  </div>
 </div>
 
       

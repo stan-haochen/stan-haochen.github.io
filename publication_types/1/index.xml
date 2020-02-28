@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>1 | Algebra &amp; Fire</title>
+    <link>/publication_types/1/</link>
+      <atom:link href="/publication_types/1/index.xml" rel="self" type="application/rss+xml" />
+    <description>1</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 01 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>img/map[gravatar:%!s(bool=false) shape:circle]</url>
+      <title>1</title>
+      <link>/publication_types/1/</link>
+    </image>
+    
+    <item>
+      <title>BlendMask: Top-Down Meets Bottom-Up for Instance Segmentation</title>
+      <link>/publication/chen-2020-blendmask/</link>
+      <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/chen-2020-blendmask/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Memory-Efficient Hierarchical Neural Architecture Search for Image Denoising</title>
+      <link>/publication/zhang-2019-ir/</link>
+      <pubDate>Sun, 01 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/zhang-2019-ir/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NAS-FCOS: Fast neural architecture search for object detection</title>
+      <link>/publication/wang-2019-fcos/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/wang-2019-fcos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Architecture Search of Dynamic Cells for Semantic Video Segmentation</title>
+      <link>/publication/nekrasov-2019-architecture/</link>
+      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/nekrasov-2019-architecture/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FCOS: Fully convolutional one-stage object detection</title>
+      <link>/publication/tian-2019-fcos/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/tian-2019-fcos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Light-weight hybrid convolutional network for liver tumour segmentation</title>
+      <link>/publication/zhang-2019-light/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/zhang-2019-light/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Fast neural architecture search of compact semantic segmentation models via auxiliary cells</title>
+      <link>/publication/nekrasov-2019-fast/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
+      <guid>/publication/nekrasov-2019-fast/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

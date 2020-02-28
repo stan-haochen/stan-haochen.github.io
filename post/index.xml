@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts | Algebra &amp; Fire</title>
+    <link>/post/</link>
+      <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <description>Posts</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 04 Jan 2020 20:14:56 +1030</lastBuildDate>
+    <image>
+      <url>img/map[gravatar:%!s(bool=false) shape:circle]</url>
+      <title>Posts</title>
+      <link>/post/</link>
+    </image>
+    
+    <item>
+      <title>Faster and Finer Instance Segmentation With Blendmask</title>
+      <link>/post/2020-01-04-faster-and-finer-instance-segmentation-with-blendmask/</link>
+      <pubDate>Sat, 04 Jan 2020 20:14:56 +1030</pubDate>
+      <guid>/post/2020-01-04-faster-and-finer-instance-segmentation-with-blendmask/</guid>
+      <description>&lt;p&gt;I want to briefly highlight our recent paper on instance segmentation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hao Chen, Kunyang Sun, Zhi Tian, Chunhua Shen, Yongming Huang, Youliang Yan (2020) 
+&lt;a href=&#34;https://arxiv.org/abs/2001.00309&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BlendMask: Top-Down Meets Bottom-Up for Instance Segmentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The motivation behind this paper is to proposal a general framework for instance-level tasks to reduce the per-instance computation in two-stage methods which could slows down the inference in complex senarios.&lt;/p&gt;
+&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
+&lt;p&gt;Instance-level tasks such as instance segmentation, keypoint detection, tracking etc. all shares a similar procedure, detect-then-segment. That is, first use an object detection network to generate instance proposals and then for each instance, use a sub-network to predict the instance-level results. The advantange of this method against naive dense prediction is that for instances of different sizes, the features for the second stage is aligned (see 
+&lt;a href=&#34;https://arxiv.org/abs/1909.00169&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;this review by Oksuz et. al.&lt;/a&gt;). Furthermore, in the second stage, only possible foreground features are computed in the second stage, which is more efficient and the sample imbalance problem is somehow mitigated (see 
+&lt;a href=&#34;https://arxiv.org/abs/1708.02002&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Lin et. al.&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;But the second-stage computation can be costly if we need highly detailed predictions (such as 
+&lt;a href=&#34;http://densepose.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DensePose&lt;/a&gt; and high resolution instance segmentation like 
+&lt;a href=&#34;https://arxiv.org/abs/1912.08193&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;PointRend&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;In BlendMask, we simplify the instance segmentation head of Mask R-CNN from a four-layer ConvNet to a tensor-product operation (called Blend) by reusing a densely predicted global segmentation mask. The framework resembles 
+&lt;a href=&#34;https://arxiv.org/abs/1904.02689&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;YOLACT&lt;/a&gt; with a redesigned top module (called attention). We are able to achieve 10ms+ speedup while improving the mask AP for instance segmentation. One advantage of BlendMask is that &lt;em&gt;we can increase the instance output resolution almost for free&lt;/em&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;top-down-meets-bottom-up-middle-out&#34;&gt;Top-down Meets Bottom-up (Middle-Out?)&lt;/h2&gt;
+&lt;p&gt;Without loss of generality, we build BlendMask upon 
+&lt;a href=&#34;https://arxiv.org/abs/1904.01355&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;FCOS&lt;/a&gt;, a widely adopted one-stage object detection framework, which by the way has a very supportive and active 
+&lt;a href=&#34;https://github.com/tianzhi0549/FCOS&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;github repo&lt;/a&gt;. For instance segmentation, we add two modules, namely bottom and top to FCOS. These two modules are lightweight and flexible, allowing BlendMask to be incorporated into most object detection models.&lt;/p&gt;
+&lt;p&gt;The nomenclature of BlendMask top and bottom modules is adopted from the top-down and bottom-up methodologies in instance detection. Top-down approaches rely on high-level features to predict the entire instance, for example predicting bounding box offsets with final prediction layers of one-stage object detectors (
+&lt;a href=&#34;https://pjreddie.com/darknet/yolo/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;YOLO&lt;/a&gt;, FCOS etc.). Bottom-up approaches ensemble local predictions, grouping local pixels or keypoints into instances (
+&lt;a href=&#34;https://arxiv.org/abs/1708.02551&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;embedding based instance segmentation&lt;/a&gt;, 
+&lt;a href=&#34;https://arxiv.org/abs/1812.08008&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;OpenPose&lt;/a&gt; etc.)&lt;/p&gt;
+&lt;p&gt;The key trade-off here is the receptive field size. With large receptive field, top-down approaches excel in identifying instances but the fine-grained details are often lost. On the contrary, bottom-up approaches retains high-resolution local information but usually have trouble grouping. (Bottom-up instance segmentation methods typically fall behind two-stage ones, except the recent 
+&lt;a href=&#34;https://arxiv.org/abs/1912.04488&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;SOLO&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;It is naturally for us to consider merging these two approaches. YOLACT does exactly that. It utilizes a vector of mixture coefficients as the top module to linearly combine along the channels of the bottom module, a group of prototypes.&lt;/p&gt;
+&lt;p&gt;Can we go one step further? To separate overlapping instances, it is important for the local features to encode relative positions. YOLACT training procedure does not handle this part explicitly. And the top module is too simple that cannot provide enough instance level information.&lt;/p&gt;
+&lt;p&gt;We make the top module more expressive by encoding the instance pose information. The idea is remotely relative to 
+&lt;a href=&#34;https://arxiv.org/abs/1603.08678&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;InstanceFCN&lt;/a&gt; and 
+&lt;a href=&#34;https://arxiv.org/abs/1611.07709&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;FCIS&lt;/a&gt;, which encode relative position information by spliting each instance into $K\times K$ tiles. The final segmentation is cropped from $K\times K$ feature maps and combined.&lt;/p&gt;
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;/post/2020-01-04-faster-and-finer-instance-segmentation-with-blendmask/images/instancefcn_hua7129555c89ee04bf4c8118d373c2fb5_688506_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;InstanceFCN&#34;&gt;
+
+
+  &lt;img data-src=&#34;/post/2020-01-04-faster-and-finer-instance-segmentation-with-blendmask/images/instancefcn_hua7129555c89ee04bf4c8118d373c2fb5_688506_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1806&#34; height=&#34;558&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    InstanceFCN
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;We make this process parametric by using self-attention instead of hard one-hot weights, and contiuous, using bilinear upsampling for the attention.&lt;/p&gt;
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;/post/2020-01-04-faster-and-finer-instance-segmentation-with-blendmask/images/blender_hu8e5eb99c5fd200f364ae0cf32f362fee_307437_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Blender module&#34;&gt;
+
+
+  &lt;img data-src=&#34;/post/2020-01-04-faster-and-finer-instance-segmentation-with-blendmask/images/blender_hu8e5eb99c5fd200f364ae0cf32f362fee_307437_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1238&#34; height=&#34;617&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Blender module
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;The blender module effectively reduces the channel size of YOLACT protonet, from 32 to 4, and produces better masks.&lt;/p&gt;
+&lt;h2 id=&#34;qualitative-and-quantitative-results&#34;&gt;Qualitative and Quantitative Results&lt;/h2&gt;
+&lt;p&gt;Our model produces higher quality masks than Mask R-CNN, especially in the following cases:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Large objects with complex shapes (Horse ears, human poses). Mask R-CNN fails to provide sharp borders.&lt;/li&gt;
+&lt;li&gt;Objects in separated parts (tennis players occluded by nets, trains divided by poles). Mask R-CNN tends to include occlusions as false positive or segment targets into separate objects.&lt;/li&gt;
+&lt;li&gt;Overlapping  objects  (riders,  crowds,  drivers). Mask R-CNN gets uncertain on the borders and leaves larger false negative regions. Sometimes, it assigns parts to the wrong objects, such as the last example in the first row.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;/post/2020-01-04-faster-and-finer-instance-segmentation-with-blendmask/images/qualitative_hue239cd320bbde3680d3001896f2665c6_3298788_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Qualitative results&#34;&gt;
+
+
+  &lt;img data-src=&#34;/post/2020-01-04-faster-and-finer-instance-segmentation-with-blendmask/images/qualitative_hue239cd320bbde3680d3001896f2665c6_3298788_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;2668&#34; height=&#34;1262&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Qualitative results
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;Our model surpasses Mask R-CNN in AP while being more efficient. Furthermore, it is very natural to generalize our model to other instance-level tasks such as panoptic segmentation and tracking.&lt;/p&gt;
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;/post/2020-01-04-faster-and-finer-instance-segmentation-with-blendmask/images/quantitative_hu26defce38408bc8784c0b3e7a96dac7d_652005_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Quantative results&#34;&gt;
+
+
+  &lt;img data-src=&#34;/post/2020-01-04-faster-and-finer-instance-segmentation-with-blendmask/images/quantitative_hu26defce38408bc8784c0b3e7a96dac7d_652005_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;2516&#34; height=&#34;1110&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Quantative results
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;Similar to  Mask R-CNN, we use RoIPooler to locate instances and extract features. We reduce the running time by moving the computation of R-CNN heads before the RoI sampling to generate position-sensitive feature maps. Repeated mask representation and computation for overlapping proposals are avoided.&lt;/p&gt;
+&lt;p&gt;Another advantage of BlendMask is that it can produce higher quality masks, since our output resolution is not restricted by the top-level sampling. Increasing the RoIPooler resolution of Mask R-CNN will introduce the following problem. The head computation increases quadratically with respect to the RoI size. Larger RoIs requires deeper head structures. Different from dense pixel predictions, RoI foreground predictor has to be aware  of  whole  instance-level information to distinguish foreground from other over-lapping instances. Thus, the larger the feature sizes are, the deeper sub-networks is needed.&lt;/p&gt;
+&lt;p&gt;Here is a demo video with BlendMask.&lt;/p&gt;
+&lt;div className=&#34;Image__Small&#34;&gt;
+  &lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/E-gXL-eIPCw&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;For more results, please see our paper.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>NAS - Where Are We Now</title>
+      <link>/post/2019-12-04-nas-where-are-we-now/</link>
+      <pubDate>Wed, 04 Dec 2019 20:06:00 +1030</pubDate>
+      <guid>/post/2019-12-04-nas-where-are-we-now/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;First off this ain&amp;rsquo;t no diss record&lt;br/&gt;
+This for some of my homies that were misrepresented&lt;/p&gt;
+&lt;p&gt;&amp;ndash; &lt;cite&gt; Nas, Where Are They Now. Hip Hop is Dead, 2006. &lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;For the past year and a half, I have been working on Neural Architecture Search (NAS). The idea of automatically designing neural networks for specific tasks is enticing for both practitioners and theorists. In production, NAS extends the scope of network pruning/compression and can benefits on chip energy saving modeling, etc. In research, NAS has raised new questions and challenges for convergence and generalization analysis, since it requires rapid and accurate structure evaluation.&lt;/p&gt;
+&lt;p&gt;To quickly recap what&amp;rsquo;s going on with NAS, I suggest reading 
+&lt;a href=&#34;https://drsleep.github.io/NAS-at-CVPR-2019/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Vladimir&amp;rsquo;s post&lt;/a&gt;. A curated list of literature on NAS is maintained 
+&lt;a href=&#34;https://www.automl.org/automl/literature-on-neural-architecture-search/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In this post, I will cast NAS as a bi-level optimization problem. We want to minimize some function $f$, to achieve optimal accuracy or some complex objective considering speed-accuracy tradeoff, with respect to some hyperparameter $h$, in our case, the network structure. To simplify the analysis, we assume $h$ takes form of a sequence with length $L$ and vocabulary size $K$.&lt;/p&gt;
+&lt;p&gt;$$
+\min_{h, z} f(z;h)\qquad s.t. \quad z = \operatorname{argmax}_{\theta_h} f(\theta_h;h).
+$$
+Two major problems NAS deals with are&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Inner loop is slow. We have to train a network with structure $h$.&lt;/li&gt;
+&lt;li&gt;Since there is no explicit derivative, we cannot optimize $f(h)$ directly.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;nas-with-variational-optimization&#34;&gt;NAS with Variational Optimization&lt;/h2&gt;
+&lt;p&gt;Straightforwardly, we can solve these two problems one by one. First, we minimize the upper bound of our objective:&lt;/p&gt;
+&lt;p&gt;$$
+\min_h f(h)\le \min_\alpha \mathbb E_{h\sim p_{\alpha}(h)}[f(h)],
+$$&lt;/p&gt;
+&lt;p&gt;where $p(h|\alpha)$ can be parametrized by a sequential network, of which the gradient becomes tractable:
+$$
+\nabla_\alpha \mathbb E_{p_\alpha(h)}[f(h)] = \mathbb E_{p_\alpha (h)}[f(h)\nabla_\alpha \log {p_\alpha}(h)].
+$$&lt;/p&gt;
+&lt;p&gt;This is the REINFORCE algorithm used by 
+&lt;a href=&#34;https://arxiv.org/abs/1611.01578&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Zoph and Le&lt;/a&gt;. The gradient estimation can be made more efficient with PPO as in 
+&lt;a href=&#34;https://arxiv.org/abs/1707.07012&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;their later work&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In NAS, sample efficiency is a bigger issue than in normal reinforcement learning tasks. Because training a network can be as costly as it can get to evaluate a single action. In other words, we prefer lower variance searching algorithms than lower bias ones. This is the reason I don&amp;rsquo;t consider using evolutionary strategy or random search (such as hyperband) for NAS, which ususally requires more samples. According to my experience, to find a good architecture with length $L=20$ and $K=7$ takes about 3,000 samples with REINFORCE and 1,500 with PPO.&lt;/p&gt;
+&lt;p&gt;Speeding up sample evaluation is definitely important. Typically, a proxy task is designed, which includes training a smaller model with smaller input resolution and less iterations. Some other tricks are analyzed by 
+&lt;a href=&#34;https://arxiv.org/abs/1810.10804&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Nekrasove et al.&lt;/a&gt; However, all these tricks introduce biases to the evaluation. &lt;em&gt;It is a good practice to analyse the generalization quality of the proxy tasks to the target task.&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;nas-with-discrete-structure-learning&#34;&gt;NAS with Discrete Structure Learning&lt;/h2&gt;
+&lt;p&gt;Another solution to the two problems is to consider them as one and solve them in one shot. The idea is to consider the structure parameters $h$ as a part of the network and one-shot the search by performing a network optimization, usually with SGD.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://arxiv.org/abs/1806.09055&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DARTS&lt;/a&gt; uses a continous relaxation $h\approx \sigma(\alpha)$ on the operations,
+$$
+\nabla_\alpha \mathbb E_{p_\alpha(h)}[f(h)]\approx\nabla_\alpha f(\sigma(\alpha))
+$$
+where $\sigma$ is softmax activation. Although biased, This is reasonable considering the popular 
+&lt;a href=&#34;https://arxiv.org/abs/1803.03635&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Lottery Ticket Hypothesis&lt;/a&gt;. (I will comeback to this part later.) However, I consider the connection learning part to be ad hoc, simply selecting the highest two activations, to follow the cell-based search space in [
+&lt;a href=&#34;%28https://arxiv.org/abs/1611.01578%29&#34;&gt;Zoph and Le&lt;/a&gt;].&lt;/p&gt;
+&lt;p&gt;There are still a lot of unanswered questions. Is this approximation error bounded? How can we avoid overfitting? We don&amp;rsquo;t even bother developing more accurate gradient computation including inverse Hessian for the second-order optimization, probably because of the accurate gradient does not leads to better result because of this bias.&lt;/p&gt;
+&lt;p&gt;This challenging questions require better understanding of the optimization mechanisms and properties, e.g. how to early stop? how does training affect generalization?&lt;/p&gt;
+&lt;p&gt;Another possible fix to this biased estimation is discrete latent structure learning. [
+&lt;a href=&#34;https://openreview.net/forum?id=rylqooRqK7&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Xie et al.&lt;/a&gt;] uses Gumbel-softmax trick to reduce this bias.
+$$
+\nabla_\alpha \mathbb E_{p_\alpha(h)}[f(h)]\approx \mathbb E_{p(u)}\nabla_\alpha f(\sigma(z/t));\quad z:=\log\frac{\alpha}{1-\alpha} + \log\frac{u}{1-u};\quad u\sim\operatorname{Uniform}(0, 1).
+$$
+A problem with this trick is that the variance goes to infinity as bias gets closer to $0$, which is controlled by the temperature $t$. I am interested to see someone combine this trick with control variates, such as in 
+&lt;a href=&#34;https://github.com/duvenaud/relax&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;relax&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>On Optimization in Deep Learning</title>
+      <link>/post/2016-09-07-on-optimization-in-deep-learning/</link>
+      <pubDate>Wed, 07 Sep 2016 19:58:13 +1030</pubDate>
+      <guid>/post/2016-09-07-on-optimization-in-deep-learning/</guid>
+      <description>&lt;p&gt;This is an old post which may not fit into modern view. Some recent finding such as lottery ticket theory is not covered in this post.&lt;/p&gt;
+&lt;p&gt;There are at least exponentially many global minima for a neural net. Since permuating the nodes in one layer does not change the loss. Finding such points is not easy. Before certain techniques such as momentum came out, those nets were considered impossible to learn.&lt;/p&gt;
+&lt;p&gt;Thanks to the constantly envolving hardwares and libraries, we do not have to worry about training time &lt;em&gt;that much&lt;/em&gt; at least for convnets. Empirically, the non-convexity of neural nets seems not to be an issue. In practice, SGD works pretty well in optimizing very large networks even though the problem is proved to be NP-hard. However, researchers never stop studying the loss surface of deep neural nets and searching for better optimization strategies.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://arxiv.org/abs/1605.07110&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;This paper&lt;/a&gt; has been renewed on ArXiv recently, which leads me to 
+&lt;a href=&#34;https://news.ycombinator.com/item?id=11765111&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;this discussion&lt;/a&gt;. Following are what I find interesting.&lt;/p&gt;
+&lt;h2 id=&#34;why-sgd-works&#34;&gt;Why SGD works?&lt;/h2&gt;
+&lt;p&gt;[Choromaska et al, AISTATS&amp;rsquo;15] (also [Dauphin et al, ICML&amp;rsquo;15] use tools from Statistical Physics to explain the behavior of stochastic gradient methods when training deep neural networks. This offers a macroscopic explanation of why SGD &amp;ldquo;works&amp;rdquo;, and gives a characterization of the network depth. The model is strongly simplified, and convolution is not considered.&lt;/p&gt;
+&lt;h3 id=&#34;saddle-points&#34;&gt;Saddle points&lt;/h3&gt;
+&lt;p&gt;We start from discussing saddle points, the vast majority of critical points on the error surfaces of neural networks.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Here we argue, &amp;hellip; that a deeper and more profound difficulty originates from the proliferation of saddle points, not local minima, especially in high dimensional problems of practical interest. Such saddle points are surrounded by high error plateaus that can dramatically slow down learning, and give the illusory impression of the existence of a local minimum.&lt;/p&gt;
+&lt;p&gt;&amp;ndash; &lt;cite&gt; Dauphin et al, 
+&lt;a href=&#34;http://arxiv.org/abs/1406.2572&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Identifying and attacking the saddle point problem in high-dimensional non-convex optimization&lt;/a&gt; &lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The authors introduce saddle-free Newton method which requires the estimation of Hessian. They connect the loss function of a deep net to a high-dimensional Gaussian random field. They show that critical points with high training error are exponentially likely to be saddle points with many negative directions, and all local minima are likely to have error that is very close to that of the global minimum. (Described in 
+&lt;a href=&#34;https://arxiv.org/abs/1611.01838&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Entropy-SGD: Biasing Gradient Descent Into Wide Valleys&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;The convergence of gradient descent is affected by the proliferation of saddle points surrounded by high error plateaus &amp;mdash; as opposed to multiple local minima.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The time spent by diffusion is inversely proportional to the smallest negative eigenvalue of the Hessian at a saddle point&lt;/p&gt;
+&lt;p&gt;&amp;ndash; &lt;cite&gt;Kramer&amp;rsquo;s law&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It is believed that for many problems including learning deep nets, almost all local minimum have very similar function value to the global optimum, and hence finding a local minimum is good enough.&lt;/p&gt;
+&lt;p&gt;&amp;ndash; &lt;cite&gt; Rong Ge, 
+&lt;a href=&#34;http://www.offconvex.org/2016/03/22/saddlepoints/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Escaping from Saddle Points&lt;/a&gt; &lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As the model grows deeper, local minima have loss closer to global minima. On the other hand, we do not care about global minimum because it often leads to overfitting.&lt;/p&gt;
+&lt;p&gt;Saddle points exist along the paths between local minima, most objective functions have exponentially many of those. However, first order optimization algorithms may get stuck at saddle points. Strict saddle points can be escaped and global minima can be achieved in polynomial time (
+&lt;a href=&#34;http://arxiv.org/abs/1503.02101&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Ge et al., 2015&lt;/a&gt;). Stochastic gradient introduces noise and help to push the current point away from saddle points.&lt;/p&gt;
+&lt;p&gt;Non-convex problems can have &amp;lsquo;&amp;lsquo;degenerate saddle points&amp;rsquo;&#39;, whose Hessian is p.s.d. and have 0 eigenvalues. The performance of SGD on these kind of tasks is still not well studied.&lt;/p&gt;
+&lt;p&gt;To conclude this part, AFAIK, we should care more about escaping from saddle point. And gradient based methods can do a better job than second-order methods in practice.&lt;/p&gt;
+&lt;h3 id=&#34;spin-glass-hamiltonian&#34;&gt;Spin-glass Hamiltonian&lt;/h3&gt;
+&lt;p&gt;See 
+&lt;a href=&#34;https://charlesmartin14.wordpress.com/2015/03/25/why-does-deep-learning-work/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Charles Martin: Why Does Deep Learning Works?&lt;/a&gt; Both papers mentioned above use ideas from statistical physics and spin-glass models.&lt;/p&gt;
+&lt;p&gt;Statistical physicists refer to $H_x(y)\equiv-\ln p(y|x)$ as the &lt;strong&gt;Hamiltonian&lt;/strong&gt;, quantifying the energy of $y$ given the parameter $x$. And $\mu\equiv -\ln p$ as &lt;strong&gt;self-information&lt;/strong&gt;. We can rewrite Bayes&amp;rsquo; formula as:&lt;/p&gt;
+&lt;p&gt;$$
+p(y) = \sigma(-H(y)-\mu)
+$$&lt;/p&gt;
+&lt;p&gt;We can see the features yield by a neural net as Hamiltonian and the softmax computes the classification probability.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The long-term behavior of certain neural network models are governed by the statistical mechanism of infinite-range Ising spin-glass Hamiltonians&lt;/p&gt;
+&lt;p&gt;&amp;ndash; &lt;cite&gt; LeCun et. al., 
+&lt;a href=&#34;https://arxiv.org/abs/1412.0233&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;The Loss Surfaces of Multilayer Networks, 2015&lt;/a&gt; &lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In this paper, he tries to explain the optimization paradigm with spin-glass theory.&lt;/p&gt;
+&lt;h3 id=&#34;implicit-bias-in-sgd&#34;&gt;Implicit Bias in SGD&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://arxiv.org/abs/1611.01838&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Chaudhari&lt;/a&gt; proposed a surrogate loss that explicitly biases SGD dynamics towards flat local minima. The corresponding algorithm relates closely to stochastic gradient Langevin dynamics.&lt;/li&gt;
+&lt;li&gt;Another interpretation is that SGD performs Variational Inference (VI).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;what-does-the-minima-look-like&#34;&gt;What does the minima look like?&lt;/h2&gt;
+&lt;p&gt;Take for example the concept of mode connectivity (
+&lt;a href=&#34;https://arxiv.org/abs/1802.10026&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Garipov et al, 2018&lt;/a&gt;): it seems that the modes found by SGD using different random seeds are not just isolated basins, but they are connected by smooth valleys along which the training and test error are low.&lt;/p&gt;
+&lt;h3 id=&#34;no-poor-local-minima&#34;&gt;No poor local minima&lt;/h3&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://arxiv.org/abs/1412.6544&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Research at Google and Stanford&lt;/a&gt; confirms that the Deep Learning Energy Landscapes appear to be roughly convex. A bolder hypothesis is that deep networks are spin funnels. And as the net gets larger, the funnel gets sharper. If this is true, our major concern should be to avoid over-training rather than the convexity of the network.&lt;/p&gt;
+&lt;p&gt;Finally we arrive at the paper itself. Nets are optimized well by local gradient methods and seems not to be affected by local minima. The author claims that every local minimum is a global minimum and &amp;ldquo;bad&amp;rdquo; saddle points (degenerated ones) exists for deeper nets. Thm 2.3 gives clear result on linear networks.&lt;/p&gt;
+&lt;p&gt;The main result Thm 3.2 generalizes 
+&lt;a href=&#34;https://arxiv.org/abs/1412.0233&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Choromanska et al, 2015&lt;/a&gt;&amp;lsquo;s idea for nonlinear network relies on 4 (seemingly strong) assumptions:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The dimensionality of the output is smaller than the input.&lt;/li&gt;
+&lt;li&gt;The inputs are random and decorrelated.&lt;/li&gt;
+&lt;li&gt;A connection in the network is activated or not is random with the same probability of success across the network. (ReLU thresholding happens randomly.)&lt;/li&gt;
+&lt;li&gt;The network activations are independent of the input, the weights and each other.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;They relax the majority of the asssumptions, which is very promising, but leave a weaker condition A1u-m and A5u-m (
+&lt;a href=&#34;https://www.reddit.com/r/MachineLearning/comments/4ktqeu/160507110_deep_learning_without_poor_local_minima/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;from reddit post&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Recently DeepMind came up with 
+&lt;a href=&#34;https://arxiv.org/abs/1611.06310&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;another paper&lt;/a&gt; claiming the assumptions are too strong for real data. And devised counter examples with finite datatets for rectified MLPs. For finite sized models/datasets, one does not have a globally good behavior of learning regardless of the model size.&lt;/p&gt;
+&lt;p&gt;Even though deep learning energy landscapes appear to be roughly convex, or as this post referred to, local minimal free, a deep model has to include more engineering details to aid its convergence. Problems such as covariance shift and overfitting still have to be handled by engineering techniques.&lt;/p&gt;
+&lt;h3 id=&#34;arriving-on-flatter-minima&#34;&gt;Arriving on flatter minima&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;large-batch methods tend to converge to sharp minimizers of the training and testing functions &amp;ndash; and that sharp minima lead to poorer generalization. In contrast, small-batch methods consistently converge to flat minimizers, and our experiments support a commonly held view that this is due to the inherent noise in the gradient estimation.&lt;/p&gt;
+&lt;p&gt;&amp;ndash; &lt;cite&gt; 
+&lt;a href=&#34;https://stanstarks.github.io/tw5/#On%20Large-Batch%20Training%20for%20Deep%20Learning%3A%20Generalization%20Gap%20and%20Sharp%20Minima&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;On Large-Batch Training for Deep Learning: Generalization Gap and Sharp Minima&lt;/a&gt; &lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://arxiv.org/abs/1802.06175&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;An Alternative View: When Does SGD Escape Local Minima?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;should-2-nd-order-methods-ever-work&#34;&gt;Should 2-nd order methods ever work?&lt;/h2&gt;
+&lt;p&gt;Basiclly no. Because the Hessian vector product require very low variance estimation, which leads to batch size larger than 1000. But 
+&lt;a href=&#34;https://www.reddit.com/r/MachineLearning/comments/599wbr/project_i_accidentally_wrote_a_quasinewton_lbfgs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;some rare cases&lt;/a&gt; happen when 2nd order methods with small batch size works.&lt;/p&gt;
+&lt;h2 id=&#34;gradient-starvation&#34;&gt;Gradient Starvation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://arxiv.org/abs/1809.06848&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;On the Learning Dynamics of Deep Neural Networks&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Some features will dominate the gradient and sheding other equally important features.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

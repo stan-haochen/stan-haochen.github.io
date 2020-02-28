@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Yang Gao | Algebra &amp; Fire</title>
+    <link>/authors/yang-gao/</link>
+      <atom:link href="/authors/yang-gao/index.xml" rel="self" type="application/rss+xml" />
+    <description>Yang Gao</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 01 May 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>img/map[gravatar:%!s(bool=false) shape:circle]</url>
+      <title>Yang Gao</title>
+      <link>/authors/yang-gao/</link>
+    </image>
+    
+    <item>
+      <title>NAS-FCOS: Fast neural architecture search for object detection</title>
+      <link>/publication/wang-2019-fcos/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/wang-2019-fcos/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

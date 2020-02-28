@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zhi Tian | Algebra &amp; Fire</title>
+    <link>/authors/zhi-tian/</link>
+      <atom:link href="/authors/zhi-tian/index.xml" rel="self" type="application/rss+xml" />
+    <description>Zhi Tian</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 01 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>img/map[gravatar:%!s(bool=false) shape:circle]</url>
+      <title>Zhi Tian</title>
+      <link>/authors/zhi-tian/</link>
+    </image>
+    
+    <item>
+      <title>BlendMask: Top-Down Meets Bottom-Up for Instance Segmentation</title>
+      <link>/publication/chen-2020-blendmask/</link>
+      <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/chen-2020-blendmask/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NAS-FCOS: Fast neural architecture search for object detection</title>
+      <link>/publication/wang-2019-fcos/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/wang-2019-fcos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FCOS: Fully convolutional one-stage object detection</title>
+      <link>/publication/tian-2019-fcos/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/tian-2019-fcos/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

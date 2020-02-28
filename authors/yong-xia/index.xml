@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Yong Xia | Algebra &amp; Fire</title>
+    <link>/authors/yong-xia/</link>
+      <atom:link href="/authors/yong-xia/index.xml" rel="self" type="application/rss+xml" />
+    <description>Yong Xia</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 01 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>img/map[gravatar:%!s(bool=false) shape:circle]</url>
+      <title>Yong Xia</title>
+      <link>/authors/yong-xia/</link>
+    </image>
+    
+    <item>
+      <title>Light-weight hybrid convolutional network for liver tumour segmentation</title>
+      <link>/publication/zhang-2019-light/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/zhang-2019-light/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

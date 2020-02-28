@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects | Algebra &amp; Fire</title>
+    <link>/project/</link>
+      <atom:link href="/project/index.xml" rel="self" type="application/rss+xml" />
+    <description>Projects</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 28 Feb 2020 10:43:16 +1030</lastBuildDate>
+    <image>
+      <url>img/map[gravatar:%!s(bool=false) shape:circle]</url>
+      <title>Projects</title>
+      <link>/project/</link>
+    </image>
+    
+    <item>
+      <title>AdelaiDet</title>
+      <link>/project/adet/</link>
+      <pubDate>Fri, 28 Feb 2020 10:43:16 +1030</pubDate>
+      <guid>/project/adet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ABCNet</title>
+      <link>/project/becon/</link>
+      <pubDate>Mon, 28 Oct 2019 10:45:41 +1030</pubDate>
+      <guid>/project/becon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NAS-FCOS</title>
+      <link>/project/nas-fcos/</link>
+      <pubDate>Sun, 28 Apr 2019 10:55:43 +1030</pubDate>
+      <guid>/project/nas-fcos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nas-segm-pytorch</title>
+      <link>/project/nas-segm/</link>
+      <pubDate>Sun, 28 Oct 2018 11:02:45 +1030</pubDate>
+      <guid>/project/nas-segm/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
