@@ -5,12 +5,34 @@
     <link>/post/</link>
       <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 04 Jan 2020 20:14:56 +1030</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 28 Feb 2020 17:36:41 +1030</lastBuildDate>
     <image>
       <url>img/map[gravatar:%!s(bool=false) shape:circle]</url>
       <title>Posts</title>
       <link>/post/</link>
     </image>
+    
+    <item>
+      <title>Four Papers Got Accepted at CVPR 2020</title>
+      <link>/post/2020-03-01-cvpr-2020/</link>
+      <pubDate>Fri, 28 Feb 2020 17:36:41 +1030</pubDate>
+      <guid>/post/2020-03-01-cvpr-2020/</guid>
+      <description>&lt;p&gt;Here are the papers got accepted with all authors listed (,* means equal contribution). Two papers on instance-level perception tasks:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://arxiv.org/abs/2001.00309&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BlendMask: Top-Down Meets Bottom-Up for Instance Segmentation&lt;/a&gt; by Hao Chen*, Kunyang Sun*, Zhi Tian, Chunhua Shen, Yongming Huang, Youliang Yan&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://arxiv.org/abs/2002.10200&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ABCNet: Real-time Scene Text Spotting with Adaptive Bezier-Curve Network&lt;/a&gt; by Yuliang Liu*, Hao Chen*, Chunhua Shen, Tong He, Lianwen Jin, Liangwei Wang&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Two papers on Neural Architecture Search:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://arxiv.org/abs/1906.04423&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NAS-FCOS: Fast Neural Architecture Search for Object Detection&lt;/a&gt; by Ning Wang*, Yang Gao*, Hao Chen*, Peng Wang, Zhi Tian, Chunhua Shen, Yanning Zhang&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://arxiv.org/abs/1909.08228&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Memory-Efficient Hierarchical Neural Architecture Search for Image Denoising&lt;/a&gt; by Haokui Zhang, Ying Li, Hao Chen, Chunhua Shen&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Faster and Finer Instance Segmentation With Blendmask</title>
@@ -208,9 +230,11 @@
 &lt;p&gt;Similar to  Mask R-CNN, we use RoIPooler to locate instances and extract features. We reduce the running time by moving the computation of R-CNN heads before the RoI sampling to generate position-sensitive feature maps. Repeated mask representation and computation for overlapping proposals are avoided.&lt;/p&gt;
 &lt;p&gt;Another advantage of BlendMask is that it can produce higher quality masks, since our output resolution is not restricted by the top-level sampling. Increasing the RoIPooler resolution of Mask R-CNN will introduce the following problem. The head computation increases quadratically with respect to the RoI size. Larger RoIs requires deeper head structures. Different from dense pixel predictions, RoI foreground predictor has to be aware  of  whole  instance-level information to distinguish foreground from other over-lapping instances. Thus, the larger the feature sizes are, the deeper sub-networks is needed.&lt;/p&gt;
 &lt;p&gt;Here is a demo video with BlendMask.&lt;/p&gt;
-&lt;div className=&#34;Image__Small&#34;&gt;
-  &lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/E-gXL-eIPCw&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&#34; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/E-gXL-eIPCw&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
+
 &lt;p&gt;For more results, please see our paper.&lt;/p&gt;
 </description>
     </item>

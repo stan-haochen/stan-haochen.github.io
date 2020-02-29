@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Drafts | Algebra &amp; Fire</title>
+    <link>/drafts/</link>
+      <atom:link href="/drafts/index.xml" rel="self" type="application/rss+xml" />
+    <description>Drafts</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 28 Feb 2020 17:31:22 +1030</lastBuildDate>
+    <image>
+      <url>img/map[gravatar:%!s(bool=false) shape:circle]</url>
+      <title>Drafts</title>
+      <link>/drafts/</link>
+    </image>
+    
+    <item>
+      <title>Bayesian Networks for Perception</title>
+      <link>/drafts/2020-02-28-bayesian-networks-for-perception/</link>
+      <pubDate>Fri, 28 Feb 2020 17:31:22 +1030</pubDate>
+      <guid>/drafts/2020-02-28-bayesian-networks-for-perception/</guid>
+      <description>&lt;p&gt;Finally I got a chance to talk about Bayesian Deep Learning. Although being an important topic and a classic task, we haven&amp;rsquo;t seen enough attentions here following the breakthoughs in deep learning field. Probably because of its shortcommings in inference and difficulties in explanation, many people a still standing by. Recently I am very happy to find this field moving in a healthy direction and here are some very useful papers discussing related stuffs.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://openreview.net/forum?id=BJxI5gHKDr&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Pitfalls of In-Domain Uncertainty Estimation and Ensembling in Deep Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://arxiv.org/abs/2001.10995&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;The Case for Bayesian Deep Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://arxiv.org/abs/2002.02405&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;How Good is the Bayes Posterior in Deep Neural Networks Really?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In this post I would like to first give a quick recap to Bayesian Deep Learning in general and discuss what can be done in object detection.&lt;/p&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://papers.nips.cc/paper/7141-what-uncertainties-do-we-need-in-bayesian-deep-learning-for-computer-vision.pdf&#34; title=&#34;What Uncertainties Do We Need in Bayesian Deep
+Learning for Computer Vision?&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Kendall&lt;/a&gt; introduced a general practice for uncertainty estimation in computer vision. The uncertainity of models can be categorized into two sources. &lt;em&gt;Aleatoric&lt;/em&gt; uncertainty captures noise inherent in the observations and &lt;em&gt;epistemic&lt;/em&gt; uncertainty accounts for uncertainty in the model.&lt;/p&gt;
+&lt;p&gt;We can estimate epistemic uncertainty by placing a prior on model weights, or aleatoric uncertainty by putting a prior on model outputs. Bayesian Neural Networks replace neural network weights with the posterior distribution of them.&lt;/p&gt;
+&lt;h2 id=&#34;bayesian-neural-networks&#34;&gt;Bayesian Neural Networks&lt;/h2&gt;
+&lt;h3 id=&#34;mcmc-approaches&#34;&gt;MCMC Approaches&lt;/h3&gt;
+&lt;p&gt;Performing this inference often includes a Monte Carlo approximation. These methods samples the model weights from the estimated distribution and ensemble the predictions of multiple samples. Thus, evaluating the posterior requires evaluating an ensemble of models:&lt;/p&gt;
+&lt;p&gt;$$
+\hat p(y_i|x_i)\approx\int p(y_i|x_i,\omega)q_m(\omega) d_\omega\simeq \frac1K\sum_{k=1}^K p(y_i|x_i, \omega_k),\qquad \omega_k\sim q_m(\omega).
+$$&lt;/p&gt;
+&lt;p&gt;We can also use a variational distribution $q(\omega; \theta)$ to approximate the posterior $p(\omega|x, y)$. Introducing a prior $p(\omega)$ and applying Bayesian rules, we get the objective known as the evidence lower bound (ELBO):&lt;/p&gt;
+&lt;p&gt;$$
+\theta^* = \underset{\theta}{\mathrm{arg,max}} {\mathbb E_{\omega\sim q}[\log p(y|x, \omega)] - D_{\text{KL}}[q(\omega;\theta)|p(\omega)]}.
+$$&lt;/p&gt;
+&lt;p&gt;The first term is reconstruction and the second regularization. We can also use MC approximations for the reconstruction term:&lt;/p&gt;
+&lt;p&gt;$$
+\mathbb E_{\omega\sim q}[\log p(y|x, \omega)]\simeq \frac1K\sum_{k=1}^K \log p(y|x, \omega_k), \qquad \omega_k\sim q(\omega; \theta)
+$$&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Method&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Sampling distribution $q_m$&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Deep Ensemble&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;$\frac1S\sum_{s=1}^S\delta(\omega - \omega_s)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Mean-Field VI&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;$\mathcal N(\omega\vert\mu, \text{diag}(\sigma^2))$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MC dropout&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Dropout distribution&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SWAG&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;FGE&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;cSGLD&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;TDA&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Multi-SWAG&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;SWAG + Deep Ensemble&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;such as in 
+&lt;a href=&#34;https://arxiv.org/abs/1506.02142&#34; title=&#34;Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MC dropout&lt;/a&gt;, 
+&lt;a href=&#34;https://arxiv.org/abs/1902.02476&#34; title=&#34;A Simple Baseline for Bayesian Uncertainty in Deep Learning&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;SWA-Gaussian&lt;/a&gt; etc&lt;/p&gt;
+&lt;p&gt;Approximation and acceleration of ensembling has been studied.&lt;/p&gt;
+&lt;h3 id=&#34;deterministic-vi-approaches&#34;&gt;Deterministic VI Approaches&lt;/h3&gt;
+&lt;h3 id=&#34;yes-but-did-it-work&#34;&gt;Yes, but Did It Work?&lt;/h3&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://arxiv.org/abs/2002.02405&#34; title=&#34;How Good is the Bayes Posterior in Deep Neural Networks Really?&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Wenzel et al. 2020]&lt;/a&gt; shows that Bayesian posterior can give an inferior prediction than MAP or VI. 
+&lt;a href=&#34;https://statmodeling.stat.columbia.edu/2020/02/13/how-good-is-the-bayes-posterior-for-prediction-really/&#34; title=&#34;How good is the Bayes posterior for prediction really?&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Yao]&lt;/a&gt; suggests that such models could benefits from informative priors instead of treating networks as a black box.&lt;/p&gt;
+&lt;p&gt;The exact sampling from a posterior in a deep neural network is infeasible. Current sampling methods can be inaccurate and hard to defend. Even HMC cannot serve as a gold standard because it suffers from all multimodality and non-log-convexity 
+&lt;a href=&#34;https://statmodeling.stat.columbia.edu/2020/02/13/how-good-is-the-bayes-posterior-for-prediction-really/&#34; title=&#34;How good is the Bayes posterior for prediction really?&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Yao]&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Also, it is hard to say whether functional diversity can be captured by sampling around one mode 
+&lt;a href=&#34;https://arxiv.org/abs/2002.08791&#34; title=&#34;Bayesian Deep Learning and a Probabilistic Perspective of Generalization&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Wilson 2020]&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;bayesian-object-detection&#34;&gt;Bayesian Object Detection&lt;/h2&gt;
+&lt;p&gt;We consider an object detection problem with a dataset&lt;/p&gt;
+&lt;h2 id=&#34;deterministic-variational-approximation&#34;&gt;Deterministic Variational Approximation&lt;/h2&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
