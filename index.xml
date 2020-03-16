@@ -20,9 +20,9 @@
       <description>&lt;p&gt;Here are the papers got accepted with all authors listed (,* means equal contribution). Two papers on instance-level perception tasks:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://arxiv.org/abs/2001.00309&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BlendMask: Top-Down Meets Bottom-Up for Instance Segmentation&lt;/a&gt; by Hao Chen*, Kunyang Sun*, Zhi Tian, Chunhua Shen, Yongming Huang, Youliang Yan&lt;/li&gt;
+&lt;a href=&#34;https://arxiv.org/abs/2001.00309&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BlendMask: Top-Down Meets Bottom-Up for Instance Segmentation&lt;/a&gt; by Hao Chen*, Kunyang Sun*, Zhi Tian, Chunhua Shen, Yongming Huang, Youliang Yan (oral)&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://arxiv.org/abs/2002.10200&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ABCNet: Real-time Scene Text Spotting with Adaptive Bezier-Curve Network&lt;/a&gt; by Yuliang Liu*, Hao Chen*, Chunhua Shen, Tong He, Lianwen Jin, Liangwei Wang&lt;/li&gt;
+&lt;a href=&#34;https://arxiv.org/abs/2002.10200&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ABCNet: Real-time Scene Text Spotting with Adaptive Bezier-Curve Network&lt;/a&gt; by Yuliang Liu*, Hao Chen*, Chunhua Shen, Tong He, Lianwen Jin, Liangwei Wang (oral)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Two papers on Neural Architecture Search:&lt;/p&gt;
 &lt;ul&gt;
@@ -51,10 +51,9 @@
 &lt;p&gt;In this post I would like to first give a quick recap to Bayesian Deep Learning in general and discuss what can be done in object detection.&lt;/p&gt;
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;
-&lt;a href=&#34;https://papers.nips.cc/paper/7141-what-uncertainties-do-we-need-in-bayesian-deep-learning-for-computer-vision.pdf&#34; title=&#34;What Uncertainties Do We Need in Bayesian Deep
-Learning for Computer Vision?&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Kendall&lt;/a&gt; introduced a general practice for uncertainty estimation in computer vision. The uncertainity of models can be categorized into two sources. &lt;em&gt;Aleatoric&lt;/em&gt; uncertainty captures noise inherent in the observations and &lt;em&gt;epistemic&lt;/em&gt; uncertainty accounts for uncertainty in the model.&lt;/p&gt;
+&lt;a href=&#34;https://papers.nips.cc/paper/7141-what-uncertainties-do-we-need-in-bayesian-deep-learning-for-computer-vision.pdf&#34; title=&#34;What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Kendall&lt;/a&gt; introduced a general practice for uncertainty estimation in computer vision. The uncertainity of models can be categorized into two sources. &lt;em&gt;Aleatoric&lt;/em&gt; uncertainty captures noise inherent in the observations and &lt;em&gt;epistemic&lt;/em&gt; uncertainty accounts for uncertainty in the model.&lt;/p&gt;
 &lt;p&gt;We can estimate epistemic uncertainty by placing a prior on model weights, or aleatoric uncertainty by putting a prior on model outputs. Bayesian Neural Networks replace neural network weights with the posterior distribution of them.&lt;/p&gt;
-&lt;h2 id=&#34;bayesian-neural-networks&#34;&gt;Bayesian Neural Networks&lt;/h2&gt;
+&lt;h2 id=&#34;epistemic-uncertainty-with-bayesian-neural-networks&#34;&gt;Epistemic Uncertainty with Bayesian Neural Networks&lt;/h2&gt;
 &lt;h3 id=&#34;mcmc-approaches&#34;&gt;MCMC Approaches&lt;/h3&gt;
 &lt;p&gt;Performing this inference often includes a Monte Carlo approximation. These methods samples the model weights from the estimated distribution and ensemble the predictions of multiple samples. Thus, evaluating the posterior requires evaluating an ensemble of models:&lt;/p&gt;
 &lt;p&gt;$$
@@ -64,7 +63,7 @@ $$&lt;/p&gt;
 &lt;p&gt;$$
 \theta^* = \underset{\theta}{\mathrm{arg,max}} {\mathbb E_{\omega\sim q}[\log p(y|x, \omega)] - D_{\text{KL}}[q(\omega;\theta)|p(\omega)]}.
 $$&lt;/p&gt;
-&lt;p&gt;The first term is reconstruction and the second regularization. We can also use MC approximations for the reconstruction term:&lt;/p&gt;
+&lt;p&gt;The first term is reconstruction and the second regularization. The KL term can be represented explicitly if we choose simple form for the variational distribution. And we can use MC approximations for the reconstruction term:&lt;/p&gt;
 &lt;p&gt;$$
 \mathbb E_{\omega\sim q}[\log p(y|x, \omega)]\simeq \frac1K\sum_{k=1}^K \log p(y|x, \omega_k), \qquad \omega_k\sim q(\omega; \theta)
 $$&lt;/p&gt;
@@ -115,6 +114,8 @@ $$&lt;/p&gt;
 &lt;a href=&#34;https://arxiv.org/abs/1902.02476&#34; title=&#34;A Simple Baseline for Bayesian Uncertainty in Deep Learning&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;SWA-Gaussian&lt;/a&gt; etc&lt;/p&gt;
 &lt;p&gt;Approximation and acceleration of ensembling has been studied.&lt;/p&gt;
 &lt;h3 id=&#34;deterministic-vi-approaches&#34;&gt;Deterministic VI Approaches&lt;/h3&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://arxiv.org/abs/1810.03958&#34; title=&#34;Deterministic Variational Inference for Robust Bayesian Neural Networks&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Wu et al. 2018]&lt;/a&gt; assume the pre-ReLU activations are Gaussian and deduce closed form posterior of the network output when the nonlinearity is Heaiside or ReLU. Even though sometimes we can only afford to compute the diagonal entries $\operatorname{Cov}(h_j, h_j)$. The empirical result is acceptable.&lt;/p&gt;
 &lt;h3 id=&#34;yes-but-did-it-work&#34;&gt;Yes, but Did It Work?&lt;/h3&gt;
 &lt;p&gt;
 &lt;a href=&#34;https://arxiv.org/abs/2002.02405&#34; title=&#34;How Good is the Bayes Posterior in Deep Neural Networks Really?&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Wenzel et al. 2020]&lt;/a&gt; shows that Bayesian posterior can give an inferior prediction than MAP or VI. 
@@ -123,9 +124,11 @@ $$&lt;/p&gt;
 &lt;a href=&#34;https://statmodeling.stat.columbia.edu/2020/02/13/how-good-is-the-bayes-posterior-for-prediction-really/&#34; title=&#34;How good is the Bayes posterior for prediction really?&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Yao]&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Also, it is hard to say whether functional diversity can be captured by sampling around one mode 
 &lt;a href=&#34;https://arxiv.org/abs/2002.08791&#34; title=&#34;Bayesian Deep Learning and a Probabilistic Perspective of Generalization&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Wilson 2020]&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;bayesian-object-detection&#34;&gt;Bayesian Object Detection&lt;/h2&gt;
+&lt;h2 id=&#34;aleatoric-uncertainty-for-panoptic-segmentation&#34;&gt;Aleatoric Uncertainty for Panoptic Segmentation&lt;/h2&gt;
 &lt;p&gt;We consider an object detection problem with a dataset&lt;/p&gt;
-&lt;h2 id=&#34;deterministic-variational-approximation&#34;&gt;Deterministic Variational Approximation&lt;/h2&gt;
+&lt;p&gt;For real-time applications, we cannot afford expensive Monte Carlo estimations or covariance estimation. So I would prefer not to touch Bayesian Neural Network for object detection. Instead I will just cover a simple model for aleatoric uncertainty.&lt;/p&gt;
+&lt;p&gt;I choose to adopt heteroscedastic aleatoric uncertainty introduced in 
+&lt;a href=&#34;https://papers.nips.cc/paper/7141-what-uncertainties-do-we-need-in-bayesian-deep-learning-for-computer-vision.pdf&#34; title=&#34;What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Kendall 2017]&lt;/a&gt;. For a regression problem given input pair $\mathbf X$, $\mathbf Y$.&lt;/p&gt;
 </description>
     </item>
     
@@ -399,7 +402,7 @@ $$&lt;/p&gt;
 &lt;h2 id=&#34;nas-with-discrete-structure-learning&#34;&gt;NAS with Discrete Structure Learning&lt;/h2&gt;
 &lt;p&gt;Another solution to the two problems is to consider them as one and solve them in one shot. The idea is to consider the structure parameters $h$ as a part of the network and one-shot the search by performing a network optimization, usually with SGD.&lt;/p&gt;
 &lt;p&gt;
-&lt;a href=&#34;https://arxiv.org/abs/1806.09055&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DARTS&lt;/a&gt; uses a continous relaxation $h\approx \sigma(\alpha)$ on the operations,
+&lt;a href=&#34;https://arxiv.org/abs/1806.09055&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DARTS&lt;/a&gt; uses a continous relaxation $h\approx \sigma(\alpha)$ on the operations, 
 $$
 \nabla_\alpha \mathbb E_{p_\alpha(h)}[f(h)]\approx\nabla_\alpha f(\sigma(\alpha))
 $$

@@ -20,9 +20,9 @@
       <description>&lt;p&gt;Here are the papers got accepted with all authors listed (,* means equal contribution). Two papers on instance-level perception tasks:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://arxiv.org/abs/2001.00309&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BlendMask: Top-Down Meets Bottom-Up for Instance Segmentation&lt;/a&gt; by Hao Chen*, Kunyang Sun*, Zhi Tian, Chunhua Shen, Yongming Huang, Youliang Yan&lt;/li&gt;
+&lt;a href=&#34;https://arxiv.org/abs/2001.00309&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BlendMask: Top-Down Meets Bottom-Up for Instance Segmentation&lt;/a&gt; by Hao Chen*, Kunyang Sun*, Zhi Tian, Chunhua Shen, Yongming Huang, Youliang Yan (oral)&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://arxiv.org/abs/2002.10200&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ABCNet: Real-time Scene Text Spotting with Adaptive Bezier-Curve Network&lt;/a&gt; by Yuliang Liu*, Hao Chen*, Chunhua Shen, Tong He, Lianwen Jin, Liangwei Wang&lt;/li&gt;
+&lt;a href=&#34;https://arxiv.org/abs/2002.10200&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ABCNet: Real-time Scene Text Spotting with Adaptive Bezier-Curve Network&lt;/a&gt; by Yuliang Liu*, Hao Chen*, Chunhua Shen, Tong He, Lianwen Jin, Liangwei Wang (oral)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Two papers on Neural Architecture Search:&lt;/p&gt;
 &lt;ul&gt;
@@ -280,7 +280,7 @@ $$&lt;/p&gt;
 &lt;h2 id=&#34;nas-with-discrete-structure-learning&#34;&gt;NAS with Discrete Structure Learning&lt;/h2&gt;
 &lt;p&gt;Another solution to the two problems is to consider them as one and solve them in one shot. The idea is to consider the structure parameters $h$ as a part of the network and one-shot the search by performing a network optimization, usually with SGD.&lt;/p&gt;
 &lt;p&gt;
-&lt;a href=&#34;https://arxiv.org/abs/1806.09055&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DARTS&lt;/a&gt; uses a continous relaxation $h\approx \sigma(\alpha)$ on the operations,
+&lt;a href=&#34;https://arxiv.org/abs/1806.09055&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DARTS&lt;/a&gt; uses a continous relaxation $h\approx \sigma(\alpha)$ on the operations, 
 $$
 \nabla_\alpha \mathbb E_{p_\alpha(h)}[f(h)]\approx\nabla_\alpha f(\sigma(\alpha))
 $$
