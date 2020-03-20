@@ -145,7 +145,14 @@ $$&lt;/p&gt;
       <link>/post/2020-01-04-faster-and-finer-instance-segmentation-with-blendmask/</link>
       <pubDate>Sat, 04 Jan 2020 20:14:56 +1030</pubDate>
       <guid>/post/2020-01-04-faster-and-finer-instance-segmentation-with-blendmask/</guid>
-      <description>&lt;p&gt;I want to briefly highlight our recent paper on instance segmentation:&lt;/p&gt;
+      <description>&lt;p&gt;Update 20/03/2020:&lt;/p&gt;
+&lt;p&gt;I give a talk on BlendMask 
+&lt;a href=&#34;https://live.bilibili.com/3344545&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; at 20:00 Beijing Time (UTC+8) 24/03/2020. You can download the slides 
+&lt;a href=&#34;https://cloudstor.aarnet.edu.au/plus/s/mSgeji3PQiD84OG&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can also discuss with me in person on the 
+&lt;a href=&#34;https://betterinstanc-w2t9986.slack.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;better-instance-segmentation&lt;/a&gt; slack workspace.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;I want to briefly highlight our recent paper on instance segmentation:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Hao Chen, Kunyang Sun, Zhi Tian, Chunhua Shen, Yongming Huang, Youliang Yan (2020) 
 &lt;a href=&#34;https://arxiv.org/abs/2001.00309&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BlendMask: Top-Down Meets Bottom-Up for Instance Segmentation&lt;/a&gt;&lt;/li&gt;
@@ -341,7 +348,8 @@ $$&lt;/p&gt;
   &lt;iframe src=&#34;https://www.youtube.com/embed/E-gXL-eIPCw&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 
-&lt;p&gt;For more results, please see our paper.&lt;/p&gt;
+&lt;p&gt;For more results, please see 
+&lt;a href=&#34;https://arxiv.org/abs/2001.00309&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;our paper&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
