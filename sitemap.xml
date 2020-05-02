@@ -4,7 +4,22 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-03-13T17:36:41+10:30</lastmod>
+    <lastmod>2020-04-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/slides/</loc>
+    <lastmod>2020-04-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/slides/the-em-algorithm/</loc>
+    <lastmod>2020-04-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/slides/universal-differential-equations-for-scientific-machine-learning/</loc>
+    <lastmod>2020-04-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -15,16 +30,6 @@
   <url>
     <loc>/post/</loc>
     <lastmod>2020-03-13T17:36:41+10:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>/drafts/2020-02-28-bayesian-networks-for-perception/</loc>
-    <lastmod>2020-02-28T17:31:22+10:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>/drafts/</loc>
-    <lastmod>2020-02-28T17:31:22+10:30</lastmod>
   </url>
   
   <url>

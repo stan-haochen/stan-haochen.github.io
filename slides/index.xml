@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Slides | Algebra &amp; Fire</title>
+    <link>/slides/</link>
+      <atom:link href="/slides/index.xml" rel="self" type="application/rss+xml" />
+    <description>Slides</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 27 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>The EM Algorithm</title>
+      <link>/slides/the-em-algorithm/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/slides/the-em-algorithm/</guid>
+      <description>&lt;h1 id=&#34;the-em-algorithm&#34;&gt;The EM Algorithm&lt;/h1&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;appearance&#34;&gt;Appearance&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Gaussian mixture models 
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+the Baum-Welch algorithm for HMM 
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+mixed regression 
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+close to Lloyd&amp;rsquo;s algorithm for k-means clustering 
+&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;notation&#34;&gt;Notation&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+distribution with parameter $\mathbf \theta$: $f(\cdot|\mathbf \theta)$ or $f_{\mathbf\theta}$ 
+&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+a sample drawn from this distribution: $X\sim f(\cdot|\theta)$ or $X\sim f_\theta$ 
+&lt;/span&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;probabilistic-machine-learning&#34;&gt;Probabilistic Machine Learning&lt;/h2&gt;
+&lt;p&gt;Describe the distribution of i.i.d. samples $\mathbf x_1, \mathbf x_2, \dots, \mathbf x_n$.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;likelihood&#34;&gt;Likelihood&lt;/h3&gt;
+&lt;p&gt;$$
+\begin{aligned}
+\mathcal L(\mathbf \theta;\mathbf x_1, \mathbf x_2, \dots, \mathbf x_n) &amp;amp; := f(\mathbf x_1, \mathbf x_2, \dots, \mathbf x_n|\mathbf \theta)\\&lt;br&gt;
+&amp;amp; = \prod_{i=1}^n f(\mathbf x_i\vert\mathbf \theta)
+\end{aligned}
+$$&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;maximum-likelihood-estimate&#34;&gt;Maximum Likelihood Estimate&lt;/h3&gt;
+&lt;p&gt;$$
+\hat{\mathbf \theta}_{MLE}:=\underset{\mathbf \theta\in\Theta}{\text{arg max }}\mathcal L(\mathbf \theta;\mathbf x_1, \mathbf x_2, \dots, \mathbf x_n)
+$$&lt;/p&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Maximum a Posteriori&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;least-squares-regression&#34;&gt;Least Squares Regression&lt;/h3&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Reformulate it in a probabilistic setting&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;mechanistic-vs-non-mechanistic-models&#34;&gt;Mechanistic vs Non-Mechanistic Models&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Differential equations&lt;/strong&gt; describe mechanisms/structure and let the equations naturally evolve from this description
+&lt;ul&gt;
+&lt;li&gt;$🐇&amp;rsquo;(t) = \alpha 🐇(t)$ encodes &amp;ldquo;the rate at which the population is growing depends on the current number of rabbits&amp;rdquo;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Machine learning models&lt;/strong&gt; specify a learnable black box, where with the right parameters they can fit any nonlinear function.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;universal-approximation-theorem&#34;&gt;Universal Approximation Theorem&lt;/h3&gt;
+&lt;p&gt;Neural networks can get $\epsilon$ close to any $R^n\rightarrow R^m$ function&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Neural networks are just function expansions, fancy Taylor Series like things which are good for computing and bad for analysis&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;neural-networks--nonlinear-function-approximation&#34;&gt;Neural Networks = Nonlinear Function Approximation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Polynomial: $e^x = a_1 + a_2x + a_3x^2 + \cdots$&lt;/li&gt;
+&lt;li&gt;Nonlinear: $e^x = 1 + \frac{a_1\tanh(a_2)}{a_3x-\tanh(a_4x)}$&lt;/li&gt;
+&lt;li&gt;Neural Network: $e^x\approx W_3\sigma(W_2\sigma(W_1x+b_1) + b_2) + b_3$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Others: Fourier/Chebyshev Series, Tensor product spaces, sparse grid, RBFs, etc.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;neural-networks-are-universal-approximators-which-work-well-in-high-dimensions&#34;&gt;Neural Networks are universal approximators which work well in high dimensions&lt;/h3&gt;
+&lt;p&gt;Neural networks overcome &amp;ldquo;the curse of dimensionality&amp;rdquo;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;universal-differential-equations&#34;&gt;Universal Differential Equations&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Replace the user-defined structure with a neural network, and learn the nonlinear function for the structure&lt;/li&gt;
+&lt;li&gt;Neural ordinary differential equation: $u&amp;rsquo; = f(u, p, t)$. Let $f$ be a neural network.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;fragments&#34;&gt;Fragments&lt;/h2&gt;
+&lt;p&gt;Make content appear incrementally&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{{% fragment %}} One {{% /fragment %}}
+{{% fragment %}} **Two** {{% /fragment %}}
+{{% fragment %}} Three {{% /fragment %}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Press &lt;code&gt;Space&lt;/code&gt; to play!&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+One 
+&lt;/span&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+&lt;strong&gt;Two&lt;/strong&gt; 
+&lt;/span&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+Three 
+&lt;/span&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;A fragment can accept two optional parameters:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;class&lt;/code&gt;: use a custom style (requires definition in custom CSS)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;weight&lt;/code&gt;: sets the order in which a fragment appears&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;speaker-notes&#34;&gt;Speaker Notes&lt;/h2&gt;
+&lt;p&gt;Add speaker notes to your presentation&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{% speaker_note %}}
+- Only the speaker can read these notes
+- Press `S` key to view
+{{% /speaker_note %}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Press the &lt;code&gt;S&lt;/code&gt; key to view the speaker notes!&lt;/p&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Only the speaker can read these notes&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;S&lt;/code&gt; key to view&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;themes&#34;&gt;Themes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;black: Black background, white text, blue links (default)&lt;/li&gt;
+&lt;li&gt;white: White background, black text, blue links&lt;/li&gt;
+&lt;li&gt;league: Gray background, white text, blue links&lt;/li&gt;
+&lt;li&gt;beige: Beige background, dark text, brown links&lt;/li&gt;
+&lt;li&gt;sky: Blue background, thin dark text, blue links&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;night: Black background, thick white text, orange links&lt;/li&gt;
+&lt;li&gt;serif: Cappuccino background, gray text, brown links&lt;/li&gt;
+&lt;li&gt;simple: White background, black text, blue links&lt;/li&gt;
+&lt;li&gt;solarized: Cream-colored background, dark green text, blue links&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+&lt;section data-noprocess data-shortcode-slide
+  
+      
+      data-background-image=&#34;/img/boards.jpg&#34;
+  &gt;
+
+&lt;h2 id=&#34;custom-slide&#34;&gt;Custom Slide&lt;/h2&gt;
+&lt;p&gt;Customize the slide style and background&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{&amp;lt; slide background-image=&amp;quot;/img/boards.jpg&amp;quot; &amp;gt;}}
+{{&amp;lt; slide background-color=&amp;quot;#0000FF&amp;quot; &amp;gt;}}
+{{&amp;lt; slide class=&amp;quot;my-style&amp;quot; &amp;gt;}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;custom-css-example&#34;&gt;Custom CSS Example&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s make headers navy colored.&lt;/p&gt;
+&lt;p&gt;Create &lt;code&gt;assets/css/reveal_custom.css&lt;/code&gt; with:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.reveal section h1,
+.reveal section h2,
+.reveal section h3 {
+  color: navy;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;questions&#34;&gt;Questions?&lt;/h1&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://spectrum.chat/academic&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Ask&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#create-slides&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Universal Differential Equations for Scientific Machine Learning</title>
+      <link>/slides/universal-differential-equations-for-scientific-machine-learning/</link>
+      <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/slides/universal-differential-equations-for-scientific-machine-learning/</guid>
+      <description>&lt;h2 id=&#34;universal-differential-equations-for-scientific-machine-learning&#34;&gt;Universal Differential Equations for Scientific Machine Learning&lt;/h2&gt;
+&lt;p&gt;Chris Rackauckas&lt;br/&gt;
+Massachusetts Institute of Technology, Department of Mathematics&lt;br/&gt;
+University of Maryland, Baltimore, School of Pharmacy, Center for Translational Medicine&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;the-major-advances-in-machine-learning-were-due-to-encoding-more-structure-into-the-model&#34;&gt;The major advances in machine learning were due to encoding more structure into the model&lt;/h3&gt;
+&lt;p&gt;More structure = Faster and better fits from less data&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;convolutional-neural-networks-are-structure-assumptions&#34;&gt;Convolutional Neural Networks Are Structure Assumptions&lt;/h3&gt;
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure &gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;/slides/universal-differential-equations-for-scientific-machine-learning/img/cnn_hu2802cfbd5c89b654c13105493c7e4938_300251_2000x2000_fit_lanczos_2.png&#34; &gt;
+
+
+  &lt;img data-src=&#34;/slides/universal-differential-equations-for-scientific-machine-learning/img/cnn_hu2802cfbd5c89b654c13105493c7e4938_300251_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1206&#34; height=&#34;435&#34;&gt;
+&lt;/a&gt;
+
+
+
+&lt;/figure&gt;
+
+&lt;hr&gt;
+&lt;h3 id=&#34;what-is-the-structure-of-science&#34;&gt;What is the structure of science?&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;ecology-example-lotka-volterra-equation&#34;&gt;Ecology Example: Lotka-Volterra Equation&lt;/h3&gt;
+&lt;p&gt;$$
+\frac{d🐇}{dt} = \alpha 🐇 - \beta 🐇 🐺
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\frac{d🐺}{dt} = \delta 🐇 🐺 - \gamma 🐺
+$$&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;scientific-mlal-is-domain-models-with-integrated-machine-learning&#34;&gt;Scientific ML/AL is Domain Models with Integrated Machine Learning&lt;/h3&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Models are these almost correct differential equations&lt;/li&gt;
+&lt;li&gt;We have to augment the models with the data we have&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;mechanistic-vs-non-mechanistic-models&#34;&gt;Mechanistic vs Non-Mechanistic Models&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Differential equations&lt;/strong&gt; describe mechanisms/structure and let the equations naturally evolve from this description
+&lt;ul&gt;
+&lt;li&gt;$🐇&amp;rsquo;(t) = \alpha 🐇(t)$ encodes &amp;ldquo;the rate at which the population is growing depends on the current number of rabbits&amp;rdquo;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Machine learning models&lt;/strong&gt; specify a learnable black box, where with the right parameters they can fit any nonlinear function.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;universal-approximation-theorem&#34;&gt;Universal Approximation Theorem&lt;/h3&gt;
+&lt;p&gt;Neural networks can get $\epsilon$ close to any $R^n\rightarrow R^m$ function&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Neural networks are just function expansions, fancy Taylor Series like things which are good for computing and bad for analysis&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;neural-networks--nonlinear-function-approximation&#34;&gt;Neural Networks = Nonlinear Function Approximation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Polynomial: $e^x = a_1 + a_2x + a_3x^2 + \cdots$&lt;/li&gt;
+&lt;li&gt;Nonlinear: $e^x = 1 + \frac{a_1\tanh(a_2)}{a_3x-\tanh(a_4x)}$&lt;/li&gt;
+&lt;li&gt;Neural Network: $e^x\approx W_3\sigma(W_2\sigma(W_1x+b_1) + b_2) + b_3$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Others: Fourier/Chebyshev Series, Tensor product spaces, sparse grid, RBFs, etc.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;neural-networks-are-universal-approximators-which-work-well-in-high-dimensions&#34;&gt;Neural Networks are universal approximators which work well in high dimensions&lt;/h3&gt;
+&lt;p&gt;Neural networks overcome &amp;ldquo;the curse of dimensionality&amp;rdquo;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;universal-differential-equations&#34;&gt;Universal Differential Equations&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Replace the user-defined structure with a neural network, and learn the nonlinear function for the structure&lt;/li&gt;
+&lt;li&gt;Neural ordinary differential equation: $u&amp;rsquo; = f(u, p, t)$. Let $f$ be a neural network.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;fragments&#34;&gt;Fragments&lt;/h2&gt;
+&lt;p&gt;Make content appear incrementally&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{{% fragment %}} One {{% /fragment %}}
+{{% fragment %}} **Two** {{% /fragment %}}
+{{% fragment %}} Three {{% /fragment %}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Press &lt;code&gt;Space&lt;/code&gt; to play!&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+One 
+&lt;/span&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+&lt;strong&gt;Two&lt;/strong&gt; 
+&lt;/span&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+Three 
+&lt;/span&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;A fragment can accept two optional parameters:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;class&lt;/code&gt;: use a custom style (requires definition in custom CSS)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;weight&lt;/code&gt;: sets the order in which a fragment appears&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;speaker-notes&#34;&gt;Speaker Notes&lt;/h2&gt;
+&lt;p&gt;Add speaker notes to your presentation&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{% speaker_note %}}
+- Only the speaker can read these notes
+- Press `S` key to view
+{{% /speaker_note %}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Press the &lt;code&gt;S&lt;/code&gt; key to view the speaker notes!&lt;/p&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Only the speaker can read these notes&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;S&lt;/code&gt; key to view&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;themes&#34;&gt;Themes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;black: Black background, white text, blue links (default)&lt;/li&gt;
+&lt;li&gt;white: White background, black text, blue links&lt;/li&gt;
+&lt;li&gt;league: Gray background, white text, blue links&lt;/li&gt;
+&lt;li&gt;beige: Beige background, dark text, brown links&lt;/li&gt;
+&lt;li&gt;sky: Blue background, thin dark text, blue links&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;night: Black background, thick white text, orange links&lt;/li&gt;
+&lt;li&gt;serif: Cappuccino background, gray text, brown links&lt;/li&gt;
+&lt;li&gt;simple: White background, black text, blue links&lt;/li&gt;
+&lt;li&gt;solarized: Cream-colored background, dark green text, blue links&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+&lt;section data-noprocess data-shortcode-slide
+  
+      
+      data-background-image=&#34;/img/boards.jpg&#34;
+  &gt;
+
+&lt;h2 id=&#34;custom-slide&#34;&gt;Custom Slide&lt;/h2&gt;
+&lt;p&gt;Customize the slide style and background&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{&amp;lt; slide background-image=&amp;quot;/img/boards.jpg&amp;quot; &amp;gt;}}
+{{&amp;lt; slide background-color=&amp;quot;#0000FF&amp;quot; &amp;gt;}}
+{{&amp;lt; slide class=&amp;quot;my-style&amp;quot; &amp;gt;}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;custom-css-example&#34;&gt;Custom CSS Example&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s make headers navy colored.&lt;/p&gt;
+&lt;p&gt;Create &lt;code&gt;assets/css/reveal_custom.css&lt;/code&gt; with:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.reveal section h1,
+.reveal section h2,
+.reveal section h3 {
+  color: navy;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;questions&#34;&gt;Questions?&lt;/h1&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://spectrum.chat/academic&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Ask&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#create-slides&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

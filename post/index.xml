@@ -7,7 +7,7 @@
     <description>Posts</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 28 Feb 2020 17:36:41 +1030</lastBuildDate>
     <image>
-      <url>img/map[gravatar:%!s(bool=false) shape:circle]</url>
+      <url>/images/icon_huff46a34809cf36f98ff565ff8b0a5f91_4201_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
       <link>/post/</link>
     </image>
@@ -39,12 +39,18 @@
       <link>/post/2020-01-04-faster-and-finer-instance-segmentation-with-blendmask/</link>
       <pubDate>Sat, 04 Jan 2020 20:14:56 +1030</pubDate>
       <guid>/post/2020-01-04-faster-and-finer-instance-segmentation-with-blendmask/</guid>
-      <description>&lt;p&gt;Update 20/03/2020:&lt;/p&gt;
+      <description>&lt;p&gt;Update 01/05/2020:&lt;/p&gt;
+&lt;p&gt;I have uploaded the CVPR Spotlight video to YouTube.&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/MfbbQkFAkHA&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;p&gt;Update 20/03/2020:&lt;/p&gt;
 &lt;p&gt;I give a talk on BlendMask 
 &lt;a href=&#34;https://live.bilibili.com/3344545&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; at 20:00 Beijing Time (UTC+8) 24/03/2020. You can download the slides 
 &lt;a href=&#34;https://cloudstor.aarnet.edu.au/plus/s/mSgeji3PQiD84OG&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;You can also discuss with me in person on the 
-&lt;a href=&#34;https://better-is.slack.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;better-instance-segmentation&lt;/a&gt; slack workspace.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;I want to briefly highlight our recent paper on instance segmentation:&lt;/p&gt;
 &lt;ul&gt;
@@ -94,7 +100,7 @@
 
 
 
-&lt;figure&gt;
+&lt;figure id=&#34;figure-instancefcn&#34;&gt;
 
 
   &lt;a data-fancybox=&#34;&#34; href=&#34;/post/2020-01-04-faster-and-finer-instance-segmentation-with-blendmask/images/instancefcn_hua7129555c89ee04bf4c8118d373c2fb5_688506_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;InstanceFCN&#34;&gt;
@@ -132,7 +138,7 @@
 
 
 
-&lt;figure&gt;
+&lt;figure id=&#34;figure-blender-module&#34;&gt;
 
 
   &lt;a data-fancybox=&#34;&#34; href=&#34;/post/2020-01-04-faster-and-finer-instance-segmentation-with-blendmask/images/blender_hu8e5eb99c5fd200f364ae0cf32f362fee_307437_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Blender module&#34;&gt;
@@ -152,6 +158,8 @@
 &lt;/figure&gt;
 
 &lt;p&gt;The blender module effectively reduces the channel size of YOLACT protonet, from 32 to 4, and produces better masks.&lt;/p&gt;
+&lt;p&gt;Here is a live view of the blending process:&lt;/p&gt;
+&lt;img src=&#34;images/teaser.gif&#34; style=&#34;width: 400px;&#34;/&gt;
 &lt;h2 id=&#34;qualitative-and-quantitative-results&#34;&gt;Qualitative and Quantitative Results&lt;/h2&gt;
 &lt;p&gt;Our model produces higher quality masks than Mask R-CNN, especially in the following cases:&lt;/p&gt;
 &lt;ul&gt;
@@ -177,7 +185,7 @@
 
 
 
-&lt;figure&gt;
+&lt;figure id=&#34;figure-qualitative-results&#34;&gt;
 
 
   &lt;a data-fancybox=&#34;&#34; href=&#34;/post/2020-01-04-faster-and-finer-instance-segmentation-with-blendmask/images/qualitative_hue239cd320bbde3680d3001896f2665c6_3298788_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Qualitative results&#34;&gt;
@@ -215,7 +223,7 @@
 
 
 
-&lt;figure&gt;
+&lt;figure id=&#34;figure-quantative-results&#34;&gt;
 
 
   &lt;a data-fancybox=&#34;&#34; href=&#34;/post/2020-01-04-faster-and-finer-instance-segmentation-with-blendmask/images/quantitative_hu26defce38408bc8784c0b3e7a96dac7d_652005_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Quantative results&#34;&gt;
