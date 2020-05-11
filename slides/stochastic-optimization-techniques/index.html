@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  
+  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_huff46a34809cf36f98ff565ff8b0a5f91_4201_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_huff46a34809cf36f98ff565ff8b0a5f91_4201_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="/slides/stochastic-optimization-techniques/">
+
+  <title>Optimization Landscape Symmetry, Saddle Points and Beyond | Algebra &amp; Fire</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/reveal.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/theme/white.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin="anonymous">
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/reveal_custom.min.css">
+
+  
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/reveal.js\/3.8.0/css/print/pdf.css' : 'https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/reveal.js\/3.8.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+
+</head>
+<body>
+
+  
+<div class="reveal">
+  <div class="slides">
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    <section>
+    
+      <h1 id="optimization">Optimization</h1>
+<p>Landscape Symmetry, Saddle Points and Beyond</p>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h2 id="non-convex-optimization">Non-convex Optimization</h2>
+<p><span class="fragment " >
+Proabilistic Models, 
+</span><span class="fragment " >
+Deep Neural Nets 
+</span></p>
+<ul>
+<li><span class="fragment " >
+<strong>Theory</strong>: 
+<a href="https://en.wikipedia.org/wiki/NP-hardness" target="_blank" rel="noopener">NP-hard</a>. Better avoid or use convex relaxation. 
+</span></li>
+<li><span class="fragment " >
+<strong>Practice</strong>: Easy! just run SGD. 
+</span></li>
+</ul>
+<aside class="notes">
+  <ul>
+<li>In practice, these algorithms converge to good solutions.</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h2 id="gradient-descent">Gradient Descent</h2>
+<p>$$
+x_{t+1} = x_t - \eta\nabla f(x_t)
+$$</p>
+<p><span class="fragment " >
+Converges to stationary point ($\nabla f(x_t)=0$) 
+<a href="http://rd.springer.com/book/10.1007%2F978-1-4419-8853-9" target="_blank" rel="noopener">[Nesterov &lsquo;98]</a> 
+</span>
+<span class="fragment " >
+or &ldquo;local minimum&rdquo; 
+<a href="https://arxiv.org/abs/1503.02101" title="Escaping From Saddle Points --- Online Stochastic Gradient for Tensor Decomposition" target="_blank" rel="noopener">[Ge etal. &lsquo;15]</a> 
+</span></p>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="gd-cannot-escape-from-a-local-optimal-solution">GD cannot escape from a local optimal solution</h3>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h2 id="landscape">Landscape</h2>
+<style>
+.container{
+    display: flex;
+}
+.col{
+    flex: 1;
+}
+</style>
+<div class="container">
+<div class="col">
+<span class="fragment " >
+<p>Convex Functions</p>
+<img height="200" src="img/convex.png">
+<ul>
+<li>Simple: 0 gradient → Global Minimum</li>
+<li>Can be optimized efficiently</li>
+</ul>
+</span>
+</div>
+<div class="col">
+<span class="fragment " >
+<p>Non-Convex Functions</p>
+<img height="200" src="img/non-convex.png">
+<ul>
+<li>Complicated: local minima, saddle points</li>
+<li>GD can only find a local minimum</li>
+</ul>
+</span>
+</div>
+</div>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h2 id="what-special-properties-make-a-non-convex-function-easy">What special properties make a non-convex function easy?</h2>
+<p><span class="fragment " >
+Why are the objectives always non-convex? 
+</span></p>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="symmetry--non-convexity">Symmetry → Non-Convexity</h3>
+<p><span class="fragment " >
+Problem asks for multiple components, but teh components have <span style="color:green;">no ordering</span>.</p>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<img height="600" src="img/clustering.png">
+<aside class="notes">
+  <ul>
+<li>The neurons in a layer of neural network can be permuted and still compute the same function.</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<div class="container">
+<div class="col">
+<span class="fragment " >
+  <figure>
+  <img src="img/solution-1.png" alt="Solution 1" height="150">
+  <figcaption>Solution (a)</figcaption>
+</figure>
+</span>
+</div>
+<div class="col">
+<span class="fragment " >
+  <figure>
+  <img src="img/solution-2.png" alt="Solution 2" height="150">
+  <figcaption>Solution (b)</figcaption>
+</figure>
+</span>
+</div>
+</div>
+<div>
+<span class="fragment " >
+  <figure>
+  <img src="img/solution-3.png" alt="Solution 3" height="200">
+  <figcaption>Convex Combination (a+b)/2</figcaption>
+</figure>
+</span>
+</div>
+<aside class="notes">
+  <ul>
+<li>if the objective is convex, then the third solution is also convex</li>
+<li>10 min mark</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="optimization-algorithms-need-to-span-stylecolorredbreak-the-symmetryspan-and-converge-to-one-of-the-equivalent-local-minima">Optimization algorithms need to <span style="color:red">break the symmetry</span> and converge to one of the (equivalent) local minima.</h3>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h2 id="saddle-points">Saddle Points</h2>
+<p>
+<a href="https://shorturl.at/qtvwP" target="_blank" rel="noopener">$$z = x^2 - y^2 + y^4 + 0.1\cdot y$$</a></p>
+<aside class="notes">
+  <ul>
+<li>Global minimum</li>
+<li>Local minimum</li>
+<li>Saddle points</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h2 id="symmetry--non-convexity-1">Symmetry → Non-Convexity</h2>
+<p>
+<a href="https://shorturl.at/deoG7" target="_blank" rel="noopener">$$f(x) = -\|x\|^2 + \|x\|_4^4$$</a></p>
+<aside class="notes">
+  <ul>
+<li>This construction is used in independent component analysis</li>
+<li>Four local/global minima (symmetric)</li>
+<li>Connection two adjacent local minima</li>
+<li>Can we add constraints to break the symmetry?</li>
+<li>Rotate and restrict in the first quadrant.</li>
+<li>This will add new local minima.</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h2 id="locally-optimizable-functions">Locally Optimizable Functions</h2>
+<ul>
+<li><span class="fragment " >
+Local min are symmetric versions of global min
+</span></li>
+<li><span class="fragment " >
+No high order saddle points
+</span></li>
+</ul>
+<aside class="notes">
+  <ul>
+<li>high order saddle points have zero grads and p.s.d. hessian</li>
+<li>SGD garanteed to find the global minima</li>
+<li>first condition seems to be very strong</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<ul>
+<li>SVD/PCA</li>
+<li>Generalized Linear Model [KKKS&rsquo;11] [HLS&rsquo;14]</li>
+<li>Synchronization [BVS&rsquo;16]</li>
+<li>Dictionary Learning [SQW&rsquo;17]</li>
+</ul>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<ul>
+<li>Matrix Completion [
+<a href="https://arxiv.org/abs/1605.07272" title="Matrix Completion has No Spurious Local Minimum" target="_blank" rel="noopener">GLM16</a>] [
+<a href="https://arxiv.org/abs/1704.00708" title="No Spurious Local Minima in Nonconvex Low Rank Problems: A Unified Geometric Analysis" target="_blank" rel="noopener">GJZ17</a>]</li>
+<li>Matrix Sensing [BNS&rsquo;16] [PKCS&rsquo;16]</li>
+<li>MAX-CUT [MMMO&rsquo;17]</li>
+<li>Tensor Decomposition [GHJY&rsquo;15] [GM&rsquo;16]</li>
+<li>2-Layer Neural Net [
+<a href="https://arxiv.org/abs/1711.00501" title="Learning One-hidden-layer Neural Networks with Landscape Design" target="_blank" rel="noopener">GLM17</a>]</li>
+</ul>
+<aside class="notes">
+  <ul>
+<li>Matrix completion as a simple example</li>
+<li>Landscape of neural networks</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h2 id="matrix-completion">Matrix Completion</h2>
+<ul>
+<li><span class="fragment " >
+Low rank matrix $M$
+</span></li>
+<li><span class="fragment " >
+Observations: entries of $M$
+</span></li>
+<li><span class="fragment " >
+Goal: recover remaining entries
+</span></li>
+</ul>
+<img src="img/matrix-completion.png" alt="Incomplete matrix" height="300">
+<aside class="notes">
+  <ul>
+<li>typical application: recommendation system [RennieSrebro05]</li>
+<li>assume matrix is a product of two $n\times r$ matrix</li>
+<li>Hope to recover using $\tilde O(nr)$ observations.</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="non-convex-objective">Non-Convex Objective</h3>
+<ul>
+<li><span class="fragment " >
+Idea: Try to find the low rank factors directly $$M=U\cdot V^T$$
+</span></li>
+<li><span class="fragment " >
+Variables $X$, $Y$. Hope $X = U, Y = V, M = XY^T$
+</span></li>
+<li><span class="fragment " >
+Uniform observations $(i, j)\in\Omega$
+</span></li>
+<li><span class="fragment " >
+Minimize “loss” on observed entries $$\min f(X, Y) = \sum_{(i,j)\in\Omega}(M_{i, j} - (XY^T)_{i,j})^2$$
+</span></li>
+</ul>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="symmetry-and-solutions">Symmetry and Solutions</h3>
+<p>$$M=UV^T\qquad \min(f(X, Y):=\|M-XY^T\|^2_\Omega)$$</p>
+<ul>
+<li><span class="fragment " >
+Hope: $X=U, Y=V$
+</span></li>
+<li><span class="fragment " >
+Not true: many equivalent solutions: $$UV^T=URR^TV^T$$
+</span></li>
+<li><span class="fragment " >
+Saddle points: e.g. $X=Y=0$
+</span></li>
+</ul>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<blockquote>
+<p><span style="color:blue">Theorem</span>: when the number of observations is at least $\tilde{\Omega}(nr^6)$, all local minima of $f(X, Y)^*$ are global minima: satisfy $XY^T=M$.</p>
+</blockquote>
+<p>[
+<a href="https://arxiv.org/abs/1605.07272" title="Matrix Completion has No Spurious Local Minimum" target="_blank" rel="noopener">GLM16</a>]: symmetric case; [
+<a href="https://arxiv.org/abs/1704.00708" title="No Spurious Local Minima in Nonconvex Low Rank Problems: A Unified Geometric Analysis" target="_blank" rel="noopener">GJZ17</a>]: asymmetric case</p>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<blockquote>
+<p><span style="color:blue">Corollary</span>: Simple SGD can solve matrix completion from an <span style="color:blue">arbitrary</span> starting point.</p>
+</blockquote>
+<p>Prior work:</p>
+<ul>
+<li>convex relaxation</li>
+<li>non-convex optimization with carefully chosen starting point</li>
+</ul>
+<aside class="notes">
+  <ul>
+<li>convex relaxation: has tight $r$ $\Omega(nr poly(\log(d))$</li>
+<li>non-convex: $nr^2$</li>
+<li>27 min mark</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<p>$X$ is a local minimum of $f(X)$ → $\nabla f(X)=0, \nabla^2f(X)\succcurlyeq 0$</p>
+<div class="container">
+<div class="col">
+<span class="fragment " >
+  <p>$$\nabla f(X)\ne 0$$</p>
+<p>Follow gradient reduces $f(X)$.</p>
+</span>
+</div>
+<div class="col">
+<span class="fragment " >
+  <p>$$\lambda(\nabla^2f(X))&lt;0$$</p>
+<p>Min eigendirection of Hessian reduces $f(X)$.</p>
+</span>
+</div>
+</div>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="direction-of-improvment-exists">Direction of Improvment Exists</h3>
+<p>If $X$ is not global minimum</p>
+<p>Exists $\Delta$, $\langle\nabla f(X), \Delta\rangle\ne 0$ or $\nabla^2f(X)[\Delta]&lt;0$</p>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="matrix-factorization">Matrix Factorization</h3>
+<ul>
+<li>Every entry is observed, want to write $M=UV^T$</li>
+<li><span class="fragment " >
+Consider symmetric case: $M=UU^T$ $$g(X):=|M-XX^T|_F^2$$
+</span></li>
+<li><span class="fragment " >
+Goal: prove local minima satisfy $XX^T=M$.
+</span></li>
+</ul>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<p>$\nabla g(X)=0$<span class="fragment " >
+→ $MX=XX^TX$
+</span> <span class="fragment " >
+→ If $\text{span}(X)=\text{span}(M)$, $M=XX^T$
+</span></p>
+<p><span class="fragment " >
+$\nabla^2 g(X)\succcurlyeq0$
+</span><span class="fragment " >
+→ $\text{span}(X)=\text{span}(M)$
+</span></p>
+<p><span class="fragment " >
+Approach in [
+<a href="https://arxiv.org/abs/1605.07272" title="Matrix Completion has No Spurious Local Minimum" target="_blank" rel="noopener">GLM16</a>]. Need more cases to generalize to Matrix Completion.
+</span></p>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<ul>
+<li><span class="fragment " >
+Intuitively, want $X$ to go to the optimal solution $U$.
+</span></li>
+<li><span class="fragment " >
+Recall: many equivalent optimal solutions!
+</span></li>
+<li><span class="fragment " >
+Idea: find the “closest” among all optimal solutions $$\Delta = X-UR, \qquad R=\arg\min||X-UR||_F$$
+</span></li>
+<li><span class="fragment " >
+Nice property: $||\Delta\Delta^T||_F^2\le2||M-XX^T||_F^2$
+</span></li>
+</ul>
+<aside class="notes">
+  <ul>
+<li>Alternative approach finding direction of improvement</li>
+<li>If $\Delta$ is not zero, $X$ is not global optimal</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="main-lemma-gjz17">Main Lemma [
+<a href="https://arxiv.org/abs/1704.00708" title="No Spurious Local Minima in Nonconvex Low Rank Problems: A Unified Geometric Analysis" target="_blank" rel="noopener">GJZ17</a>]</h3>
+<blockquote>
+<p><span style="color:blue">Lemma</span>: If $\|\Delta\Delta^T\|_\Omega^2&lt;3\|M-XX^T\|_\Omega^2$, then either $\langle\nabla f(X), \Delta\rangle\ne 0$ or $\nabla^2 f(X)[\Delta]&lt;0$. ($\Delta$ is a direction of improvement.)</p>
+</blockquote>
+<ul>
+<li><span class="fragment " >
+$||\Delta\Delta^T||_F^2\le2||M-XX^T||_F^2$
+</span></li>
+<li><span class="fragment " >
+Immediate proof for matrix factorization
+</span></li>
+<li><span class="fragment " >
+For completion, proof works as long as $||A||_\Omega\approx ||A||_F$ for $\Delta\Delta^T$ and $M-XX^T$
+</span></li>
+</ul>
+<aside class="notes">
+  <ul>
+<li>$\Delta\Delta^T$ and $M-XX^T$ are both low rank.</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="restricted-isometry-propertyhttpsenwikipediaorgwikirestricted_isometry_property">
+<a href="https://en.wikipedia.org/wiki/Restricted_isometry_property" target="_blank" rel="noopener">Restricted isometry property</a></h3>
+<p>characterizes matrices which are nearly orthonormal, at least when operating on sparse vectors.</p>
+<p>Applies to asymmetric cases, matrix sensing and robust PCA.</p>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="locally-optimizable-problems">Locally optimizable problems</h3>
+<ul>
+<li>Low rank matrix
+<ul>
+<li>SVD/PCA, Matrix Completion, Synchronization, Matrix Sensing, GLM, MAX-CUT</li>
+</ul>
+</li>
+<li>Low rank tensor
+<ul>
+<li>Dictionary Learning, Tensor Decomposition, 2-Layer Neural Net</li>
+</ul>
+</li>
+</ul>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h2 id="optimization-landscape-for-neural-network">Optimization landscape for neural network</h2>
+<p>$$
+g_W(x) = \sigma(W_p\sigma(W_{p-1}\sigma(\cdots \sigma(W_1x)\cdots)))
+$$</p>
+<p>$$
+f(W) = \mathbb E[\|y - g_W(x)\|^2]
+$$</p>
+<aside class="notes">
+  <ul>
+<li>Fully connected with ReLU</li>
+<li>40 min mark</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="teacherstudent-setting">Teacher/Student Setting</h3>
+<ul>
+<li>Goal: Prove sth about optimization</li>
+<li>Assume there is already a good network ($W^*$) and enough samples</li>
+<li>Good solution: student mimic teacher</li>
+</ul>
+<aside class="notes">
+  <ul>
+<li>Make sure that the hypothesis class can recover the solution</li>
+<li>Focus on optimization</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="linear-networks">Linear Networks</h3>
+<p>$$
+g_W(x) = W_pW_{p-1}\cdots W_1x
+$$</p>
+<p>[
+<a href="https://arxiv.org/abs/1605.07110" target="_blank" rel="noopener">Kawaguchi 16</a>], [
+<a href="https://arxiv.org/abs/1707.02444" target="_blank" rel="noopener">YSJ18</a>]</p>
+<ul>
+<li><span class="fragment " >
+All local minima of linear neural network (with squared loss) are global*
+</span></li>
+<li><span class="fragment " >
+With 2 layers, no higher order saddle points.
+</span></li>
+<li><span class="fragment " >
+With 3 or more layers, has higher order saddles.
+</span></li>
+</ul>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<ul>
+<li>For a critical point, if product of all layers has rank $r$, then it is a local and global minima (if r = min(m, n)) it can also be a normal saddle point (if r &lt; min(m, n)).</li>
+<li>Open problem: does local search actually find a global minimum?</li>
+</ul>
+<aside class="notes">
+  <ul>
+<li>Algorithm can be trapped in higher order saddles</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="two-layer-neural-network">Two-Layer Neural Network</h3>
+<p>$$
+g(x) = a^T\sigma(Bx)
+$$</p>
+<ul>
+<li><span class="fragment " >
+Wlog: rows of $B$ ($b_i$) are unit norm.
+</span></li>
+<li><span class="fragment " >
+Data: $x\sim N(0, I)$
+</span></li>
+<li><span class="fragment " >
+Some more technical assumptions on $a^<em>$, $B^</em>$
+</span></li>
+</ul>
+<aside class="notes">
+  <ul>
+<li>$B^*$ is full-rank</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="bad-local-minima">Bad local minima</h3>
+<p><span style="color:blue">Claim: </span>The objective function $f(a, B)$ has local minima that are not equivalent to the ground truth.</p>
+<ul>
+<li>Observed in [
+<a href="https://arxiv.org/abs/1711.00501" title="Learning One-hidden-layer Neural Networks with Landscape Design" target="_blank" rel="noopener">GLM17</a>]</li>
+<li>formmaly verified in [
+<a href="https://arxiv.org/abs/1712.08968" title="Spurious Local Minima are Common in Two-Layer ReLU Neural Networks" target="_blank" rel="noopener">Safran&amp;Shamir17</a>]</li>
+</ul>
+<aside class="notes">
+  <ul>
+<li>Over-parametrization appears to drastically reduce such local minima</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="landscape-design">Landscape Design</h3>
+<ul>
+<li>Idea: Design a new objective with no bad local min.</li>
+<li>Implicit in many previous techniques
+<ul>
+<li>Regularization</li>
+<li>Methods-of-moments instead of MLE</li>
+</ul>
+</li>
+</ul>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="provable-new-objective">Provable New Objective</h3>
+<blockquote>
+<p><span style="color:blue">Theorem</span>[
+<a href="https://arxiv.org/abs/1711.00501" title="Learning One-hidden-layer Neural Networks with Landscape Design" target="_blank" rel="noopener">GLM17</a>]: Can construct an objective for two-layer neural network such that all local minima are global</p>
+</blockquote>
+<ul>
+<li><span class="fragment " >
+Objective inspired by tensor decomposition
+</span></li>
+<li><span class="fragment " >
+Relies on Gaussian distribution
+</span></li>
+<li><span class="fragment " >
+Extended to symmetric input distribution* by [
+<a href="https://arxiv.org/abs/1810.06793" title="Learning Two-layer Neural Networks with Symmetric Inputs" target="_blank" rel="noopener">GKLW18</a>]
+</span></li>
+</ul>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="spin-glass-model">Spin Glass Model</h3>
+<blockquote>
+<p><span style="color:blue">Claim</span>[
+<a href="https://arxiv.org/abs/1412.0233" title="The Loss Surfaces of Multilayer Networks" target="_blank" rel="noopener">CHMBL15</a>]: all the local minima of a neural network have approximate equal function value</p>
+</blockquote>
+<img src="img/spin-glass.png" alt="Solution 3" height="200">
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="kac-rice-formula">Kac-Rice Formula</h3>
+<p>$$
+\int_x\mathbb E[|\det(\nabla^2 f)|\cdot \mathbf 1(\nabla^2 f\preceq0)\mathbf 1(x\in Z)|\nabla f(x)=0]p_{\nabla f(x)}
+$$</p>
+<ul>
+<li><span class="fragment " >
+Proof idea: Count number of local min directly
+</span></li>
+<li><span class="fragment " >
+Evaluate the formula using random matrix theory
+</span></li>
+<li><span class="fragment " >
+Formal for spin-glass model (random polynormials), informal connection with NNs.
+</span></li>
+<li><span class="fragment " >
+Formal results for overcomplete tensor and tensor PCA
+</span></li>
+</ul>
+<aside class="notes">
+  <ul>
+<li>Kac-Rice formula can be used to compute #local minima in any region</li>
+<li>In some cases, Hess and grad will be nice random matrices</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="dynamicstrajectory">Dynamics/Trajectory</h3>
+<ul>
+<li><span class="fragment " >
+Main idea: instead of analyzing the global landscape, analyze the path from a random initialization.
+</span></li>
+<li><span class="fragment " >
+Observation: path can be very short
+</span></li>
+</ul>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<ul>
+<li>Empirical Risk/Training Error
+<ul>
+<li>[Du, Zhai, Poczos, Singh] Two-layer</li>
+<li>[Allen-Zhu, Li, Song] [Du, Lee, Li, Wang, Zhai] [Zou, Cao, Zhu, Gu] Multi-layer/ResNet</li>
+<li>[Allen-Zhu, Li, Song] Recurrent Neural Network</li>
+</ul>
+</li>
+<li>Population Risk/Test Error
+<ul>
+<li>[Li Linag] Special multiclass classification</li>
+<li>[Allen-Zhu, Li, Liang] 2 or 3 layer neural network. &ldquo;Kernel-like&rdquo; setting, special activation</li>
+</ul>
+</li>
+</ul>
+<aside class="notes">
+  <ul>
+<li>Suppose your model is over-parametrized, it can overfit to your data</li>
+<li>Considering generalization is harder.</li>
+<li>Kernel-like means the neural net is approximable using low-degree polynomials</li>
+<li>and requires special activation</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h2 id="beyond-optimizationhttpwwwoffconvexorg20190603trajectories">
+<a href="http://www.offconvex.org/2019/06/03/trajectories/" target="_blank" rel="noopener">Beyond Optimization</a></h2>
+<p>Accelerated methods are faster but leads to slightly worse generalization.</p>
+<aside class="notes">
+  <ul>
+<li>GD has an innate bias towards finding solutions with good generalization
+<ul>
+<li>Methods to speed up gradient descent (e.g., acceleration or adaptive regularization) can sometimes lead to worse generalization.</li>
+</ul>
+</li>
+<li>We need to develop a new vocabulary (and mathematics) to reason about trajectories. This goes beyond the usual “landscape view” of stationary points, gradient norms, Hessian norms, smoothness etc</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h2 id="neural-tangent-kernelshttpwwwoffconvexorg20191003ntk">
+<a href="http://www.offconvex.org/2019/10/03/NTK/" target="_blank" rel="noopener">Neural Tangent Kernels</a></h2>
+<p>To the functional space</p>
+</span>
+    </section>
+    
+
+    
+    
+  </div>
+</div>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/js/reveal.min.js"></script>
+
+  <script>
+    window.revealPlugins = { dependencies: [
+      
+      { src: 'https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/reveal.js\/3.8.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/reveal.js\/3.8.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      
+      { src: 'https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/reveal.js\/3.8.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      
+      { src: 'https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/reveal.js\/3.8.0/plugin/zoom-js/zoom.js', async: true },
+      
+      { src: 'https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/reveal.js\/3.8.0/plugin/math/math.js', async: true },
+      
+      { src: 'https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/reveal.js\/3.8.0/plugin/print-pdf/print-pdf.js', async: true },
+      
+      { src: '\/js\/vendor\/reveal.js\/plugin\/notes\/notes.js', async: true }
+    ]};
+
+    let revealDefaults = { center: true, controls: true, history: true, progress: true, transition: 'slide', mouseWheel: true };
+    let revealOptions = Object.assign({}, revealDefaults, revealPlugins);
+    Reveal.initialize(revealOptions);
+  </script>
+
+</body>
+</html>

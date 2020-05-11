@@ -5,12 +5,593 @@
     <link>/</link>
       <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <description>Algebra &amp; Fire</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 27 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 06 May 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_huff46a34809cf36f98ff565ff8b0a5f91_4201_512x512_fill_lanczos_center_2.png</url>
       <title>Algebra &amp; Fire</title>
       <link>/</link>
     </image>
+    
+    <item>
+      <title>Optimization Landscape Symmetry, Saddle Points and Beyond</title>
+      <link>/slides/stochastic-optimization-techniques/</link>
+      <pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate>
+      <guid>/slides/stochastic-optimization-techniques/</guid>
+      <description>&lt;h1 id=&#34;optimization&#34;&gt;Optimization&lt;/h1&gt;
+&lt;p&gt;Landscape Symmetry, Saddle Points and Beyond&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;non-convex-optimization&#34;&gt;Non-convex Optimization&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+Proabilistic Models, 
+&lt;/span&gt;&lt;span class=&#34;fragment &#34; &gt;
+Deep Neural Nets 
+&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+&lt;strong&gt;Theory&lt;/strong&gt;: 
+&lt;a href=&#34;https://en.wikipedia.org/wiki/NP-hardness&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NP-hard&lt;/a&gt;. Better avoid or use convex relaxation. 
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+&lt;strong&gt;Practice&lt;/strong&gt;: Easy! just run SGD. 
+&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;In practice, these algorithms converge to good solutions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;gradient-descent&#34;&gt;Gradient Descent&lt;/h2&gt;
+&lt;p&gt;$$
+x_{t+1} = x_t - \eta\nabla f(x_t)
+$$&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+Converges to stationary point ($\nabla f(x_t)=0$) 
+&lt;a href=&#34;http://rd.springer.com/book/10.1007%2F978-1-4419-8853-9&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Nesterov &amp;lsquo;98]&lt;/a&gt; 
+&lt;/span&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+or &amp;ldquo;local minimum&amp;rdquo; 
+&lt;a href=&#34;https://arxiv.org/abs/1503.02101&#34; title=&#34;Escaping From Saddle Points --- Online Stochastic Gradient for Tensor Decomposition&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Ge etal. &amp;lsquo;15]&lt;/a&gt; 
+&lt;/span&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;gd-cannot-escape-from-a-local-optimal-solution&#34;&gt;GD cannot escape from a local optimal solution&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;landscape&#34;&gt;Landscape&lt;/h2&gt;
+&lt;style&gt;
+.container{
+    display: flex;
+}
+.col{
+    flex: 1;
+}
+&lt;/style&gt;
+&lt;div class=&#34;container&#34;&gt;
+&lt;div class=&#34;col&#34;&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+&lt;p&gt;Convex Functions&lt;/p&gt;
+&lt;img height=&#34;200&#34; src=&#34;img/convex.png&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;Simple: 0 gradient → Global Minimum&lt;/li&gt;
+&lt;li&gt;Can be optimized efficiently&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class=&#34;col&#34;&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+&lt;p&gt;Non-Convex Functions&lt;/p&gt;
+&lt;img height=&#34;200&#34; src=&#34;img/non-convex.png&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;Complicated: local minima, saddle points&lt;/li&gt;
+&lt;li&gt;GD can only find a local minimum&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;what-special-properties-make-a-non-convex-function-easy&#34;&gt;What special properties make a non-convex function easy?&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+Why are the objectives always non-convex? 
+&lt;/span&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;symmetry--non-convexity&#34;&gt;Symmetry → Non-Convexity&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+Problem asks for multiple components, but teh components have &lt;span style=&#34;color:green;&#34;&gt;no ordering&lt;/span&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;img height=&#34;600&#34; src=&#34;img/clustering.png&#34;&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;The neurons in a layer of neural network can be permuted and still compute the same function.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;div class=&#34;container&#34;&gt;
+&lt;div class=&#34;col&#34;&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+  &lt;figure&gt;
+  &lt;img src=&#34;img/solution-1.png&#34; alt=&#34;Solution 1&#34; height=&#34;150&#34;&gt;
+  &lt;figcaption&gt;Solution (a)&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class=&#34;col&#34;&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+  &lt;figure&gt;
+  &lt;img src=&#34;img/solution-2.png&#34; alt=&#34;Solution 2&#34; height=&#34;150&#34;&gt;
+  &lt;figcaption&gt;Solution (b)&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+  &lt;figure&gt;
+  &lt;img src=&#34;img/solution-3.png&#34; alt=&#34;Solution 3&#34; height=&#34;200&#34;&gt;
+  &lt;figcaption&gt;Convex Combination (a+b)/2&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;if the objective is convex, then the third solution is also convex&lt;/li&gt;
+&lt;li&gt;10 min mark&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;optimization-algorithms-need-to-span-stylecolorredbreak-the-symmetryspan-and-converge-to-one-of-the-equivalent-local-minima&#34;&gt;Optimization algorithms need to &lt;span style=&#34;color:red&#34;&gt;break the symmetry&lt;/span&gt; and converge to one of the (equivalent) local minima.&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;saddle-points&#34;&gt;Saddle Points&lt;/h2&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://shorturl.at/qtvwP&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;$$z = x^2 - y^2 + y^4 + 0.1\cdot y$$&lt;/a&gt;&lt;/p&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Global minimum&lt;/li&gt;
+&lt;li&gt;Local minimum&lt;/li&gt;
+&lt;li&gt;Saddle points&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;symmetry--non-convexity-1&#34;&gt;Symmetry → Non-Convexity&lt;/h2&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://shorturl.at/deoG7&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;$$f(x) = -\|x\|^2 + \|x\|_4^4$$&lt;/a&gt;&lt;/p&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;This construction is used in independent component analysis&lt;/li&gt;
+&lt;li&gt;Four local/global minima (symmetric)&lt;/li&gt;
+&lt;li&gt;Connection two adjacent local minima&lt;/li&gt;
+&lt;li&gt;Can we add constraints to break the symmetry?&lt;/li&gt;
+&lt;li&gt;Rotate and restrict in the first quadrant.&lt;/li&gt;
+&lt;li&gt;This will add new local minima.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;locally-optimizable-functions&#34;&gt;Locally Optimizable Functions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Local min are symmetric versions of global min
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+No high order saddle points
+&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;high order saddle points have zero grads and p.s.d. hessian&lt;/li&gt;
+&lt;li&gt;SGD garanteed to find the global minima&lt;/li&gt;
+&lt;li&gt;first condition seems to be very strong&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;SVD/PCA&lt;/li&gt;
+&lt;li&gt;Generalized Linear Model [KKKS&amp;rsquo;11] [HLS&amp;rsquo;14]&lt;/li&gt;
+&lt;li&gt;Synchronization [BVS&amp;rsquo;16]&lt;/li&gt;
+&lt;li&gt;Dictionary Learning [SQW&amp;rsquo;17]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;Matrix Completion [
+&lt;a href=&#34;https://arxiv.org/abs/1605.07272&#34; title=&#34;Matrix Completion has No Spurious Local Minimum&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GLM16&lt;/a&gt;] [
+&lt;a href=&#34;https://arxiv.org/abs/1704.00708&#34; title=&#34;No Spurious Local Minima in Nonconvex Low Rank Problems: A Unified Geometric Analysis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GJZ17&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Matrix Sensing [BNS&amp;rsquo;16] [PKCS&amp;rsquo;16]&lt;/li&gt;
+&lt;li&gt;MAX-CUT [MMMO&amp;rsquo;17]&lt;/li&gt;
+&lt;li&gt;Tensor Decomposition [GHJY&amp;rsquo;15] [GM&amp;rsquo;16]&lt;/li&gt;
+&lt;li&gt;2-Layer Neural Net [
+&lt;a href=&#34;https://arxiv.org/abs/1711.00501&#34; title=&#34;Learning One-hidden-layer Neural Networks with Landscape Design&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GLM17&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Matrix completion as a simple example&lt;/li&gt;
+&lt;li&gt;Landscape of neural networks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;matrix-completion&#34;&gt;Matrix Completion&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Low rank matrix $M$
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Observations: entries of $M$
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Goal: recover remaining entries
+&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img src=&#34;img/matrix-completion.png&#34; alt=&#34;Incomplete matrix&#34; height=&#34;300&#34;&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;typical application: recommendation system [RennieSrebro05]&lt;/li&gt;
+&lt;li&gt;assume matrix is a product of two $n\times r$ matrix&lt;/li&gt;
+&lt;li&gt;Hope to recover using $\tilde O(nr)$ observations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;non-convex-objective&#34;&gt;Non-Convex Objective&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Idea: Try to find the low rank factors directly $$M=U\cdot V^T$$
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Variables $X$, $Y$. Hope $X = U, Y = V, M = XY^T$
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Uniform observations $(i, j)\in\Omega$
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Minimize “loss” on observed entries $$\min f(X, Y) = \sum_{(i,j)\in\Omega}(M_{i, j} - (XY^T)_{i,j})^2$$
+&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;symmetry-and-solutions&#34;&gt;Symmetry and Solutions&lt;/h3&gt;
+&lt;p&gt;$$M=UV^T\qquad \min(f(X, Y):=\|M-XY^T\|^2_\Omega)$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Hope: $X=U, Y=V$
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Not true: many equivalent solutions: $$UV^T=URR^TV^T$$
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Saddle points: e.g. $X=Y=0$
+&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span style=&#34;color:blue&#34;&gt;Theorem&lt;/span&gt;: when the number of observations is at least $\tilde{\Omega}(nr^6)$, all local minima of $f(X, Y)^*$ are global minima: satisfy $XY^T=M$.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;[
+&lt;a href=&#34;https://arxiv.org/abs/1605.07272&#34; title=&#34;Matrix Completion has No Spurious Local Minimum&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GLM16&lt;/a&gt;]: symmetric case; [
+&lt;a href=&#34;https://arxiv.org/abs/1704.00708&#34; title=&#34;No Spurious Local Minima in Nonconvex Low Rank Problems: A Unified Geometric Analysis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GJZ17&lt;/a&gt;]: asymmetric case&lt;/p&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span style=&#34;color:blue&#34;&gt;Corollary&lt;/span&gt;: Simple SGD can solve matrix completion from an &lt;span style=&#34;color:blue&#34;&gt;arbitrary&lt;/span&gt; starting point.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Prior work:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;convex relaxation&lt;/li&gt;
+&lt;li&gt;non-convex optimization with carefully chosen starting point&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;convex relaxation: has tight $r$ $\Omega(nr poly(\log(d))$&lt;/li&gt;
+&lt;li&gt;non-convex: $nr^2$&lt;/li&gt;
+&lt;li&gt;27 min mark&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;p&gt;$X$ is a local minimum of $f(X)$ → $\nabla f(X)=0, \nabla^2f(X)\succcurlyeq 0$&lt;/p&gt;
+&lt;div class=&#34;container&#34;&gt;
+&lt;div class=&#34;col&#34;&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+  &lt;p&gt;$$\nabla f(X)\ne 0$$&lt;/p&gt;
+&lt;p&gt;Follow gradient reduces $f(X)$.&lt;/p&gt;
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class=&#34;col&#34;&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+  &lt;p&gt;$$\lambda(\nabla^2f(X))&amp;lt;0$$&lt;/p&gt;
+&lt;p&gt;Min eigendirection of Hessian reduces $f(X)$.&lt;/p&gt;
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;direction-of-improvment-exists&#34;&gt;Direction of Improvment Exists&lt;/h3&gt;
+&lt;p&gt;If $X$ is not global minimum&lt;/p&gt;
+&lt;p&gt;Exists $\Delta$, $\langle\nabla f(X), \Delta\rangle\ne 0$ or $\nabla^2f(X)[\Delta]&amp;lt;0$&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;matrix-factorization&#34;&gt;Matrix Factorization&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Every entry is observed, want to write $M=UV^T$&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Consider symmetric case: $M=UU^T$ $$g(X):=|M-XX^T|_F^2$$
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Goal: prove local minima satisfy $XX^T=M$.
+&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;$\nabla g(X)=0$&lt;span class=&#34;fragment &#34; &gt;
+→ $MX=XX^TX$
+&lt;/span&gt; &lt;span class=&#34;fragment &#34; &gt;
+→ If $\text{span}(X)=\text{span}(M)$, $M=XX^T$
+&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+$\nabla^2 g(X)\succcurlyeq0$
+&lt;/span&gt;&lt;span class=&#34;fragment &#34; &gt;
+→ $\text{span}(X)=\text{span}(M)$
+&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+Approach in [
+&lt;a href=&#34;https://arxiv.org/abs/1605.07272&#34; title=&#34;Matrix Completion has No Spurious Local Minimum&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GLM16&lt;/a&gt;]. Need more cases to generalize to Matrix Completion.
+&lt;/span&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Intuitively, want $X$ to go to the optimal solution $U$.
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Recall: many equivalent optimal solutions!
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Idea: find the “closest” among all optimal solutions $$\Delta = X-UR, \qquad R=\arg\min||X-UR||_F$$
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Nice property: $||\Delta\Delta^T||_F^2\le2||M-XX^T||_F^2$
+&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Alternative approach finding direction of improvement&lt;/li&gt;
+&lt;li&gt;If $\Delta$ is not zero, $X$ is not global optimal&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;main-lemma-gjz17&#34;&gt;Main Lemma [
+&lt;a href=&#34;https://arxiv.org/abs/1704.00708&#34; title=&#34;No Spurious Local Minima in Nonconvex Low Rank Problems: A Unified Geometric Analysis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GJZ17&lt;/a&gt;]&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span style=&#34;color:blue&#34;&gt;Lemma&lt;/span&gt;: If $\|\Delta\Delta^T\|_\Omega^2&amp;lt;3\|M-XX^T\|_\Omega^2$, then either $\langle\nabla f(X), \Delta\rangle\ne 0$ or $\nabla^2 f(X)[\Delta]&amp;lt;0$. ($\Delta$ is a direction of improvement.)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+$||\Delta\Delta^T||_F^2\le2||M-XX^T||_F^2$
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Immediate proof for matrix factorization
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+For completion, proof works as long as $||A||_\Omega\approx ||A||_F$ for $\Delta\Delta^T$ and $M-XX^T$
+&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;$\Delta\Delta^T$ and $M-XX^T$ are both low rank.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;restricted-isometry-propertyhttpsenwikipediaorgwikirestricted_isometry_property&#34;&gt;
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Restricted_isometry_property&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Restricted isometry property&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;characterizes matrices which are nearly orthonormal, at least when operating on sparse vectors.&lt;/p&gt;
+&lt;p&gt;Applies to asymmetric cases, matrix sensing and robust PCA.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;locally-optimizable-problems&#34;&gt;Locally optimizable problems&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Low rank matrix
+&lt;ul&gt;
+&lt;li&gt;SVD/PCA, Matrix Completion, Synchronization, Matrix Sensing, GLM, MAX-CUT&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Low rank tensor
+&lt;ul&gt;
+&lt;li&gt;Dictionary Learning, Tensor Decomposition, 2-Layer Neural Net&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;optimization-landscape-for-neural-network&#34;&gt;Optimization landscape for neural network&lt;/h2&gt;
+&lt;p&gt;$$
+g_W(x) = \sigma(W_p\sigma(W_{p-1}\sigma(\cdots \sigma(W_1x)\cdots)))
+$$&lt;/p&gt;
+&lt;p&gt;$$
+f(W) = \mathbb E[\|y - g_W(x)\|^2]
+$$&lt;/p&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Fully connected with ReLU&lt;/li&gt;
+&lt;li&gt;40 min mark&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;teacherstudent-setting&#34;&gt;Teacher/Student Setting&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Goal: Prove sth about optimization&lt;/li&gt;
+&lt;li&gt;Assume there is already a good network ($W^*$) and enough samples&lt;/li&gt;
+&lt;li&gt;Good solution: student mimic teacher&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Make sure that the hypothesis class can recover the solution&lt;/li&gt;
+&lt;li&gt;Focus on optimization&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;linear-networks&#34;&gt;Linear Networks&lt;/h3&gt;
+&lt;p&gt;$$
+g_W(x) = W_pW_{p-1}\cdots W_1x
+$$&lt;/p&gt;
+&lt;p&gt;[
+&lt;a href=&#34;https://arxiv.org/abs/1605.07110&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Kawaguchi 16&lt;/a&gt;], [
+&lt;a href=&#34;https://arxiv.org/abs/1707.02444&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;YSJ18&lt;/a&gt;]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+All local minima of linear neural network (with squared loss) are global*
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+With 2 layers, no higher order saddle points.
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+With 3 or more layers, has higher order saddles.
+&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;For a critical point, if product of all layers has rank $r$, then it is a local and global minima (if r = min(m, n)) it can also be a normal saddle point (if r &amp;lt; min(m, n)).&lt;/li&gt;
+&lt;li&gt;Open problem: does local search actually find a global minimum?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Algorithm can be trapped in higher order saddles&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;two-layer-neural-network&#34;&gt;Two-Layer Neural Network&lt;/h3&gt;
+&lt;p&gt;$$
+g(x) = a^T\sigma(Bx)
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Wlog: rows of $B$ ($b_i$) are unit norm.
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Data: $x\sim N(0, I)$
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Some more technical assumptions on $a^&lt;em&gt;$, $B^&lt;/em&gt;$
+&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;$B^*$ is full-rank&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;bad-local-minima&#34;&gt;Bad local minima&lt;/h3&gt;
+&lt;p&gt;&lt;span style=&#34;color:blue&#34;&gt;Claim: &lt;/span&gt;The objective function $f(a, B)$ has local minima that are not equivalent to the ground truth.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Observed in [
+&lt;a href=&#34;https://arxiv.org/abs/1711.00501&#34; title=&#34;Learning One-hidden-layer Neural Networks with Landscape Design&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GLM17&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;formmaly verified in [
+&lt;a href=&#34;https://arxiv.org/abs/1712.08968&#34; title=&#34;Spurious Local Minima are Common in Two-Layer ReLU Neural Networks&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Safran&amp;amp;Shamir17&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Over-parametrization appears to drastically reduce such local minima&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;landscape-design&#34;&gt;Landscape Design&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Idea: Design a new objective with no bad local min.&lt;/li&gt;
+&lt;li&gt;Implicit in many previous techniques
+&lt;ul&gt;
+&lt;li&gt;Regularization&lt;/li&gt;
+&lt;li&gt;Methods-of-moments instead of MLE&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;provable-new-objective&#34;&gt;Provable New Objective&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span style=&#34;color:blue&#34;&gt;Theorem&lt;/span&gt;[
+&lt;a href=&#34;https://arxiv.org/abs/1711.00501&#34; title=&#34;Learning One-hidden-layer Neural Networks with Landscape Design&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GLM17&lt;/a&gt;]: Can construct an objective for two-layer neural network such that all local minima are global&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Objective inspired by tensor decomposition
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Relies on Gaussian distribution
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Extended to symmetric input distribution* by [
+&lt;a href=&#34;https://arxiv.org/abs/1810.06793&#34; title=&#34;Learning Two-layer Neural Networks with Symmetric Inputs&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GKLW18&lt;/a&gt;]
+&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;spin-glass-model&#34;&gt;Spin Glass Model&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span style=&#34;color:blue&#34;&gt;Claim&lt;/span&gt;[
+&lt;a href=&#34;https://arxiv.org/abs/1412.0233&#34; title=&#34;The Loss Surfaces of Multilayer Networks&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CHMBL15&lt;/a&gt;]: all the local minima of a neural network have approximate equal function value&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;img src=&#34;img/spin-glass.png&#34; alt=&#34;Solution 3&#34; height=&#34;200&#34;&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;kac-rice-formula&#34;&gt;Kac-Rice Formula&lt;/h3&gt;
+&lt;p&gt;$$
+\int_x\mathbb E[|\det(\nabla^2 f)|\cdot \mathbf 1(\nabla^2 f\preceq0)\mathbf 1(x\in Z)|\nabla f(x)=0]p_{\nabla f(x)}
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Proof idea: Count number of local min directly
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Evaluate the formula using random matrix theory
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Formal for spin-glass model (random polynormials), informal connection with NNs.
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Formal results for overcomplete tensor and tensor PCA
+&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Kac-Rice formula can be used to compute #local minima in any region&lt;/li&gt;
+&lt;li&gt;In some cases, Hess and grad will be nice random matrices&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;dynamicstrajectory&#34;&gt;Dynamics/Trajectory&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Main idea: instead of analyzing the global landscape, analyze the path from a random initialization.
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+Observation: path can be very short
+&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;Empirical Risk/Training Error
+&lt;ul&gt;
+&lt;li&gt;[Du, Zhai, Poczos, Singh] Two-layer&lt;/li&gt;
+&lt;li&gt;[Allen-Zhu, Li, Song] [Du, Lee, Li, Wang, Zhai] [Zou, Cao, Zhu, Gu] Multi-layer/ResNet&lt;/li&gt;
+&lt;li&gt;[Allen-Zhu, Li, Song] Recurrent Neural Network&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Population Risk/Test Error
+&lt;ul&gt;
+&lt;li&gt;[Li Linag] Special multiclass classification&lt;/li&gt;
+&lt;li&gt;[Allen-Zhu, Li, Liang] 2 or 3 layer neural network. &amp;ldquo;Kernel-like&amp;rdquo; setting, special activation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Suppose your model is over-parametrized, it can overfit to your data&lt;/li&gt;
+&lt;li&gt;Considering generalization is harder.&lt;/li&gt;
+&lt;li&gt;Kernel-like means the neural net is approximable using low-degree polynomials&lt;/li&gt;
+&lt;li&gt;and requires special activation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;beyond-optimizationhttpwwwoffconvexorg20190603trajectories&#34;&gt;
+&lt;a href=&#34;http://www.offconvex.org/2019/06/03/trajectories/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Beyond Optimization&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Accelerated methods are faster but leads to slightly worse generalization.&lt;/p&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;GD has an innate bias towards finding solutions with good generalization
+&lt;ul&gt;
+&lt;li&gt;Methods to speed up gradient descent (e.g., acceleration or adaptive regularization) can sometimes lead to worse generalization.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;We need to develop a new vocabulary (and mathematics) to reason about trajectories. This goes beyond the usual “landscape view” of stationary points, gradient norms, Hessian norms, smoothness etc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;neural-tangent-kernelshttpwwwoffconvexorg20191003ntk&#34;&gt;
+&lt;a href=&#34;http://www.offconvex.org/2019/10/03/NTK/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Neural Tangent Kernels&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To the functional space&lt;/p&gt;
+&lt;/span&gt;</description>
+    </item>
     
     <item>
       <title>The EM Algorithm</title>
@@ -37,20 +618,34 @@ close to Lloyd&amp;rsquo;s algorithm for k-means clustering
 &lt;hr&gt;
 &lt;h2 id=&#34;notation&#34;&gt;Notation&lt;/h2&gt;
 &lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
-distribution with parameter $\mathbf \theta$: $f(\cdot|\mathbf \theta)$ or $f_{\mathbf\theta}$ 
+&lt;em&gt;distribution&lt;/em&gt; with parameter $\boldsymbol \theta$: $f(\cdot|\boldsymbol \theta)$ or $f_{\boldsymbol\theta}$ 
 &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
-a sample drawn from this distribution: $X\sim f(\cdot|\theta)$ or $X\sim f_\theta$ 
+&lt;em&gt;parametric family&lt;/em&gt;: $\mathcal F=\{f_\theta:\boldsymbol{\theta}\in\Theta\}$ 
 &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+&lt;em&gt;random variable&lt;/em&gt; : $X\sim f(\cdot|\boldsymbol\theta)$ or $X\sim f_{\boldsymbol\theta}$ 
+&lt;/span&gt;&lt;/p&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;The random variable is usually a joint of input and label&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;probabilistic-machine-learning&#34;&gt;Probabilistic Machine Learning&lt;/h2&gt;
-&lt;p&gt;Describe the distribution of i.i.d. samples $\mathbf x_1, \mathbf x_2, \dots, \mathbf x_n$.&lt;/p&gt;
+&lt;p&gt;We observe i.i.d. samples $\mathbf x_1, \mathbf x_2, \dots, \mathbf x_n\sim\mathbb P$.&lt;/p&gt;
+&lt;p&gt;Assume $\mathbb P$ belongs to $\mathcal F$ and estimate the opptimal $\theta^*$.&lt;/p&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;$\mathbb P$ is a data-generating distribution we don&amp;rsquo;t see&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;likelihood&#34;&gt;Likelihood&lt;/h3&gt;
 &lt;p&gt;$$
 \begin{aligned}
-\mathcal L(\mathbf \theta;\mathbf x_1, \mathbf x_2, \dots, \mathbf x_n) &amp;amp; := f(\mathbf x_1, \mathbf x_2, \dots, \mathbf x_n|\mathbf \theta)\\&lt;br&gt;
-&amp;amp; = \prod_{i=1}^n f(\mathbf x_i\vert\mathbf \theta)
+\mathcal L(\mathbf \theta;\mathbf x_1, \mathbf x_2, \dots, \mathbf x_n) &amp;amp; := f(\mathbf x_1, \mathbf x_2, \dots, \mathbf x_n|\boldsymbol \theta)\\&lt;br&gt;
+&amp;amp; = \prod_{i=1}^n f(\mathbf x_i\vert\boldsymbol \theta)
 \end{aligned}
 $$&lt;/p&gt;
 &lt;hr&gt;
@@ -64,82 +659,186 @@ $$&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/aside&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;least-squares-regression&#34;&gt;Least Squares Regression&lt;/h3&gt;
+&lt;h2 id=&#34;latent-variable&#34;&gt;Latent Variable&lt;/h2&gt;
+&lt;p&gt;some hidden variable $Z$ that affect the observation $Y$&lt;/p&gt;
+&lt;p&gt;$(Y,Z)\sim f_{\theta^*} = f(\cdot, \cdot|\mathbf \theta^*)$&lt;/p&gt;
 &lt;aside class=&#34;notes&#34;&gt;
   &lt;ul&gt;
-&lt;li&gt;Reformulate it in a probabilistic setting&lt;/li&gt;
+&lt;li&gt;Topics of an article&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/aside&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;mechanistic-vs-non-mechanistic-models&#34;&gt;Mechanistic vs Non-Mechanistic Models&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Differential equations&lt;/strong&gt; describe mechanisms/structure and let the equations naturally evolve from this description
-&lt;ul&gt;
-&lt;li&gt;$🐇&amp;rsquo;(t) = \alpha 🐇(t)$ encodes &amp;ldquo;the rate at which the population is growing depends on the current number of rabbits&amp;rdquo;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Machine learning models&lt;/strong&gt; specify a learnable black box, where with the right parameters they can fit any nonlinear function.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;universal-approximation-theorem&#34;&gt;Universal Approximation Theorem&lt;/h3&gt;
-&lt;p&gt;Neural networks can get $\epsilon$ close to any $R^n\rightarrow R^m$ function&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Neural networks are just function expansions, fancy Taylor Series like things which are good for computing and bad for analysis&lt;/strong&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;neural-networks--nonlinear-function-approximation&#34;&gt;Neural Networks = Nonlinear Function Approximation&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Polynomial: $e^x = a_1 + a_2x + a_3x^2 + \cdots$&lt;/li&gt;
-&lt;li&gt;Nonlinear: $e^x = 1 + \frac{a_1\tanh(a_2)}{a_3x-\tanh(a_4x)}$&lt;/li&gt;
-&lt;li&gt;Neural Network: $e^x\approx W_3\sigma(W_2\sigma(W_1x+b_1) + b_2) + b_3$&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Others: Fourier/Chebyshev Series, Tensor product spaces, sparse grid, RBFs, etc.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;neural-networks-are-universal-approximators-which-work-well-in-high-dimensions&#34;&gt;Neural Networks are universal approximators which work well in high dimensions&lt;/h3&gt;
-&lt;p&gt;Neural networks overcome &amp;ldquo;the curse of dimensionality&amp;rdquo;&lt;/p&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;universal-differential-equations&#34;&gt;Universal Differential Equations&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Replace the user-defined structure with a neural network, and learn the nonlinear function for the structure&lt;/li&gt;
-&lt;li&gt;Neural ordinary differential equation: $u&amp;rsquo; = f(u, p, t)$. Let $f$ be a neural network.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;fragments&#34;&gt;Fragments&lt;/h2&gt;
-&lt;p&gt;Make content appear incrementally&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;{{% fragment %}} One {{% /fragment %}}
-{{% fragment %}} **Two** {{% /fragment %}}
-{{% fragment %}} Three {{% /fragment %}}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Press &lt;code&gt;Space&lt;/code&gt; to play!&lt;/p&gt;
+&lt;h3 id=&#34;marginalized-likelihood&#34;&gt;Marginalized likelihood&lt;/h3&gt;
+&lt;p&gt;$\mathcal L(\theta; y) = \prod_{i=1}^n\sum_{z_i\in\mathcal Z} f(y_i, z_i|\theta)$&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
-One 
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; &gt;
-&lt;strong&gt;Two&lt;/strong&gt; 
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; &gt;
-Three 
+Summing $z$ is usually intractable. 
 &lt;/span&gt;&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;A fragment can accept two optional parameters:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;class&lt;/code&gt;: use a custom style (requires definition in custom CSS)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;weight&lt;/code&gt;: sets the order in which a fragment appears&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;speaker-notes&#34;&gt;Speaker Notes&lt;/h2&gt;
-&lt;p&gt;Add speaker notes to your presentation&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{% speaker_note %}}
-- Only the speaker can read these notes
-- Press `S` key to view
-{{% /speaker_note %}}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Press the &lt;code&gt;S&lt;/code&gt; key to view the speaker notes!&lt;/p&gt;
+&lt;h3 id=&#34;am-lvm&#34;&gt;AM-LVM&lt;/h3&gt;
+&lt;p&gt;Alternatively estimate $\theta^t$ and $z^t$ at time step $t$&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+assign a $z^t_i$ to each $y_i$ 
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+$\theta^t$: MLE on $\mathcal L(\theta; \{(y_i, z^t_i)\}^n_{i=1}$ 
+&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
+$z^{t+1}$: MAP on $f(z|y_i, \theta^t)$ 
+&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+AM-LVM neglects all affects of $z&#39;$ that is not the most likely ones. 
+&lt;/span&gt;&lt;/p&gt;
 &lt;aside class=&#34;notes&#34;&gt;
   &lt;ul&gt;
-&lt;li&gt;Only the speaker can read these notes&lt;/li&gt;
-&lt;li&gt;Press &lt;code&gt;S&lt;/code&gt; key to view&lt;/li&gt;
+&lt;li&gt;Topics of an article&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/aside&gt;
 &lt;hr&gt;
+&lt;h2 id=&#34;em-algorithm&#34;&gt;EM Algorithm&lt;/h2&gt;
+&lt;p&gt;&amp;ldquo;assigns&amp;rdquo; $y_i$ to a value $z$ with weight $f(z|y_i, \theta^t)$&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;sampling-z&#34;&gt;Sampling $z$&lt;/h3&gt;
+&lt;p&gt;$$
+\log\mathcal L(\theta;y) = \log\sum_zf(y, z|\theta)
+$$&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+$$ =\log\sum_zf(z|y, \theta^0)\frac{f(y, z|\theta)}{f(z|y, \theta^0)} $$ 
+&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+$$ =\log\mathbb E_{z\sim f(\cdot|y, \theta^0)}\left[\frac{f(y, z|\theta)}{f(z|y, \theta^0)}\right] $$ 
+&lt;/span&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;q-function&#34;&gt;$Q$-function&lt;/h3&gt;
+&lt;p&gt;\begin{aligned}
+&amp;amp; \log\mathbb E_{z\sim f(\cdot|y, \theta^0)}\left[\frac{f(y, z|\theta)}{f(z|y, \theta^0)}\right] \\&lt;br&gt;
+\ge&amp;amp; \mathbb E_{z\sim f(\cdot|y, \theta^0)}\left[\log\frac{f(y, z|\theta)}{f(z|y, \theta^0)}\right] \qquad \text{(Jensen&amp;rsquo;s inequality)}\\&lt;br&gt;
+=&amp;amp; \mathbb E_{z\sim f(\cdot|y, \theta^0)}[\log f(y, z|\theta)] \qquad \qquad (Q_y(\theta|\theta^0))\\&lt;br&gt;
+&amp;amp;- \mathbb E_{z\sim f(\cdot|y, \theta^0)}[\log f(z|y, \theta^0)] \qquad (R_y(\theta^0))
+\end{aligned}&lt;/p&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;weighted point-wise likelihood&lt;/li&gt;
+&lt;li&gt;Variational distribution&lt;/li&gt;
+&lt;li&gt;equals iff $\theta^0 = \theta$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;choosing-theta-to-improve-q&#34;&gt;Choosing $\theta$ to improve $Q$&lt;/h3&gt;
+&lt;p&gt;$$
+\log\mathcal L(\theta^0;y) = Q_y(\theta^0|\theta^0) - R_y(\theta^0)
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\log\mathcal L(\theta;y) - \log\mathcal L(\theta^0;y) \ge Q_y(\theta|\theta^0) - Q_y(\theta^0|\theta^0)
+$$&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+causes $\log\mathcal L(\theta;y)$ to improve at least as much. 
+&lt;/span&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;pseudo-code&#34;&gt;Pseudo Code&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;theta &amp;lt;- INITIALIZE()
+for t = 1, 2, ... do
+  Q &amp;lt;- E(theta)  // E-step
+  theta &amp;lt;- M(theta, Q)  // M-step
+end for
+return theta
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;e-step-sampling-construction&#34;&gt;E-step: sampling construction&lt;/h3&gt;
+&lt;p&gt;$$
+Q_t(\theta|\theta^t) = \frac1n \sum_{i=1}^n\sum_{z\in\mathcal Z} f(z|y, \theta^t)\cdot \log f(y_i, z|\theta)
+$$&lt;/p&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;this expression has $n\cdot |\mathcal Z|$ terms instead of $|\mathcal Z|^n$ terms.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;m-step-gradient-descent&#34;&gt;M-step: gradient descent&lt;/h3&gt;
+&lt;p&gt;$$
+M(\theta, Q_{Y_t}) = \theta^t + \alpha_t\cdot\nabla Q_{Y_t}(\theta^t|\theta^t)
+$$&lt;/p&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;this expression has $n\cdot |\mathcal Z|$ terms instead of $|\mathcal Z|^n$ terms.&lt;/li&gt;
+&lt;li&gt;if M-step improves $Q$, then EM iteration improves likelihood&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;motivating-applications&#34;&gt;Motivating Applications&lt;/h2&gt;
+&lt;p&gt;Gaussian Mixture Models:&lt;/p&gt;
+&lt;p&gt;$$
+f(\cdot|{\boldsymbol {\theta }})=\sum _{i=1}^{K}\phi _{i}{\mathcal {N}}({\boldsymbol {\mu _{i},\Sigma _{i}}})
+$$&lt;/p&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  EM is of particular appeal for finite normal mixtures where closed-form expressions are possible such as in the following iterative algorithm by Dempster et al. (1977)
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;plate-notation&#34;&gt;Plate notation&lt;/h3&gt;
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-non-bayesian-gaussian-mixture-model&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;/slides/the-em-algorithm/img/gaussian_mixture_hufdcb3d7e176a515abb9c2f1e6f0a0e69_16873_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Non-Bayesian Gaussian mixture model&#34;&gt;
+
+
+  &lt;img data-src=&#34;/slides/the-em-algorithm/img/gaussian_mixture_hufdcb3d7e176a515abb9c2f1e6f0a0e69_16873_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;580&#34; height=&#34;480&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Non-Bayesian Gaussian mixture model
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Smaller squares indicate fixed parameters;&lt;/li&gt;
+&lt;li&gt;larger circles indicate random variables.&lt;/li&gt;
+&lt;li&gt;Filled-in shapes indicate known values.&lt;/li&gt;
+&lt;li&gt;The indication [K] means a vector of size K.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;e-step&#34;&gt;E-step&lt;/h3&gt;
+&lt;p&gt;$$
+h_{s}^{(j)}(t)={\frac {w_{s}^{(j)}p_{s}(x^{(t)};\mu _{s}^{(j)},\Sigma _{s}^{(j)})}{\sum _{i=1}^{n}w_{i}^{(j)}p_{i}(x^{(t)};\mu _{i}^{(j)},\Sigma _{i}^{(j)})}}.
+$$&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;m-step&#34;&gt;M-step&lt;/h3&gt;
+&lt;p&gt;$$
+w_{s}^{(j+1)}={\frac {1}{N}}\sum _{t=1}^{N}h_{s}^{(j)}(t)
+$$
+$$
+{\displaystyle \mu _{s}^{(j+1)}={\frac {\sum _{t=1}^{N}h_{s}^{(j)}(t)x^{(t)}}{\sum _{t=1}^{N}h_{s}^{(j)}(t)}}}
+$$
+$$
+{\displaystyle \Sigma _{s}^{(j+1)}={\frac {\sum _{t=1}^{N}h_{s}^{(j)}(t)[x^{(t)}-\mu _{s}^{(j+1)}][x^{(t)}-\mu _{s}^{(j+1)}]^{\top }}{\sum _{t=1}^{N}h_{s}^{(j)}(t)}}}
+$$&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;heading&#34;&gt;&lt;/h2&gt;
 &lt;h2 id=&#34;themes&#34;&gt;Themes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;black: Black background, white text, blue links (default)&lt;/li&gt;

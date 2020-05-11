@@ -17,7 +17,7 @@
 
   <title>The EM Algorithm | Algebra &amp; Fire</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/reveal.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/theme/serif.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/reveal.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/theme/white.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin="anonymous">
 
   
   
@@ -95,11 +95,19 @@ close to Lloyd&rsquo;s algorithm for k-means clustering
       
 <h2 id="notation">Notation</h2>
 <p><span class="fragment " >
-distribution with parameter $\mathbf \theta$: $f(\cdot|\mathbf \theta)$ or $f_{\mathbf\theta}$ 
+<em>distribution</em> with parameter $\boldsymbol \theta$: $f(\cdot|\boldsymbol \theta)$ or $f_{\boldsymbol\theta}$ 
 </span></p>
 <p><span class="fragment " >
-a sample drawn from this distribution: $X\sim f(\cdot|\theta)$ or $X\sim f_\theta$ 
+<em>parametric family</em>: $\mathcal F=\{f_\theta:\boldsymbol{\theta}\in\Theta\}$ 
 </span></p>
+<p><span class="fragment " >
+<em>random variable</em> : $X\sim f(\cdot|\boldsymbol\theta)$ or $X\sim f_{\boldsymbol\theta}$ 
+</span></p>
+<aside class="notes">
+  <ul>
+<li>The random variable is usually a joint of input and label</li>
+</ul>
+</aside>
 
     </section>
     
@@ -111,7 +119,13 @@ a sample drawn from this distribution: $X\sim f(\cdot|\theta)$ or $X\sim f_\thet
     
       
 <h2 id="probabilistic-machine-learning">Probabilistic Machine Learning</h2>
-<p>Describe the distribution of i.i.d. samples $\mathbf x_1, \mathbf x_2, \dots, \mathbf x_n$.</p>
+<p>We observe i.i.d. samples $\mathbf x_1, \mathbf x_2, \dots, \mathbf x_n\sim\mathbb P$.</p>
+<p>Assume $\mathbb P$ belongs to $\mathcal F$ and estimate the opptimal $\theta^*$.</p>
+<aside class="notes">
+  <ul>
+<li>$\mathbb P$ is a data-generating distribution we don&rsquo;t see</li>
+</ul>
+</aside>
 
     </section>
     
@@ -125,8 +139,8 @@ a sample drawn from this distribution: $X\sim f(\cdot|\theta)$ or $X\sim f_\thet
 <h3 id="likelihood">Likelihood</h3>
 <p>$$
 \begin{aligned}
-\mathcal L(\mathbf \theta;\mathbf x_1, \mathbf x_2, \dots, \mathbf x_n) &amp; := f(\mathbf x_1, \mathbf x_2, \dots, \mathbf x_n|\mathbf \theta)\\<br>
-&amp; = \prod_{i=1}^n f(\mathbf x_i\vert\mathbf \theta)
+\mathcal L(\mathbf \theta;\mathbf x_1, \mathbf x_2, \dots, \mathbf x_n) &amp; := f(\mathbf x_1, \mathbf x_2, \dots, \mathbf x_n|\boldsymbol \theta)\\<br>
+&amp; = \prod_{i=1}^n f(\mathbf x_i\vert\boldsymbol \theta)
 \end{aligned}
 $$</p>
 
@@ -158,10 +172,12 @@ $$</p>
     <section>
     
       
-<h3 id="least-squares-regression">Least Squares Regression</h3>
+<h2 id="latent-variable">Latent Variable</h2>
+<p>some hidden variable $Z$ that affect the observation $Y$</p>
+<p>$(Y,Z)\sim f_{\theta^*} = f(\cdot, \cdot|\mathbf \theta^*)$</p>
 <aside class="notes">
   <ul>
-<li>Reformulate it in a probabilistic setting</li>
+<li>Topics of an article</li>
 </ul>
 </aside>
 
@@ -174,97 +190,10 @@ $$</p>
     <section>
     
       
-<h3 id="mechanistic-vs-non-mechanistic-models">Mechanistic vs Non-Mechanistic Models</h3>
-<ul>
-<li><strong>Differential equations</strong> describe mechanisms/structure and let the equations naturally evolve from this description
-<ul>
-<li>$🐇&rsquo;(t) = \alpha 🐇(t)$ encodes &ldquo;the rate at which the population is growing depends on the current number of rabbits&rdquo;.</li>
-</ul>
-</li>
-<li><strong>Machine learning models</strong> specify a learnable black box, where with the right parameters they can fit any nonlinear function.</li>
-</ul>
-
-    </section>
-    
-
-    
-    
-    
-    <section>
-    
-      
-<h3 id="universal-approximation-theorem">Universal Approximation Theorem</h3>
-<p>Neural networks can get $\epsilon$ close to any $R^n\rightarrow R^m$ function</p>
-<p><strong>Neural networks are just function expansions, fancy Taylor Series like things which are good for computing and bad for analysis</strong></p>
-
-    </section>
-    
-
-    
-    
-    
-    <section>
-    
-      
-<h3 id="neural-networks--nonlinear-function-approximation">Neural Networks = Nonlinear Function Approximation</h3>
-<ul>
-<li>Polynomial: $e^x = a_1 + a_2x + a_3x^2 + \cdots$</li>
-<li>Nonlinear: $e^x = 1 + \frac{a_1\tanh(a_2)}{a_3x-\tanh(a_4x)}$</li>
-<li>Neural Network: $e^x\approx W_3\sigma(W_2\sigma(W_1x+b_1) + b_2) + b_3$</li>
-</ul>
-<p>Others: Fourier/Chebyshev Series, Tensor product spaces, sparse grid, RBFs, etc.</p>
-
-    </section>
-    
-
-    
-    
-    
-    <section>
-    
-      
-<h3 id="neural-networks-are-universal-approximators-which-work-well-in-high-dimensions">Neural Networks are universal approximators which work well in high dimensions</h3>
-<p>Neural networks overcome &ldquo;the curse of dimensionality&rdquo;</p>
-
-    </section>
-    
-
-    
-    
-    
-    <section>
-    
-      
-<h3 id="universal-differential-equations">Universal Differential Equations</h3>
-<ul>
-<li>Replace the user-defined structure with a neural network, and learn the nonlinear function for the structure</li>
-<li>Neural ordinary differential equation: $u&rsquo; = f(u, p, t)$. Let $f$ be a neural network.</li>
-</ul>
-
-    </section>
-    
-
-    
-    
-    
-    <section>
-    
-      
-<h2 id="fragments">Fragments</h2>
-<p>Make content appear incrementally</p>
-<pre><code>{{% fragment %}} One {{% /fragment %}}
-{{% fragment %}} **Two** {{% /fragment %}}
-{{% fragment %}} Three {{% /fragment %}}
-</code></pre>
-<p>Press <code>Space</code> to play!</p>
+<h3 id="marginalized-likelihood">Marginalized likelihood</h3>
+<p>$\mathcal L(\theta; y) = \prod_{i=1}^n\sum_{z_i\in\mathcal Z} f(y_i, z_i|\theta)$</p>
 <p><span class="fragment " >
-One 
-</span>
-<span class="fragment " >
-<strong>Two</strong> 
-</span>
-<span class="fragment " >
-Three 
+Summing $z$ is usually intractable. 
 </span></p>
 
     </section>
@@ -276,33 +205,25 @@ Three
     <section>
     
       
-<p>A fragment can accept two optional parameters:</p>
-<ul>
-<li><code>class</code>: use a custom style (requires definition in custom CSS)</li>
-<li><code>weight</code>: sets the order in which a fragment appears</li>
-</ul>
-
-    </section>
-    
-
-    
-    
-    
-    <section>
-    
-      
-<h2 id="speaker-notes">Speaker Notes</h2>
-<p>Add speaker notes to your presentation</p>
-<pre><code class="language-markdown">{{% speaker_note %}}
-- Only the speaker can read these notes
-- Press `S` key to view
-{{% /speaker_note %}}
-</code></pre>
-<p>Press the <code>S</code> key to view the speaker notes!</p>
+<h3 id="am-lvm">AM-LVM</h3>
+<p>Alternatively estimate $\theta^t$ and $z^t$ at time step $t$</p>
+<ol>
+<li><span class="fragment " >
+assign a $z^t_i$ to each $y_i$ 
+</span></li>
+<li><span class="fragment " >
+$\theta^t$: MLE on $\mathcal L(\theta; \{(y_i, z^t_i)\}^n_{i=1}$ 
+</span></li>
+<li><span class="fragment " >
+$z^{t+1}$: MAP on $f(z|y_i, \theta^t)$ 
+</span></li>
+</ol>
+<p><span class="fragment " >
+AM-LVM neglects all affects of $z'$ that is not the most likely ones. 
+</span></p>
 <aside class="notes">
   <ul>
-<li>Only the speaker can read these notes</li>
-<li>Press <code>S</code> key to view</li>
+<li>Topics of an article</li>
 </ul>
 </aside>
 
@@ -315,6 +236,248 @@ Three
     <section>
     
       
+<h2 id="em-algorithm">EM Algorithm</h2>
+<p>&ldquo;assigns&rdquo; $y_i$ to a value $z$ with weight $f(z|y_i, \theta^t)$</p>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="sampling-z">Sampling $z$</h3>
+<p>$$
+\log\mathcal L(\theta;y) = \log\sum_zf(y, z|\theta)
+$$</p>
+<p><span class="fragment " >
+$$ =\log\sum_zf(z|y, \theta^0)\frac{f(y, z|\theta)}{f(z|y, \theta^0)} $$ 
+</span></p>
+<p><span class="fragment " >
+$$ =\log\mathbb E_{z\sim f(\cdot|y, \theta^0)}\left[\frac{f(y, z|\theta)}{f(z|y, \theta^0)}\right] $$ 
+</span></p>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="q-function">$Q$-function</h3>
+<p>\begin{aligned}
+&amp; \log\mathbb E_{z\sim f(\cdot|y, \theta^0)}\left[\frac{f(y, z|\theta)}{f(z|y, \theta^0)}\right] \\<br>
+\ge&amp; \mathbb E_{z\sim f(\cdot|y, \theta^0)}\left[\log\frac{f(y, z|\theta)}{f(z|y, \theta^0)}\right] \qquad \text{(Jensen&rsquo;s inequality)}\\<br>
+=&amp; \mathbb E_{z\sim f(\cdot|y, \theta^0)}[\log f(y, z|\theta)] \qquad \qquad (Q_y(\theta|\theta^0))\\<br>
+&amp;- \mathbb E_{z\sim f(\cdot|y, \theta^0)}[\log f(z|y, \theta^0)] \qquad (R_y(\theta^0))
+\end{aligned}</p>
+<aside class="notes">
+  <ul>
+<li>weighted point-wise likelihood</li>
+<li>Variational distribution</li>
+<li>equals iff $\theta^0 = \theta$</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="choosing-theta-to-improve-q">Choosing $\theta$ to improve $Q$</h3>
+<p>$$
+\log\mathcal L(\theta^0;y) = Q_y(\theta^0|\theta^0) - R_y(\theta^0)
+$$</p>
+<p>$$
+\log\mathcal L(\theta;y) - \log\mathcal L(\theta^0;y) \ge Q_y(\theta|\theta^0) - Q_y(\theta^0|\theta^0)
+$$</p>
+<p><span class="fragment " >
+causes $\log\mathcal L(\theta;y)$ to improve at least as much. 
+</span></p>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="pseudo-code">Pseudo Code</h3>
+<pre><code>theta &lt;- INITIALIZE()
+for t = 1, 2, ... do
+  Q &lt;- E(theta)  // E-step
+  theta &lt;- M(theta, Q)  // M-step
+end for
+return theta
+</code></pre>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="e-step-sampling-construction">E-step: sampling construction</h3>
+<p>$$
+Q_t(\theta|\theta^t) = \frac1n \sum_{i=1}^n\sum_{z\in\mathcal Z} f(z|y, \theta^t)\cdot \log f(y_i, z|\theta)
+$$</p>
+<aside class="notes">
+  <ul>
+<li>this expression has $n\cdot |\mathcal Z|$ terms instead of $|\mathcal Z|^n$ terms.</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="m-step-gradient-descent">M-step: gradient descent</h3>
+<p>$$
+M(\theta, Q_{Y_t}) = \theta^t + \alpha_t\cdot\nabla Q_{Y_t}(\theta^t|\theta^t)
+$$</p>
+<aside class="notes">
+  <ul>
+<li>this expression has $n\cdot |\mathcal Z|$ terms instead of $|\mathcal Z|^n$ terms.</li>
+<li>if M-step improves $Q$, then EM iteration improves likelihood</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h2 id="motivating-applications">Motivating Applications</h2>
+<p>Gaussian Mixture Models:</p>
+<p>$$
+f(\cdot|{\boldsymbol {\theta }})=\sum _{i=1}^{K}\phi _{i}{\mathcal {N}}({\boldsymbol {\mu _{i},\Sigma _{i}}})
+$$</p>
+<aside class="notes">
+  EM is of particular appeal for finite normal mixtures where closed-form expressions are possible such as in the following iterative algorithm by Dempster et al. (1977)
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="plate-notation">Plate notation</h3>
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-non-bayesian-gaussian-mixture-model">
+
+
+  <a data-fancybox="" href="/slides/the-em-algorithm/img/gaussian_mixture_hufdcb3d7e176a515abb9c2f1e6f0a0e69_16873_2000x2000_fit_lanczos_2.png" data-caption="Non-Bayesian Gaussian mixture model">
+
+
+  <img data-src="/slides/the-em-algorithm/img/gaussian_mixture_hufdcb3d7e176a515abb9c2f1e6f0a0e69_16873_2000x2000_fit_lanczos_2.png" class="lazyload" alt="" width="580" height="480">
+</a>
+
+
+  
+  
+  <figcaption>
+    Non-Bayesian Gaussian mixture model
+  </figcaption>
+
+
+</figure>
+
+<aside class="notes">
+  <ul>
+<li>Smaller squares indicate fixed parameters;</li>
+<li>larger circles indicate random variables.</li>
+<li>Filled-in shapes indicate known values.</li>
+<li>The indication [K] means a vector of size K.</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="e-step">E-step</h3>
+<p>$$
+h_{s}^{(j)}(t)={\frac {w_{s}^{(j)}p_{s}(x^{(t)};\mu _{s}^{(j)},\Sigma _{s}^{(j)})}{\sum _{i=1}^{n}w_{i}^{(j)}p_{i}(x^{(t)};\mu _{i}^{(j)},\Sigma _{i}^{(j)})}}.
+$$</p>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="m-step">M-step</h3>
+<p>$$
+w_{s}^{(j+1)}={\frac {1}{N}}\sum _{t=1}^{N}h_{s}^{(j)}(t)
+$$
+$$
+{\displaystyle \mu _{s}^{(j+1)}={\frac {\sum _{t=1}^{N}h_{s}^{(j)}(t)x^{(t)}}{\sum _{t=1}^{N}h_{s}^{(j)}(t)}}}
+$$
+$$
+{\displaystyle \Sigma _{s}^{(j+1)}={\frac {\sum _{t=1}^{N}h_{s}^{(j)}(t)[x^{(t)}-\mu _{s}^{(j+1)}][x^{(t)}-\mu _{s}^{(j+1)}]^{\top }}{\sum _{t=1}^{N}h_{s}^{(j)}(t)}}}
+$$</p>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h2 id="heading"></h2>
 <h2 id="themes">Themes</h2>
 <ul>
 <li>black: Black background, white text, blue links (default)</li>
