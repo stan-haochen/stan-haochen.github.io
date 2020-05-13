@@ -71,23 +71,24 @@
       
 <h2 id="non-convex-optimization">Non-convex Optimization</h2>
 <p><span class="fragment " >
-Proabilistic Models, 
+Proabilistic Models,
 </span><span class="fragment " >
-Deep Neural Nets 
+Deep Neural Nets
 </span></p>
 <ul>
 <li><span class="fragment " >
 <strong>Theory</strong>: 
-<a href="https://en.wikipedia.org/wiki/NP-hardness" target="_blank" rel="noopener">NP-hard</a>. Better avoid or use convex relaxation. 
+<a href="https://en.wikipedia.org/wiki/NP-hardness" target="_blank" rel="noopener">NP-hard</a>. Better avoid or use convex relaxation.
 </span></li>
 <li><span class="fragment " >
-<strong>Practice</strong>: Easy! just run SGD. 
+<strong>Practice</strong>: Easy! just run SGD.
 </span></li>
 </ul>
 <aside class="notes">
   <ul>
 <li>In practice, these algorithms converge to good solutions.</li>
 </ul>
+
 </aside>
 
     </section>
@@ -105,11 +106,11 @@ x_{t+1} = x_t - \eta\nabla f(x_t)
 $$</p>
 <p><span class="fragment " >
 Converges to stationary point ($\nabla f(x_t)=0$) 
-<a href="http://rd.springer.com/book/10.1007%2F978-1-4419-8853-9" target="_blank" rel="noopener">[Nesterov &lsquo;98]</a> 
+<a href="http://rd.springer.com/book/10.1007%2F978-1-4419-8853-9" target="_blank" rel="noopener">[Nesterov &lsquo;98]</a>
 </span>
 <span class="fragment " >
 or &ldquo;local minimum&rdquo; 
-<a href="https://arxiv.org/abs/1503.02101" title="Escaping From Saddle Points --- Online Stochastic Gradient for Tensor Decomposition" target="_blank" rel="noopener">[Ge etal. &lsquo;15]</a> 
+<a href="https://arxiv.org/abs/1503.02101" title="Escaping From Saddle Points --- Online Stochastic Gradient for Tensor Decomposition" target="_blank" rel="noopener">[Ge etal. &lsquo;15]</a>
 </span></p>
 
     </section>
@@ -175,7 +176,7 @@ or &ldquo;local minimum&rdquo;
       
 <h2 id="what-special-properties-make-a-non-convex-function-easy">What special properties make a non-convex function easy?</h2>
 <p><span class="fragment " >
-Why are the objectives always non-convex? 
+Why are the objectives always non-convex?
 </span></p>
 
     </section>
@@ -340,9 +341,9 @@ No high order saddle points
       
 <ul>
 <li>SVD/PCA</li>
-<li>Generalized Linear Model [KKKS&rsquo;11] [HLS&rsquo;14]</li>
-<li>Synchronization [BVS&rsquo;16]</li>
-<li>Dictionary Learning [SQW&rsquo;17]</li>
+<li>Generalized Linear Model [KKKS'11] [HLS'14]</li>
+<li>Synchronization [BVS'16]</li>
+<li>Dictionary Learning [SQW'17]</li>
 </ul>
 
     </section>
@@ -358,9 +359,9 @@ No high order saddle points
 <li>Matrix Completion [
 <a href="https://arxiv.org/abs/1605.07272" title="Matrix Completion has No Spurious Local Minimum" target="_blank" rel="noopener">GLM16</a>] [
 <a href="https://arxiv.org/abs/1704.00708" title="No Spurious Local Minima in Nonconvex Low Rank Problems: A Unified Geometric Analysis" target="_blank" rel="noopener">GJZ17</a>]</li>
-<li>Matrix Sensing [BNS&rsquo;16] [PKCS&rsquo;16]</li>
-<li>MAX-CUT [MMMO&rsquo;17]</li>
-<li>Tensor Decomposition [GHJY&rsquo;15] [GM&rsquo;16]</li>
+<li>Matrix Sensing [BNS'16] [PKCS'16]</li>
+<li>MAX-CUT [MMMO'17]</li>
+<li>Tensor Decomposition [GHJY'15] [GM'16]</li>
 <li>2-Layer Neural Net [
 <a href="https://arxiv.org/abs/1711.00501" title="Learning One-hidden-layer Neural Networks with Landscape Design" target="_blank" rel="noopener">GLM17</a>]</li>
 </ul>

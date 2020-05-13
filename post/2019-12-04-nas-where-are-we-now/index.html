@@ -704,7 +704,7 @@ $$</p>
 <h2 id="nas-with-discrete-structure-learning">NAS with Discrete Structure Learning</h2>
 <p>Another solution to the two problems is to consider them as one and solve them in one shot. The idea is to consider the structure parameters $h$ as a part of the network and one-shot the search by performing a network optimization, usually with SGD.</p>
 <p>
-<a href="https://arxiv.org/abs/1806.09055" target="_blank" rel="noopener">DARTS</a> uses a continous relaxation $h\approx \sigma(\alpha)$ on the operations, 
+<a href="https://arxiv.org/abs/1806.09055" target="_blank" rel="noopener">DARTS</a> uses a continous relaxation $h\approx \sigma(\alpha)$ on the operations,
 $$
 \nabla_\alpha \mathbb E_{p_\alpha(h)}[f(h)]\approx\nabla_\alpha f(\sigma(\alpha))
 $$
