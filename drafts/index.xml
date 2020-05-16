@@ -7,7 +7,7 @@
     <description>Drafts</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 28 Feb 2020 17:31:22 +1030</lastBuildDate>
     <image>
-      <url>img/map[gravatar:%!s(bool=false) shape:circle]</url>
+      <url>/images/icon_huff46a34809cf36f98ff565ff8b0a5f91_4201_512x512_fill_lanczos_center_2.png</url>
       <title>Drafts</title>
       <link>/drafts/</link>
     </image>
@@ -92,6 +92,8 @@ $$&lt;/p&gt;
 &lt;a href=&#34;https://arxiv.org/abs/1902.02476&#34; title=&#34;A Simple Baseline for Bayesian Uncertainty in Deep Learning&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;SWA-Gaussian&lt;/a&gt; etc&lt;/p&gt;
 &lt;p&gt;Approximation and acceleration of ensembling has been studied.&lt;/p&gt;
 &lt;h3 id=&#34;deterministic-vi-approaches&#34;&gt;Deterministic VI Approaches&lt;/h3&gt;
+&lt;p&gt;SVI such as in 
+&lt;a href=&#34;https://arxiv.org/abs/1505.05424&#34; title=&#34;Weight Uncertainty in Neural Networks&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Blundell 2015]&lt;/a&gt; is difficult to get to work for large dataset such as ImageNet and complex models.&lt;/p&gt;
 &lt;p&gt;
 &lt;a href=&#34;https://arxiv.org/abs/1810.03958&#34; title=&#34;Deterministic Variational Inference for Robust Bayesian Neural Networks&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Wu et al. 2018]&lt;/a&gt; assume the pre-ReLU activations are Gaussian and deduce closed form posterior of the network output when the nonlinearity is Heaiside or ReLU. Even though sometimes we can only afford to compute the diagonal entries $\operatorname{Cov}(h_j, h_j)$. The empirical result is acceptable.&lt;/p&gt;
 &lt;h3 id=&#34;yes-but-did-it-work&#34;&gt;Yes, but Did It Work?&lt;/h3&gt;
@@ -102,9 +104,13 @@ $$&lt;/p&gt;
 &lt;a href=&#34;https://statmodeling.stat.columbia.edu/2020/02/13/how-good-is-the-bayes-posterior-for-prediction-really/&#34; title=&#34;How good is the Bayes posterior for prediction really?&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Yao]&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Also, it is hard to say whether functional diversity can be captured by sampling around one mode 
 &lt;a href=&#34;https://arxiv.org/abs/2002.08791&#34; title=&#34;Bayesian Deep Learning and a Probabilistic Perspective of Generalization&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Wilson 2020]&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Generally, I don&amp;rsquo;t consider these methods scalable enough for more challenging perception tasks on large scale dataset. The uncertainty consistency for these methods can be degraded for different datasets [[]].&lt;/p&gt;
 &lt;h2 id=&#34;aleatoric-uncertainty-for-panoptic-segmentation&#34;&gt;Aleatoric Uncertainty for Panoptic Segmentation&lt;/h2&gt;
 &lt;p&gt;We consider an object detection problem with a dataset&lt;/p&gt;
-&lt;p&gt;For real-time applications, we cannot afford expensive Monte Carlo estimations or covariance estimation. So I would prefer not to touch Bayesian Neural Network for object detection. Instead I will just cover a simple model for aleatoric uncertainty.&lt;/p&gt;
+&lt;p&gt;For real-time applications, we cannot afford expensive Monte Carlo estimations or covariance estimation.&lt;/p&gt;
+&lt;p&gt;The only thing we can afford for epistemic uncertainty is probably making only the last layer Bayesian (
+&lt;a href=&#34;https://openreview.net/forum?id=SyYe6k-CW&#34; title=&#34;An Empirical Comparison of Bayesian Deep Networks for Thompson Sampling&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Riquelme 2018]&lt;/a&gt;). So I would prefer not to touch Bayesian Neural Network for object detection.&lt;/p&gt;
+&lt;p&gt;Instead I will just cover a simple model for aleatoric uncertainty.&lt;/p&gt;
 &lt;p&gt;I choose to adopt heteroscedastic aleatoric uncertainty introduced in 
 &lt;a href=&#34;https://papers.nips.cc/paper/7141-what-uncertainties-do-we-need-in-bayesian-deep-learning-for-computer-vision.pdf&#34; title=&#34;What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Kendall 2017]&lt;/a&gt;. For a regression problem given input pair $\mathbf X$, $\mathbf Y$.&lt;/p&gt;
 </description>

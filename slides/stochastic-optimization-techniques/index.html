@@ -109,8 +109,7 @@ Converges to stationary point ($\nabla f(x_t)=0$)
 <a href="http://rd.springer.com/book/10.1007%2F978-1-4419-8853-9" target="_blank" rel="noopener">[Nesterov &lsquo;98]</a>
 </span>
 <span class="fragment " >
-or &ldquo;local minimum&rdquo; 
-<a href="https://arxiv.org/abs/1503.02101" title="Escaping From Saddle Points --- Online Stochastic Gradient for Tensor Decomposition" target="_blank" rel="noopener">[Ge etal. &lsquo;15]</a>
+or &ldquo;local minimum&rdquo; [[Ge etal. &lsquo;15]][GHJY15]
 </span></p>
 
     </section>
@@ -190,7 +189,7 @@ Why are the objectives always non-convex?
       
 <h3 id="symmetry--non-convexity">Symmetry → Non-Convexity</h3>
 <p><span class="fragment " >
-Problem asks for multiple components, but teh components have <span style="color:green;">no ordering</span>.</p>
+Problem asks for multiple components, but the components have <span style="color:green;">no ordering</span>.</p>
 
     </section>
     
@@ -272,7 +271,7 @@ Problem asks for multiple components, but teh components have <span style="color
       
 <h2 id="saddle-points">Saddle Points</h2>
 <p>
-<a href="https://shorturl.at/qtvwP" target="_blank" rel="noopener">$$z = x^2 - y^2 + y^4 + 0.1\cdot y$$</a></p>
+<a href="https://academo.org/demos/3d-surface-plotter/?expression=x*x-y*y%2By%5E4%2B0.1*y&amp;xRange=-1%2C%2B1&amp;yRange=-1%2C%2B1&amp;resolution=50" target="_blank" rel="noopener">$$z = x^2 - y^2 + y^4 + 0.1\cdot y$$</a></p>
 <aside class="notes">
   <ul>
 <li>Global minimum</li>
@@ -292,7 +291,7 @@ Problem asks for multiple components, but teh components have <span style="color
       
 <h2 id="symmetry--non-convexity-1">Symmetry → Non-Convexity</h2>
 <p>
-<a href="https://shorturl.at/deoG7" target="_blank" rel="noopener">$$f(x) = -\|x\|^2 + \|x\|_4^4$$</a></p>
+<a href="https://academo.org/demos/3d-surface-plotter/?expression=x%5E4%2By%5E4-x%5E2-y%5E2&amp;xRange=-1.5%2C%2B1.5&amp;yRange=-1.5%2C%2B1.5&amp;resolution=50" target="_blank" rel="noopener">$$f(x) = -\|x\|^2 + \|x\|_4^4$$</a></p>
 <aside class="notes">
   <ul>
 <li>This construction is used in independent component analysis</li>
@@ -356,14 +355,11 @@ No high order saddle points
     
       
 <ul>
-<li>Matrix Completion [
-<a href="https://arxiv.org/abs/1605.07272" title="Matrix Completion has No Spurious Local Minimum" target="_blank" rel="noopener">GLM16</a>] [
-<a href="https://arxiv.org/abs/1704.00708" title="No Spurious Local Minima in Nonconvex Low Rank Problems: A Unified Geometric Analysis" target="_blank" rel="noopener">GJZ17</a>]</li>
+<li>Matrix Completion [[GLM16]] [[GJZ17]]</li>
 <li>Matrix Sensing [BNS'16] [PKCS'16]</li>
 <li>MAX-CUT [MMMO'17]</li>
 <li>Tensor Decomposition [GHJY'15] [GM'16]</li>
-<li>2-Layer Neural Net [
-<a href="https://arxiv.org/abs/1711.00501" title="Learning One-hidden-layer Neural Networks with Landscape Design" target="_blank" rel="noopener">GLM17</a>]</li>
+<li>2-Layer Neural Net [[GLM17]]</li>
 </ul>
 <aside class="notes">
   <ul>
@@ -449,6 +445,10 @@ Not true: many equivalent solutions: $$UV^T=URR^TV^T$$
 Saddle points: e.g. $X=Y=0$
 </span></li>
 </ul>
+<aside class="notes">
+  <ul>
+<li>The objective behaves similar to a norm</li>
+</ul>
 
     </section>
     
@@ -462,9 +462,7 @@ Saddle points: e.g. $X=Y=0$
 <blockquote>
 <p><span style="color:blue">Theorem</span>: when the number of observations is at least $\tilde{\Omega}(nr^6)$, all local minima of $f(X, Y)^*$ are global minima: satisfy $XY^T=M$.</p>
 </blockquote>
-<p>[
-<a href="https://arxiv.org/abs/1605.07272" title="Matrix Completion has No Spurious Local Minimum" target="_blank" rel="noopener">GLM16</a>]: symmetric case; [
-<a href="https://arxiv.org/abs/1704.00708" title="No Spurious Local Minima in Nonconvex Low Rank Problems: A Unified Geometric Analysis" target="_blank" rel="noopener">GJZ17</a>]: asymmetric case</p>
+<p>[<a href="https://arxiv.org/abs/1605.07272" title="Matrix Completion has No Spurious Local Minimum">GLM16</a>]: symmetric case; [<a href="https://arxiv.org/abs/1704.00708" title="No Spurious Local Minima in Nonconvex Low Rank Problems: A Unified Geometric Analysis">GJZ17</a>]: asymmetric case</p>
 
     </section>
     
@@ -485,7 +483,7 @@ Saddle points: e.g. $X=Y=0$
 </ul>
 <aside class="notes">
   <ul>
-<li>convex relaxation: has tight $r$ $\Omega(nr poly(\log(d))$</li>
+<li>convex relaxation: has tight $r$ $\Omega(nr poly(\log(d))$ d is #observations</li>
 <li>non-convex: $nr^2$</li>
 <li>27 min mark</li>
 </ul>
@@ -569,9 +567,14 @@ $\nabla^2 g(X)\succcurlyeq0$
 → $\text{span}(X)=\text{span}(M)$
 </span></p>
 <p><span class="fragment " >
-Approach in [
-<a href="https://arxiv.org/abs/1605.07272" title="Matrix Completion has No Spurious Local Minimum" target="_blank" rel="noopener">GLM16</a>]. Need more cases to generalize to Matrix Completion.
+Approach in [<a href="https://arxiv.org/abs/1605.07272" title="Matrix Completion has No Spurious Local Minimum">GLM16</a>]. Need more cases to work for Matrix Completion.
 </span></p>
+<aside class="notes">
+  <ul>
+<li>$X$ is a full-rank matrix == span(X) = span(M) (span of column vectors)</li>
+<li>for the case X is not full rank, for example X=0, gradient = 0</li>
+</ul>
+</aside>
 
     </section>
     
@@ -612,8 +615,7 @@ Nice property: $||\Delta\Delta^T||_F^2\le2||M-XX^T||_F^2$
     <section>
     
       
-<h3 id="main-lemma-gjz17">Main Lemma [
-<a href="https://arxiv.org/abs/1704.00708" title="No Spurious Local Minima in Nonconvex Low Rank Problems: A Unified Geometric Analysis" target="_blank" rel="noopener">GJZ17</a>]</h3>
+<h3 id="main-lemma-gjz17">Main Lemma [<a href="https://arxiv.org/abs/1704.00708" title="No Spurious Local Minima in Nonconvex Low Rank Problems: A Unified Geometric Analysis">GJZ17</a>]</h3>
 <blockquote>
 <p><span style="color:blue">Lemma</span>: If $\|\Delta\Delta^T\|_\Omega^2&lt;3\|M-XX^T\|_\Omega^2$, then either $\langle\nabla f(X), \Delta\rangle\ne 0$ or $\nabla^2 f(X)[\Delta]&lt;0$. ($\Delta$ is a direction of improvement.)</p>
 </blockquote>
@@ -643,8 +645,7 @@ For completion, proof works as long as $||A||_\Omega\approx ||A||_F$ for $\Delta
     <section>
     
       
-<h3 id="restricted-isometry-propertyhttpsenwikipediaorgwikirestricted_isometry_property">
-<a href="https://en.wikipedia.org/wiki/Restricted_isometry_property" target="_blank" rel="noopener">Restricted isometry property</a></h3>
+<h3 id="restricted-isometry-propertyhttpsenwikipediaorgwikirestricted_isometry_property"><a href="https://en.wikipedia.org/wiki/Restricted_isometry_property">Restricted isometry property</a></h3>
 <p>characterizes matrices which are nearly orthonormal, at least when operating on sparse vectors.</p>
 <p>Applies to asymmetric cases, matrix sensing and robust PCA.</p>
 
@@ -729,9 +730,7 @@ $$</p>
 <p>$$
 g_W(x) = W_pW_{p-1}\cdots W_1x
 $$</p>
-<p>[
-<a href="https://arxiv.org/abs/1605.07110" target="_blank" rel="noopener">Kawaguchi 16</a>], [
-<a href="https://arxiv.org/abs/1707.02444" target="_blank" rel="noopener">YSJ18</a>]</p>
+<p>[<a href="https://arxiv.org/abs/1605.07110">Kawaguchi 16</a>], [<a href="https://arxiv.org/abs/1707.02444">YSJ18</a>]</p>
 <ul>
 <li><span class="fragment " >
 All local minima of linear neural network (with squared loss) are global*
@@ -743,6 +742,11 @@ With 2 layers, no higher order saddle points.
 With 3 or more layers, has higher order saddles.
 </span></li>
 </ul>
+<aside class="notes">
+  <ul>
+<li>All methods rely on different assumptions. Not comparable and not clear whether the assumptions are necessary</li>
+</ul>
+</aside>
 
     </section>
     
@@ -759,6 +763,7 @@ With 3 or more layers, has higher order saddles.
 </ul>
 <aside class="notes">
   <ul>
+<li>min(m, n) the maximum rank we can get</li>
 <li>Algorithm can be trapped in higher order saddles</li>
 </ul>
 </aside>
@@ -781,15 +786,15 @@ $$</p>
 Wlog: rows of $B$ ($b_i$) are unit norm.
 </span></li>
 <li><span class="fragment " >
-Data: $x\sim N(0, I)$
+Data: $x\sim N(0, I)$, $y$ from a teacher.
 </span></li>
 <li><span class="fragment " >
-Some more technical assumptions on $a^<em>$, $B^</em>$
+Some more technical assumptions on a*, B*
 </span></li>
 </ul>
 <aside class="notes">
   <ul>
-<li>$B^*$ is full-rank</li>
+<li>most importantly, $B^*$ is full-rank</li>
 </ul>
 </aside>
 
@@ -805,10 +810,8 @@ Some more technical assumptions on $a^<em>$, $B^</em>$
 <h3 id="bad-local-minima">Bad local minima</h3>
 <p><span style="color:blue">Claim: </span>The objective function $f(a, B)$ has local minima that are not equivalent to the ground truth.</p>
 <ul>
-<li>Observed in [
-<a href="https://arxiv.org/abs/1711.00501" title="Learning One-hidden-layer Neural Networks with Landscape Design" target="_blank" rel="noopener">GLM17</a>]</li>
-<li>formmaly verified in [
-<a href="https://arxiv.org/abs/1712.08968" title="Spurious Local Minima are Common in Two-Layer ReLU Neural Networks" target="_blank" rel="noopener">Safran&amp;Shamir17</a>]</li>
+<li>Observed in [<a href="https://arxiv.org/abs/1711.00501" title="Learning One-hidden-layer Neural Networks with Landscape Design">GLM17</a>]</li>
+<li>formmaly verified in [<a href="https://arxiv.org/abs/1712.08968" title="Spurious Local Minima are Common in Two-Layer ReLU Neural Networks">Safran&amp;Shamir17</a>]</li>
 </ul>
 <aside class="notes">
   <ul>
@@ -847,8 +850,7 @@ Some more technical assumptions on $a^<em>$, $B^</em>$
       
 <h3 id="provable-new-objective">Provable New Objective</h3>
 <blockquote>
-<p><span style="color:blue">Theorem</span>[
-<a href="https://arxiv.org/abs/1711.00501" title="Learning One-hidden-layer Neural Networks with Landscape Design" target="_blank" rel="noopener">GLM17</a>]: Can construct an objective for two-layer neural network such that all local minima are global</p>
+<p><span style="color:blue">Theorem</span>[<a href="https://arxiv.org/abs/1711.00501" title="Learning One-hidden-layer Neural Networks with Landscape Design">GLM17</a>]: Can construct an objective for two-layer neural network such that all local minima are global*</p>
 </blockquote>
 <ul>
 <li><span class="fragment " >
@@ -858,10 +860,38 @@ Objective inspired by tensor decomposition
 Relies on Gaussian distribution
 </span></li>
 <li><span class="fragment " >
-Extended to symmetric input distribution* by [
-<a href="https://arxiv.org/abs/1810.06793" title="Learning Two-layer Neural Networks with Symmetric Inputs" target="_blank" rel="noopener">GKLW18</a>]
+Extended to symmetric input distribution* by [<a href="https://arxiv.org/abs/1810.06793" title="Learning Two-layer Neural Networks with Symmetric Inputs">GKLW18</a>]
 </span></li>
 </ul>
+<aside class="notes">
+  <ul>
+<li>There are some assumptions for gloabl* to be hold</li>
+</ul>
+</aside>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<p><span style="color:blue">Theorem</span>[<a href="https://arxiv.org/abs/1810.06793" title="Learning Two-layer Neural Networks with Symmetric Inputs">GKLW18</a>]: For a two-layer neural network with more outputs than hidden units, if the input distribution is symmetric, there is a polynormial time algorithm that learns the neural network</p>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<p><span style="color:blue">Theorem</span>[[GWZ19]]: For a 2/3-layer neural network with quadratic/polynormal activations, if the inputs are in general position, and</p>
+<p>#parameters = O(1) #training samples</p>
+<p>GD can memorize training data.</p>
 
     </section>
     
@@ -874,8 +904,7 @@ Extended to symmetric input distribution* by [
       
 <h3 id="spin-glass-model">Spin Glass Model</h3>
 <blockquote>
-<p><span style="color:blue">Claim</span>[
-<a href="https://arxiv.org/abs/1412.0233" title="The Loss Surfaces of Multilayer Networks" target="_blank" rel="noopener">CHMBL15</a>]: all the local minima of a neural network have approximate equal function value</p>
+<p><span style="color:blue">Claim</span>[<a href="https://arxiv.org/abs/1412.0233" title="The Loss Surfaces of Multilayer Networks">CHMBL15</a>]: all the local minima of a neural network have approximate equal function value</p>
 </blockquote>
 <img src="img/spin-glass.png" alt="Solution 3" height="200">
 
@@ -974,8 +1003,7 @@ Observation: path can be very short
     <section>
     
       
-<h2 id="beyond-optimizationhttpwwwoffconvexorg20190603trajectories">
-<a href="http://www.offconvex.org/2019/06/03/trajectories/" target="_blank" rel="noopener">Beyond Optimization</a></h2>
+<h2 id="beyond-optimizationhttpwwwoffconvexorg20190603trajectories"><a href="http://www.offconvex.org/2019/06/03/trajectories/">Beyond Optimization</a></h2>
 <p>Accelerated methods are faster but leads to slightly worse generalization.</p>
 <aside class="notes">
   <ul>
@@ -997,9 +1025,41 @@ Observation: path can be very short
     <section>
     
       
-<h2 id="neural-tangent-kernelshttpwwwoffconvexorg20191003ntk">
-<a href="http://www.offconvex.org/2019/10/03/NTK/" target="_blank" rel="noopener">Neural Tangent Kernels</a></h2>
-<p>To the functional space</p>
+<h3 id="finding-a-global-minimum-is-not-always-good-enough-trajectoryimplicit-bias">Finding a global minimum is not always good enough (trajectory/implicit bias)</h3>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h2 id="neural-tangent-kernelshttpwwwoffconvexorg20191003ntk"><a href="http://www.offconvex.org/2019/10/03/NTK/">Neural Tangent Kernels</a></h2>
+<p>Optimization is easy (linear) in highly overparametrized regime</p>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+<h3 id="how-many-parameters-do-we-need">How many parameters do we need?</h3>
+
+    </section>
+    
+
+    
+    
+    
+    <section>
+    
+      
+</aside>
 </span>
     </section>
     

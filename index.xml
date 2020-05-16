@@ -13,11 +13,13 @@
     </image>
     
     <item>
-      <title>2020 05 Optimization</title>
+      <title>Optimization Landscape Symmetry, Saddle Points and Beyond</title>
       <link>/talk/2020-05-optimization/</link>
       <pubDate>Mon, 11 May 2020 15:29:33 +0930</pubDate>
       <guid>/talk/2020-05-optimization/</guid>
-      <description></description>
+      <description>&lt;p&gt;
+&lt;a href=&#34;../../slides/stochastic-optimization-techniques&#34;&gt;Slides&lt;/a&gt;&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -59,8 +61,7 @@ Converges to stationary point ($\nabla f(x_t)=0$)
 &lt;a href=&#34;http://rd.springer.com/book/10.1007%2F978-1-4419-8853-9&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Nesterov &amp;lsquo;98]&lt;/a&gt;
 &lt;/span&gt;
 &lt;span class=&#34;fragment &#34; &gt;
-or &amp;ldquo;local minimum&amp;rdquo; 
-&lt;a href=&#34;https://arxiv.org/abs/1503.02101&#34; title=&#34;Escaping From Saddle Points --- Online Stochastic Gradient for Tensor Decomposition&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Ge etal. &amp;lsquo;15]&lt;/a&gt;
+or &amp;ldquo;local minimum&amp;rdquo; [[Ge etal. &amp;lsquo;15]][GHJY15]
 &lt;/span&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;gd-cannot-escape-from-a-local-optimal-solution&#34;&gt;GD cannot escape from a local optimal solution&lt;/h3&gt;
@@ -104,7 +105,7 @@ Why are the objectives always non-convex?
 &lt;hr&gt;
 &lt;h3 id=&#34;symmetry--non-convexity&#34;&gt;Symmetry → Non-Convexity&lt;/h3&gt;
 &lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
-Problem asks for multiple components, but teh components have &lt;span style=&#34;color:green;&#34;&gt;no ordering&lt;/span&gt;.&lt;/p&gt;
+Problem asks for multiple components, but the components have &lt;span style=&#34;color:green;&#34;&gt;no ordering&lt;/span&gt;.&lt;/p&gt;
 &lt;hr&gt;
 &lt;img height=&#34;600&#34; src=&#34;img/clustering.png&#34;&gt;
 &lt;aside class=&#34;notes&#34;&gt;
@@ -150,7 +151,7 @@ Problem asks for multiple components, but teh components have &lt;span style=&#3
 &lt;hr&gt;
 &lt;h2 id=&#34;saddle-points&#34;&gt;Saddle Points&lt;/h2&gt;
 &lt;p&gt;
-&lt;a href=&#34;https://shorturl.at/qtvwP&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;$$z = x^2 - y^2 + y^4 + 0.1\cdot y$$&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&#34;https://academo.org/demos/3d-surface-plotter/?expression=x*x-y*y%2By%5E4%2B0.1*y&amp;amp;xRange=-1%2C%2B1&amp;amp;yRange=-1%2C%2B1&amp;amp;resolution=50&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;$$z = x^2 - y^2 + y^4 + 0.1\cdot y$$&lt;/a&gt;&lt;/p&gt;
 &lt;aside class=&#34;notes&#34;&gt;
   &lt;ul&gt;
 &lt;li&gt;Global minimum&lt;/li&gt;
@@ -161,7 +162,7 @@ Problem asks for multiple components, but teh components have &lt;span style=&#3
 &lt;hr&gt;
 &lt;h2 id=&#34;symmetry--non-convexity-1&#34;&gt;Symmetry → Non-Convexity&lt;/h2&gt;
 &lt;p&gt;
-&lt;a href=&#34;https://shorturl.at/deoG7&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;$$f(x) = -\|x\|^2 + \|x\|_4^4$$&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&#34;https://academo.org/demos/3d-surface-plotter/?expression=x%5E4%2By%5E4-x%5E2-y%5E2&amp;amp;xRange=-1.5%2C%2B1.5&amp;amp;yRange=-1.5%2C%2B1.5&amp;amp;resolution=50&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;$$f(x) = -\|x\|^2 + \|x\|_4^4$$&lt;/a&gt;&lt;/p&gt;
 &lt;aside class=&#34;notes&#34;&gt;
   &lt;ul&gt;
 &lt;li&gt;This construction is used in independent component analysis&lt;/li&gt;
@@ -198,14 +199,11 @@ No high order saddle points
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;ul&gt;
-&lt;li&gt;Matrix Completion [
-&lt;a href=&#34;https://arxiv.org/abs/1605.07272&#34; title=&#34;Matrix Completion has No Spurious Local Minimum&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GLM16&lt;/a&gt;] [
-&lt;a href=&#34;https://arxiv.org/abs/1704.00708&#34; title=&#34;No Spurious Local Minima in Nonconvex Low Rank Problems: A Unified Geometric Analysis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GJZ17&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Matrix Completion [[GLM16]] [[GJZ17]]&lt;/li&gt;
 &lt;li&gt;Matrix Sensing [BNS&#39;16] [PKCS&#39;16]&lt;/li&gt;
 &lt;li&gt;MAX-CUT [MMMO&#39;17]&lt;/li&gt;
 &lt;li&gt;Tensor Decomposition [GHJY&#39;15] [GM&#39;16]&lt;/li&gt;
-&lt;li&gt;2-Layer Neural Net [
-&lt;a href=&#34;https://arxiv.org/abs/1711.00501&#34; title=&#34;Learning One-hidden-layer Neural Networks with Landscape Design&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GLM17&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;2-Layer Neural Net [[GLM17]]&lt;/li&gt;
 &lt;/ul&gt;
 &lt;aside class=&#34;notes&#34;&gt;
   &lt;ul&gt;
@@ -264,13 +262,15 @@ Not true: many equivalent solutions: $$UV^T=URR^TV^T$$
 Saddle points: e.g. $X=Y=0$
 &lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;The objective behaves similar to a norm&lt;/li&gt;
+&lt;/ul&gt;
 &lt;hr&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;span style=&#34;color:blue&#34;&gt;Theorem&lt;/span&gt;: when the number of observations is at least $\tilde{\Omega}(nr^6)$, all local minima of $f(X, Y)^*$ are global minima: satisfy $XY^T=M$.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;[
-&lt;a href=&#34;https://arxiv.org/abs/1605.07272&#34; title=&#34;Matrix Completion has No Spurious Local Minimum&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GLM16&lt;/a&gt;]: symmetric case; [
-&lt;a href=&#34;https://arxiv.org/abs/1704.00708&#34; title=&#34;No Spurious Local Minima in Nonconvex Low Rank Problems: A Unified Geometric Analysis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GJZ17&lt;/a&gt;]: asymmetric case&lt;/p&gt;
+&lt;p&gt;[&lt;a href=&#34;https://arxiv.org/abs/1605.07272&#34; title=&#34;Matrix Completion has No Spurious Local Minimum&#34;&gt;GLM16&lt;/a&gt;]: symmetric case; [&lt;a href=&#34;https://arxiv.org/abs/1704.00708&#34; title=&#34;No Spurious Local Minima in Nonconvex Low Rank Problems: A Unified Geometric Analysis&#34;&gt;GJZ17&lt;/a&gt;]: asymmetric case&lt;/p&gt;
 &lt;hr&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;span style=&#34;color:blue&#34;&gt;Corollary&lt;/span&gt;: Simple SGD can solve matrix completion from an &lt;span style=&#34;color:blue&#34;&gt;arbitrary&lt;/span&gt; starting point.&lt;/p&gt;
@@ -282,7 +282,7 @@ Saddle points: e.g. $X=Y=0$
 &lt;/ul&gt;
 &lt;aside class=&#34;notes&#34;&gt;
   &lt;ul&gt;
-&lt;li&gt;convex relaxation: has tight $r$ $\Omega(nr poly(\log(d))$&lt;/li&gt;
+&lt;li&gt;convex relaxation: has tight $r$ $\Omega(nr poly(\log(d))$ d is #observations&lt;/li&gt;
 &lt;li&gt;non-convex: $nr^2$&lt;/li&gt;
 &lt;li&gt;27 min mark&lt;/li&gt;
 &lt;/ul&gt;
@@ -330,9 +330,14 @@ $\nabla^2 g(X)\succcurlyeq0$
 → $\text{span}(X)=\text{span}(M)$
 &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
-Approach in [
-&lt;a href=&#34;https://arxiv.org/abs/1605.07272&#34; title=&#34;Matrix Completion has No Spurious Local Minimum&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GLM16&lt;/a&gt;]. Need more cases to generalize to Matrix Completion.
+Approach in [&lt;a href=&#34;https://arxiv.org/abs/1605.07272&#34; title=&#34;Matrix Completion has No Spurious Local Minimum&#34;&gt;GLM16&lt;/a&gt;]. Need more cases to work for Matrix Completion.
 &lt;/span&gt;&lt;/p&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;$X$ is a full-rank matrix == span(X) = span(M) (span of column vectors)&lt;/li&gt;
+&lt;li&gt;for the case X is not full rank, for example X=0, gradient = 0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
@@ -355,8 +360,7 @@ Nice property: $||\Delta\Delta^T||_F^2\le2||M-XX^T||_F^2$
 &lt;/ul&gt;
 &lt;/aside&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;main-lemma-gjz17&#34;&gt;Main Lemma [
-&lt;a href=&#34;https://arxiv.org/abs/1704.00708&#34; title=&#34;No Spurious Local Minima in Nonconvex Low Rank Problems: A Unified Geometric Analysis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GJZ17&lt;/a&gt;]&lt;/h3&gt;
+&lt;h3 id=&#34;main-lemma-gjz17&#34;&gt;Main Lemma [&lt;a href=&#34;https://arxiv.org/abs/1704.00708&#34; title=&#34;No Spurious Local Minima in Nonconvex Low Rank Problems: A Unified Geometric Analysis&#34;&gt;GJZ17&lt;/a&gt;]&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;span style=&#34;color:blue&#34;&gt;Lemma&lt;/span&gt;: If $\|\Delta\Delta^T\|_\Omega^2&amp;lt;3\|M-XX^T\|_\Omega^2$, then either $\langle\nabla f(X), \Delta\rangle\ne 0$ or $\nabla^2 f(X)[\Delta]&amp;lt;0$. ($\Delta$ is a direction of improvement.)&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -377,8 +381,7 @@ For completion, proof works as long as $||A||_\Omega\approx ||A||_F$ for $\Delta
 &lt;/ul&gt;
 &lt;/aside&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;restricted-isometry-propertyhttpsenwikipediaorgwikirestricted_isometry_property&#34;&gt;
-&lt;a href=&#34;https://en.wikipedia.org/wiki/Restricted_isometry_property&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Restricted isometry property&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;restricted-isometry-propertyhttpsenwikipediaorgwikirestricted_isometry_property&#34;&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Restricted_isometry_property&#34;&gt;Restricted isometry property&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;characterizes matrices which are nearly orthonormal, at least when operating on sparse vectors.&lt;/p&gt;
 &lt;p&gt;Applies to asymmetric cases, matrix sensing and robust PCA.&lt;/p&gt;
 &lt;hr&gt;
@@ -427,9 +430,7 @@ $$&lt;/p&gt;
 &lt;p&gt;$$
 g_W(x) = W_pW_{p-1}\cdots W_1x
 $$&lt;/p&gt;
-&lt;p&gt;[
-&lt;a href=&#34;https://arxiv.org/abs/1605.07110&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Kawaguchi 16&lt;/a&gt;], [
-&lt;a href=&#34;https://arxiv.org/abs/1707.02444&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;YSJ18&lt;/a&gt;]&lt;/p&gt;
+&lt;p&gt;[&lt;a href=&#34;https://arxiv.org/abs/1605.07110&#34;&gt;Kawaguchi 16&lt;/a&gt;], [&lt;a href=&#34;https://arxiv.org/abs/1707.02444&#34;&gt;YSJ18&lt;/a&gt;]&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
 All local minima of linear neural network (with squared loss) are global*
@@ -441,6 +442,11 @@ With 2 layers, no higher order saddle points.
 With 3 or more layers, has higher order saddles.
 &lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;All methods rely on different assumptions. Not comparable and not clear whether the assumptions are necessary&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;For a critical point, if product of all layers has rank $r$, then it is a local and global minima (if r = min(m, n)) it can also be a normal saddle point (if r &amp;lt; min(m, n)).&lt;/li&gt;
@@ -448,6 +454,7 @@ With 3 or more layers, has higher order saddles.
 &lt;/ul&gt;
 &lt;aside class=&#34;notes&#34;&gt;
   &lt;ul&gt;
+&lt;li&gt;min(m, n) the maximum rank we can get&lt;/li&gt;
 &lt;li&gt;Algorithm can be trapped in higher order saddles&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/aside&gt;
@@ -461,25 +468,23 @@ $$&lt;/p&gt;
 Wlog: rows of $B$ ($b_i$) are unit norm.
 &lt;/span&gt;&lt;/li&gt;
 &lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
-Data: $x\sim N(0, I)$
+Data: $x\sim N(0, I)$, $y$ from a teacher.
 &lt;/span&gt;&lt;/li&gt;
 &lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
-Some more technical assumptions on $a^&lt;em&gt;$, $B^&lt;/em&gt;$
+Some more technical assumptions on a*, B*
 &lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;aside class=&#34;notes&#34;&gt;
   &lt;ul&gt;
-&lt;li&gt;$B^*$ is full-rank&lt;/li&gt;
+&lt;li&gt;most importantly, $B^*$ is full-rank&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/aside&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;bad-local-minima&#34;&gt;Bad local minima&lt;/h3&gt;
 &lt;p&gt;&lt;span style=&#34;color:blue&#34;&gt;Claim: &lt;/span&gt;The objective function $f(a, B)$ has local minima that are not equivalent to the ground truth.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Observed in [
-&lt;a href=&#34;https://arxiv.org/abs/1711.00501&#34; title=&#34;Learning One-hidden-layer Neural Networks with Landscape Design&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GLM17&lt;/a&gt;]&lt;/li&gt;
-&lt;li&gt;formmaly verified in [
-&lt;a href=&#34;https://arxiv.org/abs/1712.08968&#34; title=&#34;Spurious Local Minima are Common in Two-Layer ReLU Neural Networks&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Safran&amp;amp;Shamir17&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Observed in [&lt;a href=&#34;https://arxiv.org/abs/1711.00501&#34; title=&#34;Learning One-hidden-layer Neural Networks with Landscape Design&#34;&gt;GLM17&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;formmaly verified in [&lt;a href=&#34;https://arxiv.org/abs/1712.08968&#34; title=&#34;Spurious Local Minima are Common in Two-Layer ReLU Neural Networks&#34;&gt;Safran&amp;amp;Shamir17&lt;/a&gt;]&lt;/li&gt;
 &lt;/ul&gt;
 &lt;aside class=&#34;notes&#34;&gt;
   &lt;ul&gt;
@@ -500,8 +505,7 @@ Some more technical assumptions on $a^&lt;em&gt;$, $B^&lt;/em&gt;$
 &lt;hr&gt;
 &lt;h3 id=&#34;provable-new-objective&#34;&gt;Provable New Objective&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;span style=&#34;color:blue&#34;&gt;Theorem&lt;/span&gt;[
-&lt;a href=&#34;https://arxiv.org/abs/1711.00501&#34; title=&#34;Learning One-hidden-layer Neural Networks with Landscape Design&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GLM17&lt;/a&gt;]: Can construct an objective for two-layer neural network such that all local minima are global&lt;/p&gt;
+&lt;p&gt;&lt;span style=&#34;color:blue&#34;&gt;Theorem&lt;/span&gt;[&lt;a href=&#34;https://arxiv.org/abs/1711.00501&#34; title=&#34;Learning One-hidden-layer Neural Networks with Landscape Design&#34;&gt;GLM17&lt;/a&gt;]: Can construct an objective for two-layer neural network such that all local minima are global*&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
@@ -511,15 +515,24 @@ Objective inspired by tensor decomposition
 Relies on Gaussian distribution
 &lt;/span&gt;&lt;/li&gt;
 &lt;li&gt;&lt;span class=&#34;fragment &#34; &gt;
-Extended to symmetric input distribution* by [
-&lt;a href=&#34;https://arxiv.org/abs/1810.06793&#34; title=&#34;Learning Two-layer Neural Networks with Symmetric Inputs&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GKLW18&lt;/a&gt;]
+Extended to symmetric input distribution* by [&lt;a href=&#34;https://arxiv.org/abs/1810.06793&#34; title=&#34;Learning Two-layer Neural Networks with Symmetric Inputs&#34;&gt;GKLW18&lt;/a&gt;]
 &lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;There are some assumptions for gloabl* to be hold&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;span style=&#34;color:blue&#34;&gt;Theorem&lt;/span&gt;[&lt;a href=&#34;https://arxiv.org/abs/1810.06793&#34; title=&#34;Learning Two-layer Neural Networks with Symmetric Inputs&#34;&gt;GKLW18&lt;/a&gt;]: For a two-layer neural network with more outputs than hidden units, if the input distribution is symmetric, there is a polynormial time algorithm that learns the neural network&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;span style=&#34;color:blue&#34;&gt;Theorem&lt;/span&gt;[[GWZ19]]: For a 2/3-layer neural network with quadratic/polynormal activations, if the inputs are in general position, and&lt;/p&gt;
+&lt;p&gt;#parameters = O(1) #training samples&lt;/p&gt;
+&lt;p&gt;GD can memorize training data.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;spin-glass-model&#34;&gt;Spin Glass Model&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;span style=&#34;color:blue&#34;&gt;Claim&lt;/span&gt;[
-&lt;a href=&#34;https://arxiv.org/abs/1412.0233&#34; title=&#34;The Loss Surfaces of Multilayer Networks&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CHMBL15&lt;/a&gt;]: all the local minima of a neural network have approximate equal function value&lt;/p&gt;
+&lt;p&gt;&lt;span style=&#34;color:blue&#34;&gt;Claim&lt;/span&gt;[&lt;a href=&#34;https://arxiv.org/abs/1412.0233&#34; title=&#34;The Loss Surfaces of Multilayer Networks&#34;&gt;CHMBL15&lt;/a&gt;]: all the local minima of a neural network have approximate equal function value&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;img src=&#34;img/spin-glass.png&#34; alt=&#34;Solution 3&#34; height=&#34;200&#34;&gt;
 &lt;hr&gt;
@@ -582,8 +595,7 @@ Observation: path can be very short
 &lt;/ul&gt;
 &lt;/aside&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;beyond-optimizationhttpwwwoffconvexorg20190603trajectories&#34;&gt;
-&lt;a href=&#34;http://www.offconvex.org/2019/06/03/trajectories/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Beyond Optimization&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;beyond-optimizationhttpwwwoffconvexorg20190603trajectories&#34;&gt;&lt;a href=&#34;http://www.offconvex.org/2019/06/03/trajectories/&#34;&gt;Beyond Optimization&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Accelerated methods are faster but leads to slightly worse generalization.&lt;/p&gt;
 &lt;aside class=&#34;notes&#34;&gt;
   &lt;ul&gt;
@@ -596,9 +608,14 @@ Observation: path can be very short
 &lt;/ul&gt;
 &lt;/aside&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;neural-tangent-kernelshttpwwwoffconvexorg20191003ntk&#34;&gt;
-&lt;a href=&#34;http://www.offconvex.org/2019/10/03/NTK/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Neural Tangent Kernels&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;To the functional space&lt;/p&gt;
+&lt;h3 id=&#34;finding-a-global-minimum-is-not-always-good-enough-trajectoryimplicit-bias&#34;&gt;Finding a global minimum is not always good enough (trajectory/implicit bias)&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;neural-tangent-kernelshttpwwwoffconvexorg20191003ntk&#34;&gt;&lt;a href=&#34;http://www.offconvex.org/2019/10/03/NTK/&#34;&gt;Neural Tangent Kernels&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Optimization is easy (linear) in highly overparametrized regime&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;how-many-parameters-do-we-need&#34;&gt;How many parameters do we need?&lt;/h3&gt;
+&lt;hr&gt;
+&lt;/aside&gt;
 &lt;/span&gt;</description>
     </item>
     
@@ -1071,6 +1088,110 @@ Three
 &lt;li&gt;
 &lt;a href=&#34;https://arxiv.org/abs/1909.08228&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Memory-Efficient Hierarchical Neural Architecture Search for Image Denoising&lt;/a&gt; by Haokui Zhang, Ying Li, Hao Chen, Chunhua Shen&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Bayesian Networks for Perception</title>
+      <link>/drafts/2020-02-28-bayesian-networks-for-perception/</link>
+      <pubDate>Fri, 28 Feb 2020 17:31:22 +1030</pubDate>
+      <guid>/drafts/2020-02-28-bayesian-networks-for-perception/</guid>
+      <description>&lt;p&gt;Finally I got a chance to talk about Bayesian Deep Learning. Although being an important topic and a classic task, we haven&amp;rsquo;t seen enough attentions here following the breakthoughs in deep learning field. Probably because of its shortcommings in inference and difficulties in explanation, many people a still standing by. Recently I am very happy to find this field moving in a healthy direction and here are some very useful papers discussing related stuffs.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://openreview.net/forum?id=BJxI5gHKDr&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Pitfalls of In-Domain Uncertainty Estimation and Ensembling in Deep Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://arxiv.org/abs/2001.10995&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;The Case for Bayesian Deep Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://arxiv.org/abs/2002.02405&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;How Good is the Bayes Posterior in Deep Neural Networks Really?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In this post I would like to first give a quick recap to Bayesian Deep Learning in general and discuss what can be done in object detection.&lt;/p&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://papers.nips.cc/paper/7141-what-uncertainties-do-we-need-in-bayesian-deep-learning-for-computer-vision.pdf&#34; title=&#34;What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Kendall&lt;/a&gt; introduced a general practice for uncertainty estimation in computer vision. The uncertainity of models can be categorized into two sources. &lt;em&gt;Aleatoric&lt;/em&gt; uncertainty captures noise inherent in the observations and &lt;em&gt;epistemic&lt;/em&gt; uncertainty accounts for uncertainty in the model.&lt;/p&gt;
+&lt;p&gt;We can estimate epistemic uncertainty by placing a prior on model weights, or aleatoric uncertainty by putting a prior on model outputs. Bayesian Neural Networks replace neural network weights with the posterior distribution of them.&lt;/p&gt;
+&lt;h2 id=&#34;epistemic-uncertainty-with-bayesian-neural-networks&#34;&gt;Epistemic Uncertainty with Bayesian Neural Networks&lt;/h2&gt;
+&lt;h3 id=&#34;mcmc-approaches&#34;&gt;MCMC Approaches&lt;/h3&gt;
+&lt;p&gt;Performing this inference often includes a Monte Carlo approximation. These methods samples the model weights from the estimated distribution and ensemble the predictions of multiple samples. Thus, evaluating the posterior requires evaluating an ensemble of models:&lt;/p&gt;
+&lt;p&gt;$$
+\hat p(y_i|x_i)\approx\int p(y_i|x_i,\omega)q_m(\omega) d_\omega\simeq \frac1K\sum_{k=1}^K p(y_i|x_i, \omega_k),\qquad \omega_k\sim q_m(\omega).
+$$&lt;/p&gt;
+&lt;p&gt;We can also use a variational distribution $q(\omega; \theta)$ to approximate the posterior $p(\omega|x, y)$. Introducing a prior $p(\omega)$ and applying Bayesian rules, we get the objective known as the evidence lower bound (ELBO):&lt;/p&gt;
+&lt;p&gt;$$
+\theta^* = \underset{\theta}{\mathrm{arg,max}} {\mathbb E_{\omega\sim q}[\log p(y|x, \omega)] - D_{\text{KL}}[q(\omega;\theta)|p(\omega)]}.
+$$&lt;/p&gt;
+&lt;p&gt;The first term is reconstruction and the second regularization. The KL term can be represented explicitly if we choose simple form for the variational distribution. And we can use MC approximations for the reconstruction term:&lt;/p&gt;
+&lt;p&gt;$$
+\mathbb E_{\omega\sim q}[\log p(y|x, \omega)]\simeq \frac1K\sum_{k=1}^K \log p(y|x, \omega_k), \qquad \omega_k\sim q(\omega; \theta)
+$$&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Method&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Sampling distribution $q_m$&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Deep Ensemble&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;$\frac1S\sum_{s=1}^S\delta(\omega - \omega_s)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Mean-Field VI&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;$\mathcal N(\omega\vert\mu, \text{diag}(\sigma^2))$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MC dropout&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Dropout distribution&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SWAG&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;FGE&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;cSGLD&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;TDA&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Multi-SWAG&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;SWAG + Deep Ensemble&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;such as in 
+&lt;a href=&#34;https://arxiv.org/abs/1506.02142&#34; title=&#34;Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MC dropout&lt;/a&gt;, 
+&lt;a href=&#34;https://arxiv.org/abs/1902.02476&#34; title=&#34;A Simple Baseline for Bayesian Uncertainty in Deep Learning&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;SWA-Gaussian&lt;/a&gt; etc&lt;/p&gt;
+&lt;p&gt;Approximation and acceleration of ensembling has been studied.&lt;/p&gt;
+&lt;h3 id=&#34;deterministic-vi-approaches&#34;&gt;Deterministic VI Approaches&lt;/h3&gt;
+&lt;p&gt;SVI such as in 
+&lt;a href=&#34;https://arxiv.org/abs/1505.05424&#34; title=&#34;Weight Uncertainty in Neural Networks&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Blundell 2015]&lt;/a&gt; is difficult to get to work for large dataset such as ImageNet and complex models.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://arxiv.org/abs/1810.03958&#34; title=&#34;Deterministic Variational Inference for Robust Bayesian Neural Networks&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Wu et al. 2018]&lt;/a&gt; assume the pre-ReLU activations are Gaussian and deduce closed form posterior of the network output when the nonlinearity is Heaiside or ReLU. Even though sometimes we can only afford to compute the diagonal entries $\operatorname{Cov}(h_j, h_j)$. The empirical result is acceptable.&lt;/p&gt;
+&lt;h3 id=&#34;yes-but-did-it-work&#34;&gt;Yes, but Did It Work?&lt;/h3&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://arxiv.org/abs/2002.02405&#34; title=&#34;How Good is the Bayes Posterior in Deep Neural Networks Really?&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Wenzel et al. 2020]&lt;/a&gt; shows that Bayesian posterior can give an inferior prediction than MAP or VI. 
+&lt;a href=&#34;https://statmodeling.stat.columbia.edu/2020/02/13/how-good-is-the-bayes-posterior-for-prediction-really/&#34; title=&#34;How good is the Bayes posterior for prediction really?&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Yao]&lt;/a&gt; suggests that such models could benefits from informative priors instead of treating networks as a black box.&lt;/p&gt;
+&lt;p&gt;The exact sampling from a posterior in a deep neural network is infeasible. Current sampling methods can be inaccurate and hard to defend. Even HMC cannot serve as a gold standard because it suffers from all multimodality and non-log-convexity 
+&lt;a href=&#34;https://statmodeling.stat.columbia.edu/2020/02/13/how-good-is-the-bayes-posterior-for-prediction-really/&#34; title=&#34;How good is the Bayes posterior for prediction really?&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Yao]&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Also, it is hard to say whether functional diversity can be captured by sampling around one mode 
+&lt;a href=&#34;https://arxiv.org/abs/2002.08791&#34; title=&#34;Bayesian Deep Learning and a Probabilistic Perspective of Generalization&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Wilson 2020]&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Generally, I don&amp;rsquo;t consider these methods scalable enough for more challenging perception tasks on large scale dataset. The uncertainty consistency for these methods can be degraded for different datasets [[]].&lt;/p&gt;
+&lt;h2 id=&#34;aleatoric-uncertainty-for-panoptic-segmentation&#34;&gt;Aleatoric Uncertainty for Panoptic Segmentation&lt;/h2&gt;
+&lt;p&gt;We consider an object detection problem with a dataset&lt;/p&gt;
+&lt;p&gt;For real-time applications, we cannot afford expensive Monte Carlo estimations or covariance estimation.&lt;/p&gt;
+&lt;p&gt;The only thing we can afford for epistemic uncertainty is probably making only the last layer Bayesian (
+&lt;a href=&#34;https://openreview.net/forum?id=SyYe6k-CW&#34; title=&#34;An Empirical Comparison of Bayesian Deep Networks for Thompson Sampling&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Riquelme 2018]&lt;/a&gt;). So I would prefer not to touch Bayesian Neural Network for object detection.&lt;/p&gt;
+&lt;p&gt;Instead I will just cover a simple model for aleatoric uncertainty.&lt;/p&gt;
+&lt;p&gt;I choose to adopt heteroscedastic aleatoric uncertainty introduced in 
+&lt;a href=&#34;https://papers.nips.cc/paper/7141-what-uncertainties-do-we-need-in-bayesian-deep-learning-for-computer-vision.pdf&#34; title=&#34;What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;[Kendall 2017]&lt;/a&gt;. For a regression problem given input pair $\mathbf X$, $\mathbf Y$.&lt;/p&gt;
 </description>
     </item>
     

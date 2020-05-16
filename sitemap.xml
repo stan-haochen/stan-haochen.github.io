@@ -3,12 +3,12 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/talk/2020-05-optimization/</loc>
+    <loc>/</loc>
     <lastmod>2020-05-11T15:29:33+09:30</lastmod>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>/talk/2020-05-optimization/</loc>
     <lastmod>2020-05-11T15:29:33+09:30</lastmod>
   </url>
   
@@ -50,6 +50,16 @@
   <url>
     <loc>/post/</loc>
     <lastmod>2020-03-13T17:36:41+10:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/drafts/2020-02-28-bayesian-networks-for-perception/</loc>
+    <lastmod>2020-02-28T17:31:22+10:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/drafts/</loc>
+    <lastmod>2020-02-28T17:31:22+10:30</lastmod>
   </url>
   
   <url>
