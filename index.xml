@@ -49,7 +49,6 @@ Deep Neural Nets
   &lt;ul&gt;
 &lt;li&gt;In practice, these algorithms converge to good solutions.&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;/aside&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;gradient-descent&#34;&gt;Gradient Descent&lt;/h2&gt;
@@ -193,16 +192,16 @@ No high order saddle points
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;SVD/PCA&lt;/li&gt;
-&lt;li&gt;Generalized Linear Model [KKKS&#39;11] [HLS&#39;14]&lt;/li&gt;
-&lt;li&gt;Synchronization [BVS&#39;16]&lt;/li&gt;
-&lt;li&gt;Dictionary Learning [SQW&#39;17]&lt;/li&gt;
+&lt;li&gt;Generalized Linear Model [KKKS&amp;rsquo;11] [HLS&amp;rsquo;14]&lt;/li&gt;
+&lt;li&gt;Synchronization [BVS&amp;rsquo;16]&lt;/li&gt;
+&lt;li&gt;Dictionary Learning [SQW&amp;rsquo;17]&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;Matrix Completion [[GLM16]] [[GJZ17]]&lt;/li&gt;
-&lt;li&gt;Matrix Sensing [BNS&#39;16] [PKCS&#39;16]&lt;/li&gt;
-&lt;li&gt;MAX-CUT [MMMO&#39;17]&lt;/li&gt;
-&lt;li&gt;Tensor Decomposition [GHJY&#39;15] [GM&#39;16]&lt;/li&gt;
+&lt;li&gt;Matrix Sensing [BNS&amp;rsquo;16] [PKCS&amp;rsquo;16]&lt;/li&gt;
+&lt;li&gt;MAX-CUT [MMMO&amp;rsquo;17]&lt;/li&gt;
+&lt;li&gt;Tensor Decomposition [GHJY&amp;rsquo;15] [GM&amp;rsquo;16]&lt;/li&gt;
 &lt;li&gt;2-Layer Neural Net [[GLM17]]&lt;/li&gt;
 &lt;/ul&gt;
 &lt;aside class=&#34;notes&#34;&gt;
@@ -520,13 +519,13 @@ Extended to symmetric input distribution* by [&lt;a href=&#34;https://arxiv.org/
 &lt;/ul&gt;
 &lt;aside class=&#34;notes&#34;&gt;
   &lt;ul&gt;
-&lt;li&gt;There are some assumptions for gloabl* to be hold&lt;/li&gt;
+&lt;li&gt;There are some assumptions for global* to be hold&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/aside&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;span style=&#34;color:blue&#34;&gt;Theorem&lt;/span&gt;[&lt;a href=&#34;https://arxiv.org/abs/1810.06793&#34; title=&#34;Learning Two-layer Neural Networks with Symmetric Inputs&#34;&gt;GKLW18&lt;/a&gt;]: For a two-layer neural network with more outputs than hidden units, if the input distribution is symmetric, there is a polynormial time algorithm that learns the neural network&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;&lt;span style=&#34;color:blue&#34;&gt;Theorem&lt;/span&gt;[[GWZ19]]: For a 2/3-layer neural network with quadratic/polynormal activations, if the inputs are in general position, and&lt;/p&gt;
+&lt;p&gt;&lt;span style=&#34;color:blue&#34;&gt;Theorem&lt;/span&gt;[&lt;a href=&#34;https://arxiv.org/abs/1909.11837&#34; title=&#34;Mildly Overparametrized Neural Nets can Memorize Training Data Efficiently&#34;&gt;GWZ19&lt;/a&gt;]: For a 2/3-layer neural network with quadratic/polynormal activations, if the inputs are in general position, and&lt;/p&gt;
 &lt;p&gt;#parameters = O(1) #training samples&lt;/p&gt;
 &lt;p&gt;GD can memorize training data.&lt;/p&gt;
 &lt;hr&gt;
@@ -614,7 +613,6 @@ Observation: path can be very short
 &lt;p&gt;Optimization is easy (linear) in highly overparametrized regime&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;how-many-parameters-do-we-need&#34;&gt;How many parameters do we need?&lt;/h3&gt;
-&lt;hr&gt;
 &lt;/aside&gt;
 &lt;/span&gt;</description>
     </item>
@@ -656,7 +654,6 @@ close to Lloyd&amp;rsquo;s algorithm for k-means clustering
   &lt;ul&gt;
 &lt;li&gt;The random variable is usually a joint of input and label&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;/aside&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;probabilistic-machine-learning&#34;&gt;Probabilistic Machine Learning&lt;/h2&gt;
@@ -666,7 +663,6 @@ close to Lloyd&amp;rsquo;s algorithm for k-means clustering
   &lt;ul&gt;
 &lt;li&gt;$\mathbb P$ is a data-generating distribution we don&amp;rsquo;t see&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;/aside&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;likelihood&#34;&gt;Likelihood&lt;/h3&gt;
@@ -685,7 +681,6 @@ $$&lt;/p&gt;
   &lt;ul&gt;
 &lt;li&gt;Maximum a Posteriori&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;/aside&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;latent-variable&#34;&gt;Latent Variable&lt;/h2&gt;
@@ -695,7 +690,6 @@ $$&lt;/p&gt;
   &lt;ul&gt;
 &lt;li&gt;Topics of an article&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;/aside&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;marginalized-likelihood&#34;&gt;Marginalized likelihood&lt;/h3&gt;
@@ -724,7 +718,6 @@ AM-LVM neglects all affects of $z&#39;$ that is not the most likely ones.
   &lt;ul&gt;
 &lt;li&gt;Topics of an article&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;/aside&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;em-algorithm&#34;&gt;EM Algorithm&lt;/h2&gt;
@@ -754,7 +747,6 @@ $$ =\log\mathbb E_{z\sim f(\cdot|y, \theta^0)}\left[\frac{f(y, z|\theta)}{f(z|y,
 &lt;li&gt;Variational distribution&lt;/li&gt;
 &lt;li&gt;equals iff $\theta^0 = \theta$&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;/aside&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;choosing-theta-to-improve-q&#34;&gt;Choosing $\theta$ to improve $Q$&lt;/h3&gt;
@@ -785,7 +777,6 @@ $$&lt;/p&gt;
   &lt;ul&gt;
 &lt;li&gt;this expression has $n\cdot |\mathcal Z|$ terms instead of $|\mathcal Z|^n$ terms.&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;/aside&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;m-step-gradient-descent&#34;&gt;M-step: gradient descent&lt;/h3&gt;
@@ -797,7 +788,6 @@ $$&lt;/p&gt;
 &lt;li&gt;this expression has $n\cdot |\mathcal Z|$ terms instead of $|\mathcal Z|^n$ terms.&lt;/li&gt;
 &lt;li&gt;if M-step improves $Q$, then EM iteration improves likelihood&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;/aside&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;motivating-applications&#34;&gt;Motivating Applications&lt;/h2&gt;
@@ -854,7 +844,6 @@ $$&lt;/p&gt;
 &lt;li&gt;Filled-in shapes indicate known values.&lt;/li&gt;
 &lt;li&gt;The indication [K] means a vector of size K.&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;/aside&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;e-step&#34;&gt;E-step&lt;/h3&gt;
@@ -937,7 +926,6 @@ $$&lt;/p&gt;
 &lt;li&gt;Models are these almost correct differential equations&lt;/li&gt;
 &lt;li&gt;We have to augment the models with the data we have&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;/aside&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;mechanistic-vs-non-mechanistic-models&#34;&gt;Mechanistic vs Non-Mechanistic Models&lt;/h3&gt;
@@ -1007,7 +995,6 @@ Three
 &lt;li&gt;Only the speaker can read these notes&lt;/li&gt;
 &lt;li&gt;Press &lt;code&gt;S&lt;/code&gt; key to view&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;/aside&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;themes&#34;&gt;Themes&lt;/h2&gt;
@@ -1592,7 +1579,7 @@ A problem with this trick is that the variance goes to infinity as bias gets clo
 &lt;a href=&#34;https://arxiv.org/abs/1605.07110&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;This paper&lt;/a&gt; has been renewed on ArXiv recently, which leads me to 
 &lt;a href=&#34;https://news.ycombinator.com/item?id=11765111&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;this discussion&lt;/a&gt;. Following are what I find interesting.&lt;/p&gt;
 &lt;h2 id=&#34;why-sgd-works&#34;&gt;Why SGD works?&lt;/h2&gt;
-&lt;p&gt;[Choromaska et al, AISTATS&#39;15] (also [Dauphin et al, ICML&#39;15] use tools from Statistical Physics to explain the behavior of stochastic gradient methods when training deep neural networks. This offers a macroscopic explanation of why SGD &amp;ldquo;works&amp;rdquo;, and gives a characterization of the network depth. The model is strongly simplified, and convolution is not considered.&lt;/p&gt;
+&lt;p&gt;[Choromaska et al, AISTATS&amp;rsquo;15] (also [Dauphin et al, ICML&amp;rsquo;15] use tools from Statistical Physics to explain the behavior of stochastic gradient methods when training deep neural networks. This offers a macroscopic explanation of why SGD &amp;ldquo;works&amp;rdquo;, and gives a characterization of the network depth. The model is strongly simplified, and convolution is not considered.&lt;/p&gt;
 &lt;h3 id=&#34;saddle-points&#34;&gt;Saddle points&lt;/h3&gt;
 &lt;p&gt;We start from discussing saddle points, the vast majority of critical points on the error surfaces of neural networks.&lt;/p&gt;
 &lt;blockquote&gt;

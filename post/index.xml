@@ -327,7 +327,7 @@ A problem with this trick is that the variance goes to infinity as bias gets clo
 &lt;a href=&#34;https://arxiv.org/abs/1605.07110&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;This paper&lt;/a&gt; has been renewed on ArXiv recently, which leads me to 
 &lt;a href=&#34;https://news.ycombinator.com/item?id=11765111&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;this discussion&lt;/a&gt;. Following are what I find interesting.&lt;/p&gt;
 &lt;h2 id=&#34;why-sgd-works&#34;&gt;Why SGD works?&lt;/h2&gt;
-&lt;p&gt;[Choromaska et al, AISTATS&#39;15] (also [Dauphin et al, ICML&#39;15] use tools from Statistical Physics to explain the behavior of stochastic gradient methods when training deep neural networks. This offers a macroscopic explanation of why SGD &amp;ldquo;works&amp;rdquo;, and gives a characterization of the network depth. The model is strongly simplified, and convolution is not considered.&lt;/p&gt;
+&lt;p&gt;[Choromaska et al, AISTATS&amp;rsquo;15] (also [Dauphin et al, ICML&amp;rsquo;15] use tools from Statistical Physics to explain the behavior of stochastic gradient methods when training deep neural networks. This offers a macroscopic explanation of why SGD &amp;ldquo;works&amp;rdquo;, and gives a characterization of the network depth. The model is strongly simplified, and convolution is not considered.&lt;/p&gt;
 &lt;h3 id=&#34;saddle-points&#34;&gt;Saddle points&lt;/h3&gt;
 &lt;p&gt;We start from discussing saddle points, the vast majority of critical points on the error surfaces of neural networks.&lt;/p&gt;
 &lt;blockquote&gt;
