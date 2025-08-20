@@ -400,7 +400,12 @@ ninja.data = [{
           section: "News",},{id: "news-some-recent-cool-demos-released-3d-editing-with-tinker-our-new-mobile-manipulation-system-odyssey",
           title: 'Some recent cool demos released, 3D editing with Tinker, our new mobile manipulation...',
           description: "",
-          section: "News",},{id: "projects-framer-iclr25",
+          section: "News",},{id: "projects-time-is-a-feature",
+          title: 'Time is a Feature',
+          description: "Exploiting Temporal Dynamics in Diffusion Language Models",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/dllm_midtruth/";
+            },},{id: "projects-framer-iclr25",
           title: 'Framer ICLR25',
           description: "Interactive Frame Interpolation",
           section: "Projects",handler: () => {
