@@ -400,7 +400,12 @@ ninja.data = [{
           section: "News",},{id: "news-some-recent-cool-demos-released-3d-editing-with-tinker-our-new-mobile-manipulation-system-odyssey",
           title: 'Some recent cool demos released, 3D editing with Tinker, our new mobile manipulation...',
           description: "",
-          section: "News",},{id: "projects-time-is-a-feature",
+          section: "News",},{id: "projects-adelaidet",
+          title: 'AdelaiDet',
+          description: "An open source toolbox for multiple instance-level detection and recognition tasks.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/adelaidet/";
+            },},{id: "projects-time-is-a-feature",
           title: 'Time is a Feature',
           description: "Exploiting Temporal Dynamics in Diffusion Language Models",
           section: "Projects",handler: () => {
