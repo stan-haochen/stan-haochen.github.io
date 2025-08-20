@@ -400,51 +400,21 @@ ninja.data = [{
           section: "News",},{id: "news-some-recent-cool-demos-released-3d-editing-with-tinker-our-new-mobile-manipulation-system-odyssey",
           title: 'Some recent cool demos released, 3D editing with Tinker, our new mobile manipulation...',
           description: "",
-          section: "News",},{id: "projects-project-2",
-          title: 'project 2',
-          description: "a project with a background image and giscus comments",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/2_project/";
-            },},{id: "projects-project-3-with-very-long-name",
-          title: 'project 3 with very long name',
-          description: "a project that redirects to another website",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/3_project/";
-            },},{id: "projects-project-4",
-          title: 'project 4',
-          description: "another without an image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/4_project/";
-            },},{id: "projects-project-5",
-          title: 'project 5',
-          description: "a project with a background image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/5_project/";
-            },},{id: "projects-project-6",
-          title: 'project 6',
-          description: "a project with no image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/6_project/";
-            },},{id: "projects-project-7",
-          title: 'project 7',
-          description: "with background image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/7_project/";
-            },},{id: "projects-project-8",
-          title: 'project 8',
-          description: "an other project with a background image and giscus comments",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/8_project/";
-            },},{id: "projects-project-9",
-          title: 'project 9',
-          description: "another project with an image 🎉",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/9_project/";
-            },},{id: "projects-framer-iclr25",
+          section: "News",},{id: "projects-framer-iclr25",
           title: 'Framer ICLR25',
-          description: "with background image",
+          description: "Interactive Frame Interpolation",
           section: "Projects",handler: () => {
               window.location.href = "/projects/framer/";
+            },},{id: "projects-odyssey",
+          title: 'ODYSSEY',
+          description: "Open-World Quadrupeds Exploration and Manipulation for Long-Horizon Tasks",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/odyssey/";
+            },},{id: "projects-tinker",
+          title: 'Tinker',
+          description: "Generalizable 3D Editing through Sparse Inputs without Per-Scene Finetuning",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/tinker/";
             },},{
         id: 'social-email',
         title: 'email',
