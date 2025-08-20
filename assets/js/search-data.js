@@ -400,12 +400,7 @@ ninja.data = [{
           section: "News",},{id: "news-some-recent-cool-demos-released-3d-editing-with-tinker-our-new-mobile-manipulation-system-odyssey",
           title: 'Some recent cool demos released, 3D editing with Tinker, our new mobile manipulation...',
           description: "",
-          section: "News",},{id: "projects-project-1",
-          title: 'project 1',
-          description: "with background image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/1_project/";
-            },},{id: "projects-project-2",
+          section: "News",},{id: "projects-project-2",
           title: 'project 2',
           description: "a project with a background image and giscus comments",
           section: "Projects",handler: () => {
@@ -445,6 +440,11 @@ ninja.data = [{
           description: "another project with an image 🎉",
           section: "Projects",handler: () => {
               window.location.href = "/projects/9_project/";
+            },},{id: "projects-framer-iclr25",
+          title: 'Framer ICLR25',
+          description: "with background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/framer/";
             },},{
         id: 'social-email',
         title: 'email',
