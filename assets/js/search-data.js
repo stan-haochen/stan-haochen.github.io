@@ -440,16 +440,14 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
-            },},{id: "news-a-simple-inline-announcement",
-          title: 'A simple inline announcement.',
+            },},{id: "news-six-papers-accepted-by-iclr-2025-two-spotlights",
+          title: 'Six papers accepted by ICLR 2025 (two Spotlights)!',
           description: "",
-          section: "News",},{id: "news-a-long-announcement-with-details",
-          title: 'A long announcement with details',
+          section: "News",},{id: "news-three-papers-accepted-by-iccv-2025",
+          title: 'Three papers accepted by ICCV 2025!',
           description: "",
-          section: "News",handler: () => {
-              window.location.href = "/news/announcement_2/";
-            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
-          title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
+          section: "News",},{id: "news-some-recent-cool-demos-released-3d-editing-with-tinker-our-new-mobile-manipulation-system-odyssey",
+          title: 'Some recent cool demos released, 3D editing with Tinker, our new mobile manipulation...',
           description: "",
           section: "News",},{id: "projects-project-1",
           title: 'project 1',
