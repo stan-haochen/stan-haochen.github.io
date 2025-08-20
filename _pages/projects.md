@@ -5,7 +5,7 @@ permalink: /projects/
 description: A growing collection of your cool projects.
 nav: true
 nav_order: 2
-display_categories: [Generation, Perception, EmbodiedAI]
+display_categories: [EmbodiedAI, Generation, Reasoning, Perception]
 horizontal: false
 ---
 
