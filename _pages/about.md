@@ -34,3 +34,8 @@ His general research interest lies in foundation models of Computer Vision. His 
 * Repurposing generative models for perception tasks: [Diception](https://aim-uofa.github.io/Diception/), [GenPercept](https://github.com/aim-uofa/GenPercept).
 * Foundation models for perception: [Metric3d](https://github.com/YvanYin/Metric3D), [Matcher](https://github.com/aim-uofa/Matcher), [AdelaiDet](https://github.com/aim-uofa/AdelaiDet).
 * Planning and action models for Embodied AI with VLMs: [Odyssey](https://kaijwang.github.io/odyssey.github.io/).
+
+Welcome any internship! If you want to apply for post-graduate degree, please contact me in advance!
+
+有博后、科研助理、实习交流等岗位！如果想申请硕士、博士研究生，请提前进组实习，有科研产出的实习生将会优先录取！
+
