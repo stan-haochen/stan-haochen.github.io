@@ -131,8 +131,15 @@ ninja.data = [{
           window.open("https://open.spotify.com/user/8m7s8glag00g83fo46hx36pmq", "_blank");
         },
       },{
-        id: 'social-custom_social',
-        title: 'Custom_social',
+        id: 'social-bilibili',
+        title: 'Bilibili',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.zhihu.com/people/yan-jia-mao", "_blank");
+        },
+      },{
+        id: 'social-zhihu',
+        title: 'Zhihu',
         section: 'Socials',
         handler: () => {
           window.open("https://space.bilibili.com/1911537", "_blank");
