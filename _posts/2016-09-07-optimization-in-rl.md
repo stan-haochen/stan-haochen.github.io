@@ -2,10 +2,10 @@
 layout: distill
 title: On Optimization in Deep Learning
 description: An old post about no local minima in Deep Learning.
-tags: distill formatting
+tags: optimization
 giscus_comments: false
 date: 2016-09-07
-featured: true
+featured: false
 mermaid:
   enabled: true
   zoomable: true
