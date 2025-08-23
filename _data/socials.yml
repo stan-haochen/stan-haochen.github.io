@@ -34,7 +34,7 @@ rss_icon: true # comment this line to hide the RSS icon
 scholar_userid: FaOqRpcAAAAJ # your Google Scholar ID
 # scopus_id: # your profile on Scopus
 # semanticscholar_id: # your Semantic Scholar ID
-# spotify_id: # your spotify id
+spotify_id: # your spotify id
 # stackoverflow_id: # your stackoverflow id
 # strava_userid: # your strava user id
 # telegram_username: # your Telegram user name
@@ -51,3 +51,7 @@ custom_social: # can be any name here other than the ones already defined above
   logo: https://upload.wikimedia.org/wikipedia/commons/a/ad/Zhihu_logo.svg # can be png, svg, jpg
   title: Zhihu
   url: https://www.zhihu.com/people/yan-jia-mao
+custom_social: # can be any name here other than the ones already defined above
+  logo: https://upload.wikimedia.org/wikipedia/en/b/b7/Bilibili_logo.svg # can be png, svg, jpg
+  title: Bilibili
+  url: https://space.bilibili.com/1911537
