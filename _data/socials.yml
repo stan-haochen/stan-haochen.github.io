@@ -47,11 +47,11 @@ spotify_id: 8m7s8glag00g83fo46hx36pmq # your spotify id
 # x_username: # your X handle
 # youtube_id: # your youtube channel id (youtube.com/@<youtube_id>)
 # zotero_username: # your zotero username
-custom_social: # can be any name here other than the ones already defined above
+bilibili: # can be any name here other than the ones already defined above
   logo: https://upload.wikimedia.org/wikipedia/commons/a/ad/Zhihu_logo.svg # can be png, svg, jpg
   title: Zhihu
   url: https://www.zhihu.com/people/yan-jia-mao
-custom_social: # can be any name here other than the ones already defined above
+zhihu: # can be any name here other than the ones already defined above
   logo: https://upload.wikimedia.org/wikipedia/en/b/b7/Bilibili_logo.svg # can be png, svg, jpg
   title: Bilibili
   url: https://space.bilibili.com/1911537
