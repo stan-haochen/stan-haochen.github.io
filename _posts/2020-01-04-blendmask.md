@@ -1,7 +1,7 @@
 ---
 layout: distill
-title: NAS - Where Are We Now
-description: The reasons why people are either running towards or away from Neural Architecture Search.
+title: Faster and Finer Instance Segmentation With Blendmask
+description: Introduction to our new instance segmentation model, BlendMask, which generates higher qualities than Mask R-CNN while being faster in inference.
 tags: perception
 giscus_comments: false
 date: 2020-01-04
@@ -33,9 +33,10 @@ authors:
 #   - we may want to automate TOC generation in the future using
 #     jekyll-toc plugin (https://github.com/toshimaru/jekyll-toc).
 toc:
-  - name: NAS with Variational Optimization
-  - name: NAS with Discrete Structure Learning
-
+  - name: Background
+  - name: Top-down Meets Bottom-up (Middle-Out?)
+  - name: Qualitative and Quantitative Results
+  
 # Below is an example of injecting additional post-specific styles.
 # If you use this post as a template, delete this _styles block.
 _styles: >
