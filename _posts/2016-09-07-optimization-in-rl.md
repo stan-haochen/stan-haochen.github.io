@@ -3,7 +3,7 @@ layout: distill
 title: On Optimization in Deep Learning
 description: An old post about no local minima in Deep Learning.
 tags: distill formatting
-giscus_comments: true
+giscus_comments: false
 date: 2016-09-07
 featured: true
 mermaid:
@@ -33,23 +33,18 @@ authors:
 #   - we may want to automate TOC generation in the future using
 #     jekyll-toc plugin (https://github.com/toshimaru/jekyll-toc).
 toc:
-  - name: Equations
-    # if a section has subsections, you can add them as follows:
-    # subsections:
-    #   - name: Example Child Subsection 1
-    #   - name: Example Child Subsection 2
-  - name: Citations
-  - name: Footnotes
-  - name: Code Blocks
-  - name: Interactive Plots
-  - name: Mermaid
-  - name: Diff2Html
-  - name: Leaflet
-  - name: Chartjs, Echarts and Vega-Lite
-  - name: TikZ
-  - name: Typograms
-  - name: Layouts
-  - name: Other Typography?
+  - name: Why SGD works?
+    subsections:
+        - name: Saddle points
+        - name: Spin-glass Hamiltonian
+        - name: Implicit Bias in SGD
+        - name: Spin-glass Hamiltonian
+  - name: What does the minima look like?
+    subsections:
+        - name: No poor local minima
+        - name: Arriving on flatter minima
+  - name: Should 2-nd order methods ever work?
+  - name: Gradient Starvation
 
 # Below is an example of injecting additional post-specific styles.
 # If you use this post as a template, delete this _styles block.
