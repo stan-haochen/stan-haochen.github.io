@@ -30,7 +30,29 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-on-optimization-in-deep-learning",
+        },{id: "post-faster-and-finer-instance-segmentation-with-blendmask",
+        
+          title: "Faster and Finer Instance Segmentation With Blendmask",
+        
+        description: "Introduction to our new instance segmentation model, BlendMask, which generates higher qualities than Mask R-CNN while being faster in inference.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/blendmask/";
+          
+        },
+      },{id: "post-nas-where-are-we-now",
+        
+          title: "NAS - Where Are We Now",
+        
+        description: "The reasons why people are either running towards or away from Neural Architecture Search.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2019/nas/";
+          
+        },
+      },{id: "post-on-optimization-in-deep-learning",
         
           title: "On Optimization in Deep Learning",
         
@@ -85,14 +107,7 @@ ninja.data = [{
         title: 'email',
         section: 'Socials',
         handler: () => {
-          window.open("mailto:%79%6F%75@%65%78%61%6D%70%6C%65.%63%6F%6D", "_blank");
-        },
-      },{
-        id: 'social-inspire',
-        title: 'Inspire HEP',
-        section: 'Socials',
-        handler: () => {
-          window.open("https://inspirehep.net/authors/1010907", "_blank");
+          window.open("mailto:%68%61%6F%63%68%65%6E.%63%61%64@%7A%6A%75.%65%64%75.%63%6E", "_blank");
         },
       },{
         id: 'social-rss',
@@ -106,14 +121,21 @@ ninja.data = [{
         title: 'Google Scholar',
         section: 'Socials',
         handler: () => {
-          window.open("https://scholar.google.com/citations?user=qc6CJjYAAAAJ", "_blank");
+          window.open("https://scholar.google.com/citations?user=FaOqRpcAAAAJ", "_blank");
+        },
+      },{
+        id: 'social-spotify',
+        title: 'Spotify',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://open.spotify.com/user/8m7s8glag00g83fo46hx36pmq", "_blank");
         },
       },{
         id: 'social-custom_social',
         title: 'Custom_social',
         section: 'Socials',
         handler: () => {
-          window.open("https://www.alberteinstein.com/", "_blank");
+          window.open("https://space.bilibili.com/1911537", "_blank");
         },
       },{
       id: 'light-theme',
