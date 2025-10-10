@@ -3,9 +3,9 @@ layout: distill
 title: A Foundation Model Believer's Take on Embodied AI Research
 description: Embodied AI research questions which I considered important, with introduction to some of our recent work.
 tags: embodied_ai
-giscus_comments: false
+giscus_comments: true
 date: 2025-10-10
-featured: false
+featured: true
 mermaid:
   enabled: true
   zoomable: true
@@ -33,7 +33,7 @@ authors:
 #   - we may want to automate TOC generation in the future using
 #     jekyll-toc plugin (https://github.com/toshimaru/jekyll-toc).
 toc:
-  - name: 1. The Division of Labor: A Tale of Two Systems
+  - name: 1. The Division of Labor A Tale of Two Systems
   - name: 2. The Quest for a Generalizable Action Expert
   - name: 3. The Hunger for Data and a Thirst for Complexity
   - name: 4. So, Are Reasoning Models a Solved Problem?
@@ -57,13 +57,13 @@ _styles: >
   }
 ---
 
-> "I have been impressed with the urgency of doing. Knowing is not enough; we must apply. Being willing is not enough; we must do."
-> 
-> —— Leonardo da Vinci
-
 There's no doubt we're in the early innings of embodied intelligence. And I'm an optimist: I believe we might see general-purpose agents leap from the virtual world into our physical one within the next two years. As a researcher whose intuition for data, models, and optimization strategies was largely forged in the COCO-scale era of computer vision, I'd like to share a few personal thoughts on the path forward.
 
 ## 1. The Division of Labor: A Tale of Two Systems
+
+> "I have been impressed with the urgency of doing. Knowing is not enough; we must apply. Being willing is not enough; we must do."
+> 
+> —— Leonardo da Vinci
 
 The first lesson my experience in computer vision taught me is this: for the foreseeable future, a Vision-Language-Action (VLA) model—one that takes language commands and observations to output actions—should be a **dual-system architecture**. This means a "Reasoning" system (the Vision-Language part) working in tandem with an "Acting" system.
 
@@ -75,13 +75,13 @@ Here’s why this division makes perfect sense:
 
 So, how should these two systems collaborate on embodied tasks? This, I believe, is one of the central questions for the field. To put it another way: how do we give our digital minds the right eyes and hands?
 
+For simpler tasks, a powerful VLM might suffice on its own. But as complexity ramps up, the division of labor becomes crucial. The boundary between these two systems will be dynamic, shifting as the capabilities of each module evolve. On the most challenging tasks, the Reasoning model may fail to provide perfectly reliable guidance, and the Acting model may struggle to compensate for these upstream errors.
+
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/posts/foundation_embodied/knowing_doing.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
-
-For simpler tasks, a powerful VLM might suffice on its own. But as complexity ramps up, the division of labor becomes crucial. The boundary between these two systems will be dynamic, shifting as the capabilities of each module evolve. On the most challenging tasks, the Reasoning model may fail to provide perfectly reliable guidance, and the Acting model may struggle to compensate for these upstream errors.
 
 This chasm between what the reasoning model *knows* and what the acting model can *do* is what I call the **knowing-doing gap**. I believe the onus is on the Acting module to bridge this gap, primarily because the reasoning capabilities of foundation models are advancing at a breathtaking pace that shows no signs of slowing down.
 
@@ -143,7 +143,7 @@ So, can existing large-model architectures handle the ultimate reason problems f
 
 However, for tasks grounded in the physical world, I argue there's still ample room for specialized optimization. A reasoning model must orchestrate a symphony of different sensors, 3D reconstruction models, object- or scene-level generative models, action policy models, and physics simulators. Simply outputting a string of coordinates is an insufficient medium for this complex communication. We need an **latent representation** that serves as a bridge between reasoning and downstream modules, one that can be refined through end-to-end training.
 
-This brings us to the concept of **World Models**. A clarification I find myself making constantly this year is that a video generation model controlled by camera movements **≠** a world model. A true world model encodes state transitions, not just pixel changes:
+This brings us to the concept of [World Models](https://worldmodels.github.io/). A clarification I find myself making constantly this year is that a video generation model conditioned on camera movements **≠** a world model. A true world model encodes state transitions, not pixel changes:
 $$
 s_{t+1} = \mathcal M(s_t, a_t)
 $$
