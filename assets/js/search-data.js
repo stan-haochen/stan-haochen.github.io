@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-faster-and-finer-instance-segmentation-with-blendmask",
+        },{id: "post-",
+        
+          title: "",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/2025-10-10-foundation-embodied/";
+          
+        },
+      },{id: "post-faster-and-finer-instance-segmentation-with-blendmask",
         
           title: "Faster and Finer Instance Segmentation With Blendmask",
         
