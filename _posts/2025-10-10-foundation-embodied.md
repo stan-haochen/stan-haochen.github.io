@@ -139,21 +139,23 @@ To this end, we built **[Odyssey](https://kaijwang.github.io/odyssey.github.io/)
 
 It's a familiar story in AI: as scale increases, handcrafted design gracefully bows out to raw expressive power. The relentless simplification of network architectures is undeniably the right path. Still, it leaves someone like me, who spent the better part of a decade pondering clever network designs (with the recent [DUSt3R](https://arxiv.org/abs/2312.14132) being a rare, delightful exception), a little wistful.
 
-So, can existing large-model architectures handle the ultimate reason problems for embodied agents? The unfortunate, or perhaps fortunate, answer is **yes**—or at least, it's a matter of when, not if.
+So, can existing large-model architectures handle the ultimate reasoning problems for embodied agents? The unfortunate, or perhaps fortunate, answer is **yes**—or at least, it's a matter of when, not if.
 
-However, for tasks grounded in the physical world, I argue there's still ample room for specialized optimization. A reasoning model must orchestrate a symphony of different sensors, 3D reconstruction models, object- or scene-level generative models, action policy models, and physics simulators. Simply outputting a string of coordinates is an insufficient medium for this complex communication. We need an **latent representation** that serves as a bridge between reasoning and downstream modules, one that can be refined through end-to-end training.
+However, for tasks grounded in the physical world, I argue there's still ample room for carefully designed specialist architectures. There's just too much unfamiliar things in its plate. A reasoning model must orchestrate a symphony of different sensors, 3D reconstruction models, object- or scene-level generative models, action policy models, and physics simulators. Simply outputting a string of coordinates is an insufficient medium for this complex communication. We need an **latent representation** that serves as a bridge between reasoning and downstream modules, one that can be refined through end-to-end training.
 
 This brings us to the concept of [World Models](https://worldmodels.github.io/). A clarification I find myself making constantly this year is that a video generation model conditioned on camera movements **≠** a world model. A true world model encodes state transitions, not pixel changes:
+
 $$
 s_{t+1} = \mathcal M(s_t, a_t)
 $$
+
 Here, the action $a_t$ can be far more abstract than a camera pan (e.g., a thought flashing through your mind), and the state $s_t$ can be far more compact than a 30fps HD video (e.g., a 1024-dimensional vector every 5 seconds). This compactness offers two huge advantages. First, it allows the reasoning model to "think with images" without getting bogged down in the costly business of video generation. Second, for embodied tasks, the future state provides a natural and powerful bridge for end-to-end training.
 
 We recently took a stab at this with our work on [StaMo](https://aim-uofa.github.io/StaMo/). We propose an unsupervised approach that learns a highly compressed two-token state representation for general embodied tasks. Our representation is efficient, interpretable, and integrates seamlessly into existing VLA-based models. More importantly, we find that the difference between these tokens, obtained via latent interpolation, naturally serves as a highly effective latent action, which can be further decoded into executable robot actions. This emergent capability reveals that our representation captures structured dynamics without explicit supervision. We named our method **StaMo** for its ability to learn generalizable robotic **Mo**tion from a compact **Sta**te representation, which is encoded from static images, challenging the prevalent dependence on complex architectures and video data for learning latent actions.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/posts/foundation_embodied/odyssey.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.liquid loading="eager" path="assets/img/posts/foundation_embodied/stamo.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 
