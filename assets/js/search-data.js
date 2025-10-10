@@ -30,15 +30,15 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-",
+        },{id: "post-a-foundation-model-believer-39-s-take-on-embodied-ai-research",
         
-          title: "",
+          title: "A Foundation Model Believer&#39;s Take on Embodied AI Research",
         
-        description: "",
+        description: "Embodied AI research questions which I considered important, with introduction to some of our recent work.",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2025/2025-10-10-foundation-embodied/";
+            window.location.href = "/blog/2025/foundation-embodied/";
           
         },
       },{id: "post-faster-and-finer-instance-segmentation-with-blendmask",
