@@ -24,7 +24,7 @@ authors:
     affiliations:
       name: CAG&CG, Zhejiang University
 
-# bibliography: 2018-12-22-distill.bib
+bibliography: 2018-12-22-distill.bib
 
 # Optionally, you can add a table of contents to your post.
 # NOTES:
@@ -83,9 +83,9 @@ For simpler tasks, a powerful VLM might suffice on its own. But as complexity ra
     </div>
 </div>
 
-This chasm between what the reasoning model *knows* and what the acting model can *do* is what I call the **knowing-doing gap**. I believe the onus is on the Acting module to bridge this gap, primarily because the reasoning capabilities of foundation models are advancing at a breathtaking pace that shows no signs of slowing down.
+This chasm between what the reasoning model *knows* and what the acting model can *do* is what I call the **knowing-doing gap**. I believe the onus is on the Acting module to bridge this gap, whose ability is largely unexplored, while the already very capable reasoning capabilities of foundation models are advancing at a breathtaking pace that shows no signs of slowing down.
 
-This paradigm raises a clear and meaningful question: What information *should* the Reasoning module provide to the Acting module? In our recent work, we proposed **notVLA (Narrative Outline of Trajectories)** to explore this. We argue that the guidance from the VLM should be:
+This paradigm raises a clear and meaningful question: What information *should* the Reasoning module provide to the Acting module? In our recent work, we proposed **notVLA**<d-cite key="huang2025notvla"></d-cite> to explore this. We argue that the guidance from the VLM should be:
 
 1.  **Text-based:** Because text is the *lingua franca* of zero-shot generalization, enabling adaptive training.
 2.  **Sparse:** For the sake of efficiency. Five well-chosen keypoints are plenty to define a smooth trajectory.
@@ -101,7 +101,7 @@ During training, we employ a kinematics-based keyframe selection method to provi
 
 ## 2. The Quest for a Generalizable Action Model
 
-Another beauty of the dual-system architecture is that it lets us have our cake and eat it too. We get the phenomenal expressive power of VLMs *and* the training efficiency of a specialized action model. With generalized trajectory guidance from the VLM, we can tackle mixed-task training at a scale that would be impossible otherwise, as the VLM elegantly resolves semantic ambiguities. This clears the path for a more focused investigation into scaling up the action models themselves. Following this line of thought, we successfully trained a **generalizable action expert** that achieves zero-shot generalization across different datasets and tasks.
+Another beauty of the dual-system architecture is that it lets us have our cake and eat it too. We get the phenomenal expressive power of VLMs *and* the training efficiency of a specialized action model. With generalized trajectory guidance from the VLM, we can tackle mixed-task training at a scale that would be impossible otherwise, as the VLM elegantly resolves semantic ambiguities. This clears the path for a more focused investigation into scaling up the action models themselves. Following this line of thought, we successfully trained a **generalizable action expert**<d-cite key="liu2025bridge"></d-cite> that achieves zero-shot generalization across different datasets and tasks.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -125,7 +125,7 @@ So, how much data is enough? The key isn't raw trajectory length, but *diversity
 
 Of course, another indispensable route is autonomous exploration in simulation. This is the logical path for tasks where real-world data is scarce and for learning skills that surpass human ability. While we're still in the early stages, its value is already apparent in long-horizon tasks where navigation, manipulation, and whole-body control must work in concert. Imagine needing to find the right vantage point to grasp a complex part or using the environment for leverage to open a heavy door. For scenarios like these, end-to-end RL holds the promise of unlocking emergent capabilities from our foundation models.
 
-To this end, we built **[Odyssey](https://kaijwang.github.io/odyssey.github.io/)**, Open-World Quadrupeds Exploration and Manipulation for Long-Horizon Tasks. It presents the first comprehensive benchmark for long-horizon mobile manipulation, evaluating diverse indoor and outdoor scenarios. We currently provide a hierarchical control architecture guided by an LLM and vision models, and we are excited to expand it with richer tasks, offering the community a robust RL playground to ignite compositional generalization.
+To this end, we built **[Odyssey](https://kaijwang.github.io/odyssey.github.io/)**<d-cite key="wang2025odyssey"></d-cite>, Open-World Quadrupeds Exploration and Manipulation for Long-Horizon Tasks. It presents the first comprehensive benchmark for long-horizon mobile manipulation, evaluating diverse indoor and outdoor scenarios. We currently provide a hierarchical control architecture guided by an LLM and vision models, and we are excited to expand it with richer tasks, offering the community a robust RL playground to ignite compositional generalization.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -151,7 +151,7 @@ $$
 
 Here, the action $a_t$ can be far more abstract than a camera pan (e.g., a thought flashing through your mind), and the state $s_t$ can be far more compact than a 30fps HD video (e.g., a 1024-dimensional vector every 5 seconds). This compactness offers two huge advantages. First, it allows the reasoning model to "think with images" without getting bogged down in the costly business of video generation. Second, for embodied tasks, the future state provides a natural and powerful bridge for end-to-end training.
 
-We recently took a stab at this with our work on [StaMo](https://aim-uofa.github.io/StaMo/). We propose an unsupervised approach that learns a highly compressed two-token state representation for general embodied tasks. Our representation is efficient, interpretable, and integrates seamlessly into existing VLA-based models. More importantly, we find that the difference between these tokens, obtained via latent interpolation, naturally serves as a highly effective latent action, which can be further decoded into executable robot actions. This emergent capability reveals that our representation captures structured dynamics without explicit supervision. We named our method **StaMo** for its ability to learn generalizable robotic **Mo**tion from a compact **Sta**te representation, which is encoded from static images, challenging the prevalent dependence on complex architectures and video data for learning latent actions.
+We recently took a stab at this with our work on [StaMo](https://aim-uofa.github.io/StaMo/)<d-cite key="liu2025stamo"></d-cite>. We propose an unsupervised approach that learns a highly compressed two-token state representation for general embodied tasks. Our representation is efficient, interpretable, and integrates seamlessly into existing VLA-based models. More importantly, we find that the difference between these tokens, obtained via latent interpolation, naturally serves as a highly effective latent action, which can be further decoded into executable robot actions. This emergent capability reveals that our representation captures structured dynamics without explicit supervision. We named our method **StaMo** for its ability to learn generalizable robotic **Mo**tion from a compact **Sta**te representation, which is encoded from static images, challenging the prevalent dependence on complex architectures and video data for learning latent actions.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
