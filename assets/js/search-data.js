@@ -106,6 +106,11 @@ ninja.data = [{
           description: "Interactive Frame Interpolation",
           section: "Projects",handler: () => {
               window.location.href = "/projects/framer/";
+            },},{id: "projects-livingswap",
+          title: 'LivingSwap',
+          description: "High-Fidelity Face Swapping for Cinematic Quality",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/livingswap/";
             },},{id: "projects-odyssey",
           title: 'ODYSSEY',
           description: "Open-World Quadrupeds Exploration and Manipulation for Long-Horizon Tasks",
