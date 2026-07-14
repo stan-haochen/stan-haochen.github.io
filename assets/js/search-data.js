@@ -108,6 +108,11 @@ ninja.data = [{
           description: "An open source toolbox for multiple instance-level detection and recognition tasks.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/adelaidet/";
+            },},{id: "projects-agile",
+          title: 'AGILE',
+          description: "Hand-object Interaction Reconstruction from Video via Agentic Generation",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/agile/";
             },},{id: "projects-time-is-a-feature",
           title: 'Time is a Feature',
           description: "Exploiting Temporal Dynamics in Diffusion Language Models",
